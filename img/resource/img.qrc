@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/img">
+    <file>rb_checked.png</file>
+    <file>rb_hover.png</file>
+    <file>rb_normal.png</file>
+  </qresource>
+</RCC>
