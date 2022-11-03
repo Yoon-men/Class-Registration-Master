@@ -1,7 +1,13 @@
 <RCC>
   <qresource prefix="/img">
-    <file>rb_checked.png</file>
-    <file>rb_hover.png</file>
-    <file>rb_normal.png</file>
+    <file>finale_rb_checked.png</file>
+    <file>finale_rb_hover.png</file>
+    <file>finale_rb_normal.png</file>
+    <file>info_rb_checked.png</file>
+    <file>info_rb_hover.png</file>
+    <file>info_rb_normal.png</file>
+    <file>ready_rb_checked.png</file>
+    <file>ready_rb_hover.png</file>
+    <file>ready_rb_normal.png</file>
   </qresource>
 </RCC>
