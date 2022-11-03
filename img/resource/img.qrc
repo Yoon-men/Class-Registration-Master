@@ -9,5 +9,7 @@
     <file>ready_rb_checked.png</file>
     <file>ready_rb_hover.png</file>
     <file>ready_rb_normal.png</file>
+    <file>onestop_bt_hover.png</file>
+    <file>onestop_bt_normal.png</file>
   </qresource>
 </RCC>
