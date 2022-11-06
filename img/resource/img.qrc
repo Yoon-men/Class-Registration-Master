@@ -11,5 +11,6 @@
     <file>ready_rb_normal.png</file>
     <file>onestop_bt_hover.png</file>
     <file>onestop_bt_normal.png</file>
+    <file>tile.png</file>
   </qresource>
 </RCC>
