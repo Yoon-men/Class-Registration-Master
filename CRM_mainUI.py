@@ -57,6 +57,7 @@ class MainUI(QMainWindow) :
                                     "QRadioButton::indicator::checked{\n"
                                         "image : url(:/img/info_rb_checked.png);\n"
                                     "}")
+        self.info_rb.setChecked(True)
 
         self.prepare_rb = QRadioButton(self.body_frm)
         self.prepare_rb.setGeometry(143, 2, 147, 34)
@@ -94,6 +95,54 @@ class MainUI(QMainWindow) :
         self.menuGroup.addButton(self.info_rb)
         self.menuGroup.addButton(self.prepare_rb)
         self.menuGroup.addButton(self.finale_rb)
+
+
+        # info_part
+        self.onestop_bt = QPushButton(self.body_frm)
+        self.onestop_bt.setGeometry(17, 52, 399, 34)
+        self.onestop_bt.setStyleSheet("QPushButton{\n"
+                                            "image : url(:/img/onestop_bt_normal.png);\n"
+                                        "}\n"
+                                        "QPushButton:hover{\n"
+                                            "image : url(:/img/onestop_bt_hover.png);\n"
+                                        "}")
+
+
+        # prepare_part
+        self.account_rb = QRadioButton(self.body_frm)
+        self.account_rb.setGeometry(16, 51, 401, 61)
+        self.account_rb.setStyleSheet("QRadioButton::indicator{\n"
+                                            "width : 401px;\n"
+                                            "height : 111px;\n"
+                                        "}\n"
+                                        "QRadioButton::indicator::unchecked{\n"
+                                            "image : url(:/img/account_rb_normal.png);\n"
+                                        "}\n"
+                                        "QRadioButton::indicator::hover{\n"
+                                            "image : url(:/img/account_rb_hover.png);\n"
+                                        "}\n"
+                                        "QRadioButton::indicator::checked{\n"
+                                            "image : url(:/img/account_rb_checked.png);\n"
+                                        "}")
+        self.account_rb.setChecked(True)
+        self.account_rb.hide()
+
+        self.time_rb = QRadioButton(self.body_frm)
+        self.time_rb.setGeometry(16, 125, 401, 61)
+        self.time_rb.setStyleSheet("QRadioButton::indicator{\n"
+                                        "width : 401px;\n"
+                                        "height : 111px;\n"
+                                    "}\n"
+                                    "QRadioButton::indicator::unchecked{\n"
+                                        "image : url(:/img/time_rb_normal.png);\n"
+                                    "}\n"
+                                    "QRadioButton::indicator::hover{\n"
+                                        "image : url(:/img/time_rb_hover.png);\n"
+                                    "}\n"
+                                    "QRadioButton::indicator::checked{\n"
+                                        "image : url(:/img/time_rb_checked.png);\n"
+                                    "}")
+        self.time_rb.hide()
 
 
 
