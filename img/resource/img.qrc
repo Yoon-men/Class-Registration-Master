@@ -18,5 +18,6 @@
     <file>time_rb_checked.png</file>
     <file>time_rb_hover.png</file>
     <file>time_rb_normal.png</file>
+    <file>completed.png</file>
   </qresource>
 </RCC>
