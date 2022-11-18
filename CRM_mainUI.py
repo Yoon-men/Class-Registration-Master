@@ -32,10 +32,18 @@ class MainUI(QMainWindow) :
         self.topLine = QFrame(self.body_frm)
         self.topLine.setGeometry(1, 34, 431, 3)
 
-        self.pattern_frm = QFrame(self.body_frm)
-        self.pattern_frm.setGeometry(421, 4, 791, 637)
-        self.pattern_frm.setStyleSheet("QFrame{\n"
+        self.tile_frm = QFrame(self.body_frm)
+        self.tile_frm.setGeometry(421, 4, 791, 637)
+        self.tile_frm.setStyleSheet("QFrame{\n"
                                             "image : url(:/img/tile.png);\n"
+                                            "border : 0px;\n"
+                                            "background-color : transparent;\n"
+                                        "}")
+
+        self.completed_frm = QFrame(self.tile_frm)
+        self.completed_frm.setGeometry(558, 10, 211, 71)
+        self.completed_frm.setStyleSheet("QFrame{\n"
+                                            "image : url(:/img/completed.png);\n"
                                             "border : 0px;\n"
                                             "background-color : transparent;\n"
                                         "}")
