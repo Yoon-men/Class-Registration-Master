@@ -8,7 +8,7 @@ from selenium.common.exceptions import ElementNotInteractableException, NoAlertP
 
 import time
 
-class Fn(QObject) : 
+class KeyFn(QObject) : 
     def classRegistration(self) : 
         option = Options()
         # option.add_argument("headless")               # Test code / please unlock the contents of this line.
@@ -62,4 +62,4 @@ class Fn(QObject) :
 
 
 if __name__ == "__main__" : 
-    Fn().classRegistration()
+    KeyFn().classRegistration()
