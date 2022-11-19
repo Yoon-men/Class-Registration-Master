@@ -49,8 +49,12 @@ class Main(QObject) :
 
     def signal(self) : 
         # << mainUI (1/1) >> --------------------
+
+        ## info_part
         mainUI.onestop_bt.clicked.connect(basicFn.openOnestop)
 
+
+        ## finale_part
         # mainUI.start_bt.clicked.connect(keyFn.classRegistration)                   # Test code / please unlock the contents of this line.
 
 
