@@ -18,7 +18,7 @@ import webbrowser
 from collections import deque
 
 from CRM_mainUI import MainUI
-from CRM_registration import Fn
+from CRM_keyFn import KeyFn
 
 class Main(QObject) : 
     def __init__(self) : 
@@ -27,12 +27,19 @@ class Main(QObject) :
         global mainUI
         mainUI = MainUI()
 
-        global thread_fn
-        thread_fn = QThread()
-        thread_fn.start()
-        global fn
-        fn = Fn()
-        fn.moveToThread(thread_fn)
+        global thread_keyFn        # For quit
+        thread_keyFn = QThread()
+        thread_keyFn.start()
+        global keyFn
+        keyFn = KeyFn()
+        keyFn.moveToThread(thread_keyFn)
+
+        global thread_basicFn       # For quit
+        thread_basicFn = QThread()
+        thread_basicFn.start()
+        global basicFn
+        basicFn = BasicFn()
+        basicFn.moveToThread(thread_basicFn)
 
         mainUI.show()
         self.signal()
@@ -42,7 +49,16 @@ class Main(QObject) :
 
     def signal(self) : 
         # << mainUI (1/1) >> --------------------
-        mainUI.onestop_bt.clicked.connect(fn.classRegistration)                 # Test code / please modify the contents of this line.
+        mainUI.onestop_bt.clicked.connect(basicFn.openOnestop)
+
+        # mainUI.start_bt.clicked.connect(keyFn.classRegistration)                   # Test code / please unlock the contents of this line.
+
+
+
+
+class BasicFn(QObject) : 
+    def openOnestop(self) : 
+        webbrowser.open("https://onestop.kumoh.ac.kr/")
 
 
 
