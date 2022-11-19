@@ -9,6 +9,7 @@ class MainUI(QMainWindow) :
         super().__init__()
 
         self.mainUI()
+        self.signal()
 
     def mainUI(self) : 
         # basic_part
@@ -151,6 +152,33 @@ class MainUI(QMainWindow) :
                                         "image : url(:/img/time_rb_checked.png);\n"
                                     "}")
         self.time_rb.hide()
+
+
+
+    def signal(self) : 
+        self.info_rb.clicked.connect(self.menuSet)
+        self.prepare_rb.clicked.connect(self.menuSet)
+        self.finale_rb.clicked.connect(self.menuSet)
+
+
+
+    def menuSet(self) : 
+        if self.info_rb.isChecked() : 
+            # prepare_part
+            self.account_rb.hide()
+            self.time_rb.hide()
+            # info_part
+            self.onestop_bt.show()
+
+        elif self.prepare_rb.isChecked() : 
+            # info_part
+            self.onestop_bt.hide()
+            # prepare_part
+            self.account_rb.show()
+            self.time_rb.show()
+
+        elif self.finale_rb.isChecked() : 
+            pass                # Test code / please delete the contents of this line.
 
 
 
