@@ -10,58 +10,44 @@
 ======================================
 '''
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-import chromedriver_autoinstaller
-from selenium.webdriver.common.by import By
-
-from selenium.common.exceptions import ElementNotInteractableException, NoAlertPresentException, StaleElementReferenceException
-
+import sys
+from PySide2.QtWidgets import QApplication
+from PySide2.QtCore import QThread, QCoreApplication, QEvent, QObject, Qt
 import time
+import webbrowser
+from collections import deque
 
-option = Options()
-# option.add_argument("headless")               # Test code / please unlock the contents of this line.
-option.add_argument("start-maximized")
-option.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chromedriver_autoinstaller.get_chrome_version()} Safari/537.36")
-option.add_experimental_option("excludeSwitches", ["enable-logging"])
+from CRM_mainUI import MainUI
+from CRM_registration import Fn
 
-try : 
-    driver = webdriver.Chrome(options=option)
-except : 
-    chromedriver_autoinstaller.install()
-    driver = webdriver.Chrome(options=option)
+class Main(QObject) : 
+    def __init__(self) : 
+        super().__init__()
 
-driver.implicitly_wait(60)
+        global mainUI
+        mainUI = MainUI()
 
-driver.get("https://sugang.kumoh.ac.kr/html/stud/sugang.html")
-time.sleep(0.2)
-driver.find_element(By.ID, "Form_로그인.아이디").send_keys("20774796")
-driver.find_element(By.ID, "Form_로그인.비밀번호").send_keys("123456789")
+        global thread_fn
+        thread_fn = QThread()
+        thread_fn.start()
+        global fn
+        fn = Fn()
+        fn.moveToThread(thread_fn)
 
-try : 
-    driver.find_element(By.ID, "Form_버튼.pb_확인").click()
-    time.sleep(0.2)
-    alert = driver.switch_to.alert
-    print(alert.text)               # Test code / please delete the contents of this line.
-    if "수강신청기간이" in alert.text.split() : 
-        print("[system] 해당 학년의 수강 신청 기간이 아닙니다.")                # Test code / please delete the contents of this line.
-    elif "아이디" in alert.text.split() : 
-        print("[system] 아이디 또는 비밀번호를 다시 확인해 주십시오.")              # Test code / please delete the contents of this line.
-    alert.accept()
-except NoAlertPresentException : 
-    print("[system] 로그인을 완료했습니다.")             # Test code / please delete the contents of this line.
+        mainUI.show()
+        self.signal()
+        sys.exit(app.exec_())
+    
 
-subjects = ["CD006001"]
-for i in subjects : 
-    driver.find_element(By.ID, "Form_희망수강과목입력.개설교과목코드").send_keys(i)
-    try : 
-        driver.find_element(By.ID, "Form_버튼.pb1").click()
-        time.sleep(0.2)
-        alert = driver.switch_to.alert
-        if "아니므로" in alert.text.split() : print("[system] 교과목 코드를 다시 확인해주십시오.")
-        elif "이중으로" in alert.text.split() : print("[system] 이미 수강신청을 완료한 과목이므로 다음 과목으로 넘어갑니다.")
-        alert.accept()
-    except NoAlertPresentException : 
-        print("[system] 다음 과정으로 넘어갑니다.")             # Test code / please delete the contents of this line.
-time.sleep(100)                 # Test code / please delete the contents of this line.
-driver.quit()
+
+    def signal(self) : 
+        # << mainUI (1/1) >> --------------------
+        mainUI.onestop_bt.clicked.connect(fn.classRegistration)                 # Test code / please modify the contents of this line.
+
+
+
+
+
+if __name__ == "__main__" : 
+    app = QApplication(sys.argv)
+    Main()
