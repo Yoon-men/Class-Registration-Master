@@ -154,6 +154,17 @@ class MainUI(QMainWindow) :
         self.time_rb.hide()
 
 
+        # finale_part
+        self.start_bt = QPushButton(self.tile_frm)
+        self.start_bt.setGeometry(429, 574, 341, 51)
+        self.start_bt.setStyleSheet("QPushButton{\n"
+                                        "image : url(:/img/start_bt_normal.png);\n"
+                                    "}\n"
+                                    "QPushButton:hover{\n"
+                                        "image : url(:/img/start_bt_hover.png);\n"
+                                    "}")
+
+
 
     def signal(self) : 
         self.info_rb.clicked.connect(self.menuSet)
