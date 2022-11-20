@@ -55,7 +55,7 @@ class Main(QObject) :
 
 
         ## finale_part
-        # mainUI.start_bt.clicked.connect(keyFn.classRegistration)                   # Test code / please unlock the contents of this line.
+        mainUI.start_bt.clicked.connect(keyFn.classRegistration)
 
 
 
