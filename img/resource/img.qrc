@@ -19,5 +19,7 @@
     <file>time_rb_hover.png</file>
     <file>time_rb_normal.png</file>
     <file>completed.png</file>
+    <file>start_bt_normal.png</file>
+    <file>start_bt_hover.png</file>
   </qresource>
 </RCC>
