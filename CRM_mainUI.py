@@ -163,6 +163,7 @@ class MainUI(QMainWindow) :
                                     "QPushButton:hover{\n"
                                         "image : url(:/img/start_bt_hover.png);\n"
                                     "}")
+        self.start_bt.hide()
 
 
 
@@ -178,18 +179,28 @@ class MainUI(QMainWindow) :
             # prepare_part
             self.account_rb.hide()
             self.time_rb.hide()
+            #finale_part
+            self.start_bt.hide()
             # info_part
             self.onestop_bt.show()
 
         elif self.prepare_rb.isChecked() : 
             # info_part
             self.onestop_bt.hide()
+            # finale_part
+            self.start_bt.hide()
             # prepare_part
             self.account_rb.show()
             self.time_rb.show()
 
         elif self.finale_rb.isChecked() : 
-            pass                # Test code / please delete the contents of this line.
+            # info_part
+            self.onestop_bt.hide()
+            # prepare_part
+            self.account_rb.hide()
+            self.time_rb.hide()
+            #finale_part
+            self.start_bt.show()
 
 
 
