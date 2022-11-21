@@ -13,7 +13,6 @@ class MainUI(QMainWindow) :
 
     def mainUI(self) : 
         # basic_part
-        self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setFixedSize(1215, 678)
         self.setWindowTitle("Class_Registration_Master_v1.0")
