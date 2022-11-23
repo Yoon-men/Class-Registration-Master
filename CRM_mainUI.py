@@ -1,7 +1,7 @@
 from img.img import *
 import sys
 from PySide2.QtGui import QFont
-from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QGraphicsDropShadowEffect, QButtonGroup
+from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup
 from PySide2.QtCore import Qt, QSize
 
 class MainUI(QMainWindow) : 
@@ -47,6 +47,15 @@ class MainUI(QMainWindow) :
                                             "border : 0px;\n"
                                             "background-color : transparent;\n"
                                         "}")
+
+        self.completed_lb = QLabel(self.tile_frm)
+        self.completed_lb.setGeometry(619, 43, 91, 31)
+        self.completed_lb.setFont(QFont("굴림", 20, QFont.Bold))
+        self.completed_lb.setStyleSheet("QLabel{\n"
+                                            "color : #ffffff;\n"
+                                        "}")
+        self.completed_lb.setText("0 / 0")
+        self.completed_lb.setAlignment(Qt.AlignCenter)
 
 
         # menu_part
