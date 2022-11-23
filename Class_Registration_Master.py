@@ -41,6 +41,9 @@ class Main(QObject) :
         basicFn = BasicFn()
         basicFn.moveToThread(thread_basicFn)
 
+        global prepared
+        prepared = False
+
         mainUI.show()
         self.signal()
         sys.exit(app.exec_())
@@ -55,7 +58,7 @@ class Main(QObject) :
 
 
         ## finale_part
-        mainUI.start_bt.clicked.connect(keyFn.classRegistration)
+        mainUI.start_bt.clicked.connect(basicFn.classRegistration)
 
 
 
@@ -63,6 +66,13 @@ class Main(QObject) :
 class BasicFn(QObject) : 
     def openOnestop(self) : 
         webbrowser.open("https://onestop.kumoh.ac.kr/")
+
+
+
+    def classRegistration(self) : 
+        if prepared : keyFn.classRegistration()
+        else : 
+            print("[system] start_bt is clicked")               # Test code / please delete the contents of this line.
 
 
 
