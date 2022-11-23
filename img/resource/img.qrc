@@ -21,5 +21,8 @@
     <file>completed.png</file>
     <file>start_bt_normal.png</file>
     <file>start_bt_hover.png</file>
+    <file>subject_rb_checked.png</file>
+    <file>subject_rb_hover.png</file>
+    <file>subject_rb_normal.png</file>
   </qresource>
 </RCC>
