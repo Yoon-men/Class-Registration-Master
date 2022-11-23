@@ -161,6 +161,23 @@ class MainUI(QMainWindow) :
                                     "}")
         self.time_rb.hide()
 
+        self.subject_rb = QRadioButton(self.body_frm)
+        self.subject_rb.setGeometry(16, 199, 401, 61)
+        self.subject_rb.setStyleSheet("QRadioButton::indicator{\n"
+                                            "width : 401px;\n"
+                                            "height : 111px;\n"
+                                        "}\n"
+                                        "QRadioButton::indicator::unchecked{\n"
+                                            "image : url(:/img/subject_rb_normal.png);\n"
+                                        "}\n"
+                                        "QRadioButton::indicator::hover{\n"
+                                            "image : url(:/img/subject_rb_hover.png);\n"
+                                        "}\n"
+                                        "QRadioButton::indicator::checked{\n"
+                                            "image : url(:/img/subject_rb_checked.png);\n"
+                                        "}")
+        self.subject_rb.hide()
+
 
         # finale_part
         self.start_bt = QPushButton(self.tile_frm)
@@ -187,6 +204,7 @@ class MainUI(QMainWindow) :
             # prepare_part
             self.account_rb.hide()
             self.time_rb.hide()
+            self.subject_rb.hide()
             #finale_part
             self.start_bt.hide()
             # info_part
@@ -200,6 +218,7 @@ class MainUI(QMainWindow) :
             # prepare_part
             self.account_rb.show()
             self.time_rb.show()
+            self.subject_rb.show()
 
         elif self.finale_rb.isChecked() : 
             # info_part
@@ -207,6 +226,7 @@ class MainUI(QMainWindow) :
             # prepare_part
             self.account_rb.hide()
             self.time_rb.hide()
+            self.subject_rb.hide()
             #finale_part
             self.start_bt.show()
 
