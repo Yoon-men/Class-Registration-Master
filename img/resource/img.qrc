@@ -11,7 +11,7 @@
     <file>prepare_rb_normal.png</file>
     <file>onestop_bt_hover.png</file>
     <file>onestop_bt_normal.png</file>
-    <file>tile.png</file>
+    <file>tile_frm.png</file>
     <file>account_rb_checked.png</file>
     <file>account_rb_hover.png</file>
     <file>account_rb_normal.png</file>
@@ -24,5 +24,6 @@
     <file>subject_rb_checked.png</file>
     <file>subject_rb_hover.png</file>
     <file>subject_rb_normal.png</file>
+    <file>onestop_frm.png</file>
   </qresource>
 </RCC>
