@@ -126,6 +126,14 @@ class MainUI(QMainWindow) :
                                             "image : url(:/img/onestop_bt_hover.png);\n"
                                         "}")
 
+        self.onestop_lb = QLabel(self.body_frm)
+        self.onestop_lb.setGeometry(490, 115, 301, 410)
+        self.onestop_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/onestop.png);\n"
+                                            "border : 3px solid #8a2c2c;\n"
+                                        "}")
+        self.onestop_lb.hide()
+
 
         # prepare_part
         self.account_rb = QRadioButton(self.body_frm)
