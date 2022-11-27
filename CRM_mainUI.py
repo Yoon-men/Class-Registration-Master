@@ -2,7 +2,7 @@ from img.img import *
 import sys
 from PySide2.QtGui import QFont
 from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup
-from PySide2.QtCore import Qt, QSize
+from PySide2.QtCore import Qt, QEvent
 
 class MainUI(QMainWindow) : 
     def __init__(self) : 
@@ -125,11 +125,12 @@ class MainUI(QMainWindow) :
                                         "QPushButton:hover{\n"
                                             "image : url(:/img/onestop_bt_hover.png);\n"
                                         "}")
+        self.onestop_bt.installEventFilter(self)
 
         self.onestop_lb = QLabel(self.body_frm)
-        self.onestop_lb.setGeometry(490, 115, 301, 410)
+        self.onestop_lb.setGeometry(471, 91, 376, 441)
         self.onestop_lb.setStyleSheet("QLabel{\n"
-                                            "image : url(:/img/onestop.png);\n"
+                                            "image : url(:/img/onestop_img.png);\n"
                                             "border : 3px solid #8a2c2c;\n"
                                         "}")
         self.onestop_lb.hide()
@@ -239,6 +240,15 @@ class MainUI(QMainWindow) :
             self.subject_rb.hide()
             #finale_part
             self.start_bt.show()
+
+
+
+    def eventFilter(self, object, event) : 
+        if event.type() == QEvent.HoverEnter : 
+            self.onestop_lb.show()
+        if event.type() == QEvent.HoverLeave : 
+            self.onestop_lb.hide()
+        return False
 
 
 
