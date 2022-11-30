@@ -12,10 +12,10 @@
 
 import sys
 from PySide2.QtWidgets import QApplication
-from PySide2.QtCore import QThread, QCoreApplication, QEvent, QObject, Qt
-import time
-import webbrowser
+from PySide2.QtCore import QThread, QObject
 from collections import deque
+import webbrowser
+import time
 
 from CRM_mainUI import MainUI
 from CRM_keyFn import KeyFn
@@ -72,7 +72,7 @@ class BasicFn(QObject) :
     def classRegistration(self) : 
         if prepared : keyFn.classRegistration()
         else : 
-            print("[system] start_bt is clicked")               # Test code / please delete the contents of this line.
+            print("[system] You're not prepared for Class registration.")               # Test code / please delete the contents of this line.
 
 
 
