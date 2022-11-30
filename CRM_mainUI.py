@@ -127,13 +127,22 @@ class MainUI(QMainWindow) :
                                         "}")
         self.onestop_bt.installEventFilter(self)
 
-        self.onestop_lb = QLabel(self.body_frm)
-        self.onestop_lb.setGeometry(471, 91, 376, 441)
-        self.onestop_lb.setStyleSheet("QLabel{\n"
+        self.onestop_img_lb = QLabel(self.body_frm)
+        self.onestop_img_lb.setGeometry(471, 91, 376, 441)
+        self.onestop_img_lb.setStyleSheet("QLabel{\n"   
                                             "image : url(:/img/onestop_img.png);\n"
                                             "border : 3px solid #8a2c2c;\n"
                                         "}")
-        self.onestop_lb.hide()
+        self.onestop_img_lb.hide()
+
+        self.onestop_txt_lb = QLabel(self.body_frm)
+        self.onestop_txt_lb.setGeometry(189, 577, 831, 31)
+        self.onestop_txt_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/onestop_txt.png);\n"
+                                            "border : 0px;\n"
+                                            "background-color : transparent;\n"
+                                        "}")
+        self.onestop_txt_lb.hide()
 
 
         # prepare_part
@@ -245,9 +254,11 @@ class MainUI(QMainWindow) :
 
     def eventFilter(self, object, event) : 
         if event.type() == QEvent.HoverEnter : 
-            self.onestop_lb.show()
+            self.onestop_img_lb.show()
+            self.onestop_txt_lb.show()
         if event.type() == QEvent.HoverLeave : 
-            self.onestop_lb.hide()
+            self.onestop_img_lb.hide()
+            self.onestop_txt_lb.hide()
         return False
 
 
