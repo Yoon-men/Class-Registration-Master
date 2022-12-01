@@ -26,5 +26,8 @@
     <file>subject_rb_normal.png</file>
     <file>onestop_img.png</file>
     <file>onestop_txt.png</file>
+    <file>mode_account.png</file>
+    <file>mode_time.png</file>
+    <file>mode_subject.png</file>
   </qresource>
 </RCC>
