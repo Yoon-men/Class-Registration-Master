@@ -199,13 +199,31 @@ class MainUI(QMainWindow) :
         self.subject_rb.hide()
 
         self.mode_account_lb = QLabel(self.body_frm)
-        self.mode_account_lb.setGeometry(445, 15, 341, 41)
+        self.mode_account_lb.setGeometry(444, 15, 341, 41)
         self.mode_account_lb.setStyleSheet("QLabel{\n"
                                                 "image : url(:/img/mode_account.png);\n"
                                                 "border : 0px;\n"
                                                 "background-color : transparent;\n"
                                             "}")
         self.mode_account_lb.hide()
+
+        self.mode_time_lb = QLabel(self.body_frm)
+        self.mode_time_lb.setGeometry(444, 15, 261, 41)
+        self.mode_time_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/mode_time.png);\n"
+                                            "border : 0px;\n"
+                                            "background-color : transparent;\n"
+                                        "}")
+        self.mode_time_lb.hide()
+
+        self.mode_subject_lb = QLabel(self.body_frm)
+        self.mode_subject_lb.setGeometry(444, 12, 341, 51)
+        self.mode_subject_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/mode_subject.png);\n"
+                                                "border : 0px;\n"
+                                                "background-color : transparent;\n"
+                                            "}")
+        self.mode_subject_lb.hide()
 
 
         # finale_part
@@ -239,8 +257,8 @@ class MainUI(QMainWindow) :
             self.time_rb.hide()
             self.subject_rb.hide()
             self.mode_account_lb.hide()
-            # self.mode_time_lb.hide()              # Test code / please unlock the contents of this line.
-            # self.mode_subject_lb.hide()           # Test code / please unlock the contnets of this line.
+            self.mode_time_lb.hide()
+            self.mode_subject_lb.hide()
             #finale_part
             self.start_bt.hide()
             # info_part
@@ -256,12 +274,8 @@ class MainUI(QMainWindow) :
             self.time_rb.show()
             self.subject_rb.show()
             if self.account_rb.isChecked() : self.mode_account_lb.show()
-            elif self.time_rb.isChecked() :
-                # self.mode_time_lb.show()                # Test code / please unlock the contents of this line.
-                pass                # Test code / please delete the contents of this line.
-            elif self.subject_rb.isChecked() : 
-                # self.mode_subject_lb.show()               # Test code / please unlock the contents of this line.
-                pass                # Test code / please delete the contents of this line.
+            elif self.time_rb.isChecked() :self.mode_time_lb.show()
+            elif self.subject_rb.isChecked() : self.mode_subject_lb.show()
 
         elif self.finale_rb.isChecked() : 
             # info_part
@@ -271,8 +285,8 @@ class MainUI(QMainWindow) :
             self.time_rb.hide()
             self.subject_rb.hide()
             self.mode_account_lb.hide()
-            # self.mode_time_lb.hide()              # Test code / please unlock the contents of this line.
-            # self.mode_subject_lb.hide()           # Test code / please unlock the contnets of this line.
+            self.mode_time_lb.hide()
+            self.mode_subject_lb.hide()
             #finale_part
             self.start_bt.show()
 
@@ -280,17 +294,17 @@ class MainUI(QMainWindow) :
 
     def setMode(self) : 
         if self.account_rb.isChecked() : 
-            # self.mode_time_lb.hide()              # Test code / please unlock the contents of this line.
-            # self.mode_subject_lb.hide()           # Test code / please unlock the contents of this line.
+            self.mode_time_lb.hide()
+            self.mode_subject_lb.hide()
             self.mode_account_lb.show()
         elif self.time_rb.isChecked() : 
             self.mode_account_lb.hide()
-            # self.mode_subject_lb.hide()           # Test code / please unlock the contents of this line.
-            # self.mode_time_lb.show()              # Test code / please unlock the contents of this line.
+            self.mode_subject_lb.hide()
+            self.mode_time_lb.show()
         elif self.subject_rb.isChecked() : 
             self.mode_account_lb.hide()
-            # self.mode_time_lb.hide()              # Test code / please unlock the contents of this line.
-            # self.mode_subject_lb.show()           # Test code / please unlock the contents of this line.
+            self.mode_time_lb.hide()
+            self.mode_subject_lb.show()
 
 
 
