@@ -198,6 +198,15 @@ class MainUI(QMainWindow) :
                                         "}")
         self.subject_rb.hide()
 
+        self.mode_account_lb = QLabel(self.body_frm)
+        self.mode_account_lb.setGeometry(445, 15, 341, 41)
+        self.mode_account_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/mode_account.png);\n"
+                                                "border : 0px;\n"
+                                                "background-color : transparent;\n"
+                                            "}")
+        self.mode_account_lb.hide()
+
 
         # finale_part
         self.start_bt = QPushButton(self.body_frm)
@@ -213,18 +222,25 @@ class MainUI(QMainWindow) :
 
 
     def signal(self) : 
-        self.info_rb.clicked.connect(self.menuSet)
-        self.prepare_rb.clicked.connect(self.menuSet)
-        self.finale_rb.clicked.connect(self.menuSet)
+        self.info_rb.clicked.connect(self.setMenu)
+        self.prepare_rb.clicked.connect(self.setMenu)
+        self.finale_rb.clicked.connect(self.setMenu)
+
+        self.account_rb.clicked.connect(self.setMode)
+        self.time_rb.clicked.connect(self.setMode)
+        self.subject_rb.clicked.connect(self.setMode)
 
 
 
-    def menuSet(self) : 
+    def setMenu(self) : 
         if self.info_rb.isChecked() : 
             # prepare_part
             self.account_rb.hide()
             self.time_rb.hide()
             self.subject_rb.hide()
+            self.mode_account_lb.hide()
+            # self.mode_time_lb.hide()              # Test code / please unlock the contents of this line.
+            # self.mode_subject_lb.hide()           # Test code / please unlock the contnets of this line.
             #finale_part
             self.start_bt.hide()
             # info_part
@@ -239,6 +255,13 @@ class MainUI(QMainWindow) :
             self.account_rb.show()
             self.time_rb.show()
             self.subject_rb.show()
+            if self.account_rb.isChecked() : self.mode_account_lb.show()
+            elif self.time_rb.isChecked() :
+                # self.mode_time_lb.show()                # Test code / please unlock the contents of this line.
+                pass                # Test code / please delete the contents of this line.
+            elif self.subject_rb.isChecked() : 
+                # self.mode_subject_lb.show()               # Test code / please unlock the contents of this line.
+                pass                # Test code / please delete the contents of this line.
 
         elif self.finale_rb.isChecked() : 
             # info_part
@@ -247,8 +270,27 @@ class MainUI(QMainWindow) :
             self.account_rb.hide()
             self.time_rb.hide()
             self.subject_rb.hide()
+            self.mode_account_lb.hide()
+            # self.mode_time_lb.hide()              # Test code / please unlock the contents of this line.
+            # self.mode_subject_lb.hide()           # Test code / please unlock the contnets of this line.
             #finale_part
             self.start_bt.show()
+
+
+
+    def setMode(self) : 
+        if self.account_rb.isChecked() : 
+            # self.mode_time_lb.hide()              # Test code / please unlock the contents of this line.
+            # self.mode_subject_lb.hide()           # Test code / please unlock the contents of this line.
+            self.mode_account_lb.show()
+        elif self.time_rb.isChecked() : 
+            self.mode_account_lb.hide()
+            # self.mode_subject_lb.hide()           # Test code / please unlock the contents of this line.
+            # self.mode_time_lb.show()              # Test code / please unlock the contents of this line.
+        elif self.subject_rb.isChecked() : 
+            self.mode_account_lb.hide()
+            # self.mode_time_lb.hide()              # Test code / please unlock the contents of this line.
+            # self.mode_subject_lb.show()           # Test code / please unlock the contents of this line.
 
 
 
