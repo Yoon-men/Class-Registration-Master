@@ -217,7 +217,7 @@ class MainUI(QMainWindow) :
         self.mode_time_lb.hide()
 
         self.mode_subject_lb = QLabel(self.body_frm)
-        self.mode_subject_lb.setGeometry(444, 12, 341, 51)
+        self.mode_subject_lb.setGeometry(444, 14, 327, 44)
         self.mode_subject_lb.setStyleSheet("QLabel{\n"
                                                 "image : url(:/img/mode_subject.png);\n"
                                                 "border : 0px;\n"
