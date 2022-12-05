@@ -41,8 +41,12 @@ class Main(QObject) :
         basicFn = BasicFn()
         basicFn.moveToThread(thread_basicFn)
 
-        global prepared
-        prepared = False
+        global accountIsPrepared
+        accountIsPrepared = False
+        global timeIsPrepared
+        timeIsPrepared = False
+        global subjectIsPrepared
+        subjectIsPrepared = False
 
         mainUI.show()
         self.signal()
@@ -70,9 +74,14 @@ class BasicFn(QObject) :
 
 
     def classRegistration(self) : 
-        if prepared : keyFn.classRegistration()
+        if accountIsPrepared and timeIsPrepared and subjectIsPrepared : keyFn.classRegistration()
         else : 
-            print("[system] You're not prepared for Class registration.")               # Test code / please delete the contents of this line.
+            if not accountIsPrepared : 
+                print("[system] Your account is not prepared yet.")                 # Test code / please delete the contents of this line.
+            if not timeIsPrepared : 
+                print("[system] Your class registration time is not prepared yet.")                 # Test code / please delete the contents of this line.
+            if not subjectIsPrepared : 
+                print("[system] Your subject for Class registration is not prepared yet.")              # Test code / please delete the contents of this line.
 
 
 
