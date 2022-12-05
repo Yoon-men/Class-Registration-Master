@@ -225,6 +225,11 @@ class MainUI(QMainWindow) :
                                             "}")
         self.mode_subject_lb.hide()
 
+        self.prepareGroup = QButtonGroup(self)
+        self.prepareGroup.addButton(self.account_rb)
+        self.prepareGroup.addButton(self.time_rb)
+        self.prepareGroup.addButton(self.subject_rb)
+
 
         # finale_part
         self.start_bt = QPushButton(self.body_frm)
