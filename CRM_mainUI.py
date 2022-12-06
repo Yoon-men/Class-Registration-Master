@@ -1,7 +1,7 @@
 from img.img import *
 import sys
 from PySide2.QtGui import QFont
-from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup
+from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit
 from PySide2.QtCore import Qt, QEvent
 
 class MainUI(QMainWindow) : 
@@ -239,6 +239,37 @@ class MainUI(QMainWindow) :
                                         "}")
         self.accountBox_lb.hide()
 
+        self.ID_box_le = QLineEdit(self.body_frm)
+        self.ID_box_le.setGeometry(680, 264, 351, 41)
+        self.ID_box_le.setFont(QFont("굴림", 14))
+        self.ID_box_le.setStyleSheet("QLineEdit{\n"
+                                        "color : #dddddd;\n"
+                                        "background-color : #232323;\n"
+                                        "border : 2px solid #8a2c2c;\n"
+                                        "selection-color : #000000;\n"
+                                        "selection-background-color : #ffffff;\n"
+                                    "}\n"
+                                    "QLineEdit::focus{\n"
+                                        "border-color : #e14f50;\n"
+                                    "}")
+        self.ID_box_le.hide()
+
+        self.PW_box_le = QLineEdit(self.body_frm)
+        self.PW_box_le.setGeometry(680, 339, 351, 41)
+        self.PW_box_le.setFont(QFont("굴림", 14))
+        self.PW_box_le.setStyleSheet("QLineEdit{\n"
+                                        "color : #dddddd;\n"
+                                        "background-color : #232323;\n"
+                                        "border : 2px solid #8a2c2c;\n"
+                                        "selection-color : #000000;\n"
+                                        "selection-background-color : #ffffff;\n"
+                                    "}\n"
+                                    "QLineEdit::focus{\n"
+                                        "border-color : #e14f50;\n"
+                                    "}")
+        self.PW_box_le.setEchoMode(QLineEdit.PasswordEchoOnEdit)
+        self.PW_box_le.hide()
+
 
         # finale_part
         self.start_bt = QPushButton(self.body_frm)
@@ -270,10 +301,15 @@ class MainUI(QMainWindow) :
             self.account_rb.hide()
             self.time_rb.hide()
             self.subject_rb.hide()
-            self.mode_account_lb.hide()
-            self.accountBox_lb.hide()
-            self.mode_time_lb.hide()
-            self.mode_subject_lb.hide()
+            if self.account_rb.isChecked() : 
+                self.mode_account_lb.hide()
+                self.accountBox_lb.hide()
+                self.ID_box_le.hide()
+                self.PW_box_le.hide()
+            elif self.time_rb.isChecked() : 
+                self.mode_time_lb.hide()
+            elif self.subject_rb.isChecked() : 
+                self.mode_subject_lb.hide()
             #finale_part
             self.start_bt.hide()
             # info_part
@@ -291,8 +327,12 @@ class MainUI(QMainWindow) :
             if self.account_rb.isChecked() : 
                 self.mode_account_lb.show()
                 self.accountBox_lb.show()
-            elif self.time_rb.isChecked() :self.mode_time_lb.show()
-            elif self.subject_rb.isChecked() : self.mode_subject_lb.show()
+                self.ID_box_le.show()
+                self.PW_box_le.show()
+            elif self.time_rb.isChecked() : 
+                self.mode_time_lb.show()
+            elif self.subject_rb.isChecked() : 
+                self.mode_subject_lb.show()
 
         elif self.finale_rb.isChecked() : 
             # info_part
@@ -301,10 +341,15 @@ class MainUI(QMainWindow) :
             self.account_rb.hide()
             self.time_rb.hide()
             self.subject_rb.hide()
-            self.mode_account_lb.hide()
-            self.accountBox_lb.hide()
-            self.mode_time_lb.hide()
-            self.mode_subject_lb.hide()
+            if self.account_rb.isChecked() : 
+                self.mode_account_lb.hide()
+                self.accountBox_lb.hide()
+                self.ID_box_le.hide()
+                self.PW_box_le.hide()
+            elif self.time_rb.isChecked() : 
+                self.mode_time_lb.hide()
+            elif self.subject_rb.isChecked() : 
+                self.mode_subject_lb.hide()
             #finale_part
             self.start_bt.show()
 
@@ -316,14 +361,20 @@ class MainUI(QMainWindow) :
             self.mode_subject_lb.hide()
             self.mode_account_lb.show()
             self.accountBox_lb.show()
+            self.ID_box_le.show()
+            self.PW_box_le.show()
         elif self.time_rb.isChecked() : 
             self.mode_account_lb.hide()
             self.accountBox_lb.hide()
+            self.ID_box_le.hide()
+            self.PW_box_le.hide()
             self.mode_subject_lb.hide()
             self.mode_time_lb.show()
         elif self.subject_rb.isChecked() : 
             self.mode_account_lb.hide()
             self.accountBox_lb.hide()
+            self.ID_box_le.hide()
+            self.PW_box_le.hide()
             self.mode_time_lb.hide()
             self.mode_subject_lb.show()
 
