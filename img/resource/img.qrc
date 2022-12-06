@@ -29,5 +29,6 @@
     <file>mode_account.png</file>
     <file>mode_time.png</file>
     <file>mode_subject.png</file>
+    <file>accountBox_lb.png</file>
   </qresource>
 </RCC>
