@@ -230,6 +230,15 @@ class MainUI(QMainWindow) :
         self.prepareGroup.addButton(self.time_rb)
         self.prepareGroup.addButton(self.subject_rb)
 
+        self.accountBox_lb = QLabel(self.body_frm)
+        self.accountBox_lb.setGeometry(580, 177, 491, 291)
+        self.accountBox_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/accountBox_lb.png);\n"
+                                            "border : 0px;\n"
+                                            "background-color : transparent;\n"
+                                        "}")
+        self.accountBox_lb.hide()
+
 
         # finale_part
         self.start_bt = QPushButton(self.body_frm)
@@ -262,6 +271,7 @@ class MainUI(QMainWindow) :
             self.time_rb.hide()
             self.subject_rb.hide()
             self.mode_account_lb.hide()
+            self.accountBox_lb.hide()
             self.mode_time_lb.hide()
             self.mode_subject_lb.hide()
             #finale_part
@@ -278,7 +288,9 @@ class MainUI(QMainWindow) :
             self.account_rb.show()
             self.time_rb.show()
             self.subject_rb.show()
-            if self.account_rb.isChecked() : self.mode_account_lb.show()
+            if self.account_rb.isChecked() : 
+                self.mode_account_lb.show()
+                self.accountBox_lb.show()
             elif self.time_rb.isChecked() :self.mode_time_lb.show()
             elif self.subject_rb.isChecked() : self.mode_subject_lb.show()
 
@@ -290,6 +302,7 @@ class MainUI(QMainWindow) :
             self.time_rb.hide()
             self.subject_rb.hide()
             self.mode_account_lb.hide()
+            self.accountBox_lb.hide()
             self.mode_time_lb.hide()
             self.mode_subject_lb.hide()
             #finale_part
@@ -302,12 +315,15 @@ class MainUI(QMainWindow) :
             self.mode_time_lb.hide()
             self.mode_subject_lb.hide()
             self.mode_account_lb.show()
+            self.accountBox_lb.show()
         elif self.time_rb.isChecked() : 
             self.mode_account_lb.hide()
+            self.accountBox_lb.hide()
             self.mode_subject_lb.hide()
             self.mode_time_lb.show()
         elif self.subject_rb.isChecked() : 
             self.mode_account_lb.hide()
+            self.accountBox_lb.hide()
             self.mode_time_lb.hide()
             self.mode_subject_lb.show()
 
