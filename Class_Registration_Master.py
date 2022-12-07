@@ -41,8 +41,6 @@ class Main(QObject) :
         basicFn = BasicFn()
         basicFn.moveToThread(thread_basicFn)
 
-        global accountIsPrepared
-        accountIsPrepared = False
         global timeIsPrepared
         timeIsPrepared = False
         global subjectIsPrepared
@@ -74,6 +72,11 @@ class BasicFn(QObject) :
 
 
     def classRegistration(self) : 
+        if (mainUI.ID_box_le.text() != "") and (mainUI.PW_box_le.text() != "") : 
+            accountIsPrepared = True
+        else : 
+            accountIsPrepared = False
+        
         if accountIsPrepared and timeIsPrepared and subjectIsPrepared : keyFn.classRegistration()
         else : 
             if not accountIsPrepared : 
