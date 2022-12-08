@@ -1,29 +1,30 @@
 <RCC>
   <qresource prefix="/img">
-    <file>finale_rb_checked.png</file>
-    <file>finale_rb_hover.png</file>
     <file>finale_rb_normal.png</file>
-    <file>info_rb_checked.png</file>
-    <file>info_rb_hover.png</file>
+    <file>finale_rb_hover.png</file>
+    <file>finale_rb_checked.png</file>
     <file>info_rb_normal.png</file>
-    <file>prepare_rb_checked.png</file>
-    <file>prepare_rb_hover.png</file>
+    <file>info_rb_hover.png</file>
+    <file>info_rb_checked.png</file>
     <file>prepare_rb_normal.png</file>
-    <file>onestop_bt_hover.png</file>
+    <file>prepare_rb_hover.png</file>
+    <file>prepare_rb_checked.png</file>
     <file>onestop_bt_normal.png</file>
+    <file>onestop_bt_hover.png</file>
+    <file>onestop_bt_pressed.png</file>
     <file>tile.png</file>
-    <file>account_rb_checked.png</file>
-    <file>account_rb_hover.png</file>
     <file>account_rb_normal.png</file>
-    <file>time_rb_checked.png</file>
-    <file>time_rb_hover.png</file>
+    <file>account_rb_hover.png</file>
+    <file>account_rb_checked.png</file>
     <file>time_rb_normal.png</file>
+    <file>time_rb_hover.png</file>
+    <file>time_rb_checked.png</file>
     <file>completed.png</file>
     <file>start_bt_normal.png</file>
     <file>start_bt_hover.png</file>
-    <file>subject_rb_checked.png</file>
-    <file>subject_rb_hover.png</file>
     <file>subject_rb_normal.png</file>
+    <file>subject_rb_hover.png</file>
+    <file>subject_rb_checked.png</file>
     <file>onestop_img.png</file>
     <file>onestop_txt.png</file>
     <file>mode_account.png</file>
@@ -31,7 +32,9 @@
     <file>mode_subject.png</file>
     <file>accountBox_lb.png</file>
     <file>finale_notPrepared_lb.png</file>
-    <file>finale_notPrepared_bt.png</file>
+    <file>finale_notPrepared_bt_normal.png</file>
+    <file>finale_notPrepared_bt_hover.png</file>
+    <file>finale_notPrepared_bt_pressed.png</file>
     <file>o_mark_lb.png</file>
     <file>x_mark_lb.png</file>
   </qresource>
