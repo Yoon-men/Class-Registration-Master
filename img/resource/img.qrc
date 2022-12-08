@@ -31,5 +31,8 @@
     <file>mode_subject.png</file>
     <file>accountBox_lb.png</file>
     <file>finale_notPrepared_lb.png</file>
+    <file>finale_notPrepared_bt.png</file>
+    <file>o_mark_lb.png</file>
+    <file>x_mark_lb.png</file>
   </qresource>
 </RCC>
