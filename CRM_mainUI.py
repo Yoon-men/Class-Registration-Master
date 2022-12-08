@@ -17,6 +17,11 @@ class MainUI(QMainWindow) :
         self.setFixedSize(1215, 662)
         self.setWindowTitle("Class_Registration_Master_v1.0")
 
+        self.superBody_frm = QFrame(self)
+        self.superBody_frm.setGeometry(0, 0, 1215, 662)
+        self.superBody_frm.setStyleSheet("QFrame{\n"
+                                            "background-color : #131514;\n"
+                                        "}")
 
         # body_part
         self.body_frm = QFrame(self)
