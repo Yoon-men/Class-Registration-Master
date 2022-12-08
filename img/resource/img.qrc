@@ -30,5 +30,6 @@
     <file>mode_time.png</file>
     <file>mode_subject.png</file>
     <file>accountBox_lb.png</file>
+    <file>finale_notPrepared_lb.png</file>
   </qresource>
 </RCC>
