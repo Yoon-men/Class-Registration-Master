@@ -72,19 +72,22 @@ class BasicFn(QObject) :
 
 
     def classRegistration(self) : 
-        if (mainUI.ID_box_le.text() != "") and (mainUI.PW_box_le.text() != "") : 
-            accountIsPrepared = True
-        else : 
-            accountIsPrepared = False
+        if (mainUI.ID_box_le.text() != "") and (mainUI.PW_box_le.text() != "") : accountIsPrepared = True
+        else : accountIsPrepared = False
         
         if accountIsPrepared and timeIsPrepared and subjectIsPrepared : keyFn.classRegistration()
         else : 
+            mainUI.body_frm.hide()
+            mainUI.finale_notPrepared_lb.show()
+            mainUI.finale_notPrepared_bt.show()
+
             if not accountIsPrepared : 
                 print("[system] Your account is not prepared yet.")                 # Test code / please delete the contents of this line.
             if not timeIsPrepared : 
                 print("[system] Your class registration time is not prepared yet.")                 # Test code / please delete the contents of this line.
             if not subjectIsPrepared : 
                 print("[system] Your subject for Class registration is not prepared yet.")              # Test code / please delete the contents of this line.
+            print("-" * 60)                 # Test code / please delete the contents of this line.
 
 
 
