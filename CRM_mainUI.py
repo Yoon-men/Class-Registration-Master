@@ -129,6 +129,9 @@ class MainUI(QMainWindow) :
                                         "}\n"
                                         "QPushButton:hover{\n"
                                             "image : url(:/img/onestop_bt_hover.png);\n"
+                                        "}\n"
+                                        "QPushButton:pressed{\n"
+                                            "image : url(:/img/onestop_bt_pressed.png);\n"
                                         "}")
         self.onestop_bt.installEventFilter(self)
 
@@ -287,6 +290,28 @@ class MainUI(QMainWindow) :
                                     "}")
         self.start_bt.hide()
 
+        self.finale_notPrepared_lb = QLabel(self.superBody_frm)
+        self.finale_notPrepared_lb.setGeometry(325, 120, 561, 401)
+        self.finale_notPrepared_lb.setStyleSheet("QLabel{\n"
+                                                    "image : url(:/img/finale_notPrepared_lb.png);\n"
+                                                    "border : 0px;\n"
+                                                    "background-color : transparent;\n"
+                                                "}")
+        self.finale_notPrepared_lb.hide()
+
+        self.finale_notPrepared_bt = QPushButton(self.superBody_frm)
+        self.finale_notPrepared_bt.setGeometry(340, 458, 529, 53)
+        self.finale_notPrepared_bt.setStyleSheet("QPushButton{\n"
+                                                    "image : url(:/img/finale_notPrepared_bt_normal.png);\n"
+                                                "}\n"
+                                                "QPushButton:hover{\n"
+                                                    "image : url(:/img/finale_notPrepared_bt_hover.png);\n"
+                                                "}\n"
+                                                "QPushButton:pressed{\n"
+                                                    "image : url(:/img/finale_notPrepared_bt_pressed.png);\n"
+                                                "}")
+        self.finale_notPrepared_bt.hide()
+
 
 
     def signal(self) : 
@@ -297,6 +322,8 @@ class MainUI(QMainWindow) :
         self.account_rb.clicked.connect(self.setMode)
         self.time_rb.clicked.connect(self.setMode)
         self.subject_rb.clicked.connect(self.setMode)
+
+        self.finale_notPrepared_bt.clicked.connect(self.returnToMain)
 
 
 
@@ -382,6 +409,13 @@ class MainUI(QMainWindow) :
             self.PW_box_le.hide()
             self.mode_time_lb.hide()
             self.mode_subject_lb.show()
+
+
+
+    def returnToMain(self) : 
+        self.finale_notPrepared_lb.hide()
+        self.finale_notPrepared_bt.hide()
+        self.body_frm.show()
 
 
 
