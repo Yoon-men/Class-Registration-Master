@@ -81,13 +81,12 @@ class BasicFn(QObject) :
             mainUI.finale_notPrepared_lb.show()
             mainUI.finale_notPrepared_bt.show()
 
-            if not accountIsPrepared : 
-                print("[system] Your account is not prepared yet.")                 # Test code / please delete the contents of this line.
-            if not timeIsPrepared : 
-                print("[system] Your class registration time is not prepared yet.")                 # Test code / please delete the contents of this line.
-            if not subjectIsPrepared : 
-                print("[system] Your subject for Class registration is not prepared yet.")              # Test code / please delete the contents of this line.
-            print("-" * 60)                 # Test code / please delete the contents of this line.
+            if not accountIsPrepared : mainUI.account_X_mark_lb.show()
+            else : mainUI.account_O_mark_lb.show()
+            if not timeIsPrepared : mainUI.time_X_mark_lb.show()
+            else : mainUI.time_O_mark_lb.show()
+            if not subjectIsPrepared : mainUI.subject_X_mark_lb.show()
+            else : mainUI.subject_O_mark_lb.show()
 
 
 
