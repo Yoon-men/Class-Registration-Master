@@ -129,9 +129,6 @@ class MainUI(QMainWindow) :
                                         "}\n"
                                         "QPushButton:hover{\n"
                                             "image : url(:/img/onestop_bt_hover.png);\n"
-                                        "}\n"
-                                        "QPushButton:pressed{\n"
-                                            "image : url(:/img/onestop_bt_pressed.png);\n"
                                         "}")
         self.onestop_bt.installEventFilter(self)
 
@@ -306,11 +303,46 @@ class MainUI(QMainWindow) :
                                                 "}\n"
                                                 "QPushButton:hover{\n"
                                                     "image : url(:/img/finale_notPrepared_bt_hover.png);\n"
-                                                "}\n"
-                                                "QPushButton:pressed{\n"
-                                                    "image : url(:/img/finale_notPrepared_bt_pressed.png);\n"
                                                 "}")
         self.finale_notPrepared_bt.hide()
+
+        O_mark_styleSheet = ("QLabel{\n"
+                                "image : url(:/img/o_mark_lb.png);\n"
+                                "border : 0px;\n"
+                                "background-color : transparent;\n"
+                            "}")
+        X_mark_styleSheet = ("QLabel{\n"
+                                "image : url(:/img/x_mark_lb.png);\n"
+                                "border : 0px;\n"
+                                "background-color : transparent;\n"
+                            "}")
+
+        self.account_O_mark_lb = QLabel(self.superBody_frm)
+        self.account_O_mark_lb.setGeometry(847, 264, 20, 20)
+        self.account_O_mark_lb.setStyleSheet(O_mark_styleSheet)
+        self.account_O_mark_lb.hide()
+        self.account_X_mark_lb = QLabel(self.superBody_frm)
+        self.account_X_mark_lb.setGeometry(847, 264, 20, 21)
+        self.account_X_mark_lb.setStyleSheet(X_mark_styleSheet)
+        self.account_X_mark_lb.hide()
+
+        self.time_O_mark_lb = QLabel(self.superBody_frm)
+        self.time_O_mark_lb.setGeometry(847, 311, 20, 20)
+        self.time_O_mark_lb.setStyleSheet(O_mark_styleSheet)
+        self.time_O_mark_lb.hide()
+        self.time_X_mark_lb = QLabel(self.superBody_frm)
+        self.time_X_mark_lb.setGeometry(847, 311, 20, 21)
+        self.time_X_mark_lb.setStyleSheet(X_mark_styleSheet)
+        self.time_X_mark_lb.hide()
+
+        self.subject_O_mark_lb = QLabel(self.superBody_frm)
+        self.subject_O_mark_lb.setGeometry(847, 359, 20, 20)
+        self.subject_O_mark_lb.setStyleSheet(O_mark_styleSheet)
+        self.subject_O_mark_lb.hide()
+        self.subject_X_mark_lb = QLabel(self.superBody_frm)
+        self.subject_X_mark_lb.setGeometry(847, 359, 20, 21)
+        self.subject_X_mark_lb.setStyleSheet(X_mark_styleSheet)
+        self.subject_X_mark_lb.hide()
 
 
 
@@ -414,6 +446,9 @@ class MainUI(QMainWindow) :
 
     def returnToMain(self) : 
         self.finale_notPrepared_lb.hide()
+        self.account_X_mark_lb.hide() ; self.account_O_mark_lb.hide()
+        self.time_X_mark_lb.hide() ; self.time_O_mark_lb.hide()
+        self.subject_X_mark_lb.hide() ; self.subject_O_mark_lb.hide()
         self.finale_notPrepared_bt.hide()
         self.body_frm.show()
 
