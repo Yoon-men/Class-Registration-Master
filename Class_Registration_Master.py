@@ -101,9 +101,12 @@ class BasicFn(QObject) :
         else : accountIsPrepared = False
 
         if accountIsPrepared and timeIsPrepared and subjectIsPrepared : 
-            if not self.timeChk() : 
+            remaining_time = self.timeChk()
+            if not remaining_time : 
                 print("[system] 수강신청 시간이 현재 시간 이전입니다.")                 # Test code / please delete the contents of this line.
+                return
             else : 
+                time.sleep(remaining_time)
                 keyFn.classRegistration()
         else : 
             mainUI.body_frm.hide()
