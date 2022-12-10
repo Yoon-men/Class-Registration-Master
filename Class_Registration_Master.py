@@ -71,11 +71,40 @@ class BasicFn(QObject) :
 
 
 
+    def timeChk(self) : 
+        CR_H = 21               # Test code / please modify the contents of this line.
+        CR_M = 0                # Test code / please modify the contents of this line.
+        crt_H = time.localtime().tm_hour
+        crt_M = time.localtime().tm_min
+        crt_S = time.localtime().tm_sec
+
+        if CR_H < crt_H or (CR_H == crt_H and CR_M <= crt_M) : 
+            return False
+
+        remaining_H = CR_H - crt_H
+        remaining_M = CR_M - crt_M - 1
+        remaining_S = 60 - crt_S
+        if crt_M >= CR_M : 
+            remaining_H -= 1
+            remaining_M += 60
+        if crt_S == 0 : 
+            remaining_M += 1
+            remaining_S = 0
+        
+        return 60*60*remaining_H + 60*remaining_M + remaining_S
+
+
+
+
     def classRegistration(self) : 
         if (mainUI.ID_box_le.text() != "") and (mainUI.PW_box_le.text() != "") : accountIsPrepared = True
         else : accountIsPrepared = False
-        
-        if accountIsPrepared and timeIsPrepared and subjectIsPrepared : keyFn.classRegistration()
+
+        if accountIsPrepared and timeIsPrepared and subjectIsPrepared : 
+            if not self.timeChk() : 
+                print("[system] 수강신청 시간이 현재 시간 이전입니다.")                 # Test code / please delete the contents of this line.
+            else : 
+                keyFn.classRegistration()
         else : 
             mainUI.body_frm.hide()
             mainUI.finale_notPrepared_lb.show()
