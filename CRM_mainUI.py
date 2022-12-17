@@ -1,6 +1,6 @@
 from img.img import *
 import sys
-from PySide2.QtGui import QFont
+from PySide2.QtGui import QFont, QIntValidator
 from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit
 from PySide2.QtCore import Qt, QEvent
 
@@ -244,36 +244,54 @@ class MainUI(QMainWindow) :
                                         "}")
         self.accountBox_lb.hide()
 
+        le_styleSheet = ("QLineEdit{\n"
+                            "color : #dddddd;\n"
+                            "background-color : #232323;\n"
+                            "border : 2px solid #8a2c2c;\n"
+                            "selection-color : #000000;\n"
+                            "selection-background-color : #ffffff;\n"
+                        "}\n"
+                        "QLineEdit:focus{\n"
+                            "border-color : #e14f50;\n"
+                        "}")
+
         self.ID_box_le = QLineEdit(self.body_frm)
         self.ID_box_le.setGeometry(680, 264, 351, 41)
         self.ID_box_le.setFont(QFont("굴림", 14))
-        self.ID_box_le.setStyleSheet("QLineEdit{\n"
-                                        "color : #dddddd;\n"
-                                        "background-color : #232323;\n"
-                                        "border : 2px solid #8a2c2c;\n"
-                                        "selection-color : #000000;\n"
-                                        "selection-background-color : #ffffff;\n"
-                                    "}\n"
-                                    "QLineEdit::focus{\n"
-                                        "border-color : #e14f50;\n"
-                                    "}")
+        self.ID_box_le.setStyleSheet(le_styleSheet)
         self.ID_box_le.hide()
 
         self.PW_box_le = QLineEdit(self.body_frm)
         self.PW_box_le.setGeometry(680, 339, 351, 41)
         self.PW_box_le.setFont(QFont("굴림", 14))
-        self.PW_box_le.setStyleSheet("QLineEdit{\n"
-                                        "color : #dddddd;\n"
-                                        "background-color : #232323;\n"
-                                        "border : 2px solid #8a2c2c;\n"
-                                        "selection-color : #000000;\n"
-                                        "selection-background-color : #ffffff;\n"
-                                    "}\n"
-                                    "QLineEdit::focus{\n"
-                                        "border-color : #e14f50;\n"
-                                    "}")
+        self.PW_box_le.setStyleSheet(le_styleSheet)
         self.PW_box_le.setEchoMode(QLineEdit.PasswordEchoOnEdit)
         self.PW_box_le.hide()
+
+        self.timeBox_lb = QLabel(self.body_frm)
+        self.timeBox_lb.setGeometry(580, 177, 491, 291)
+        self.timeBox_lb.setStyleSheet("QLabel{\n"
+                                        "image : url(:/img/timeBox_lb.png);\n"
+                                        "border : 0px;\n"
+                                        "background-color : transparent;\n"
+                                    "}")
+        self.timeBox_lb.hide()
+
+        self.hour_box_le = QLineEdit(self.body_frm)
+        self.hour_box_le.setGeometry(682, 308, 90, 31)
+        self.hour_box_le.setFont(QFont("굴림", 14))
+        self.hour_box_le.setStyleSheet(le_styleSheet)
+        self.hour_box_le.setValidator(QIntValidator(0, 23))
+        self.hour_box_le.setAlignment(Qt.AlignCenter)
+        self.hour_box_le.hide()
+
+        self.min_box_le = QLineEdit(self.body_frm)
+        self.min_box_le.setGeometry(850, 308, 90, 31)
+        self.min_box_le.setFont(QFont("굴림", 14))
+        self.min_box_le.setStyleSheet(le_styleSheet)
+        self.min_box_le.setValidator(QIntValidator(0, 59))
+        self.min_box_le.setAlignment(Qt.AlignCenter)
+        self.min_box_le.hide()
 
 
         # finale_part
@@ -355,6 +373,9 @@ class MainUI(QMainWindow) :
         self.time_rb.clicked.connect(self.setMode)
         self.subject_rb.clicked.connect(self.setMode)
 
+        self.hour_box_le.textChanged.connect(self.setTime)
+        self.min_box_le.textChanged.connect(self.setTime)
+
         self.finale_notPrepared_bt.clicked.connect(self.returnToMain)
 
 
@@ -372,6 +393,9 @@ class MainUI(QMainWindow) :
                 self.PW_box_le.hide()
             elif self.time_rb.isChecked() : 
                 self.mode_time_lb.hide()
+                self.timeBox_lb.hide()
+                self.hour_box_le.hide()
+                self.min_box_le.hide()
             elif self.subject_rb.isChecked() : 
                 self.mode_subject_lb.hide()
             #finale_part
@@ -395,6 +419,9 @@ class MainUI(QMainWindow) :
                 self.PW_box_le.show()
             elif self.time_rb.isChecked() : 
                 self.mode_time_lb.show()
+                self.timeBox_lb.show()
+                self.hour_box_le.show()
+                self.min_box_le.show()
             elif self.subject_rb.isChecked() : 
                 self.mode_subject_lb.show()
 
@@ -412,6 +439,9 @@ class MainUI(QMainWindow) :
                 self.PW_box_le.hide()
             elif self.time_rb.isChecked() : 
                 self.mode_time_lb.hide()
+                self.timeBox_lb.hide()
+                self.hour_box_le.hide()
+                self.min_box_le.hide()
             elif self.subject_rb.isChecked() : 
                 self.mode_subject_lb.hide()
             #finale_part
@@ -422,6 +452,9 @@ class MainUI(QMainWindow) :
     def setMode(self) : 
         if self.account_rb.isChecked() : 
             self.mode_time_lb.hide()
+            self.timeBox_lb.hide()
+            self.hour_box_le.hide()
+            self.min_box_le.hide()
             self.mode_subject_lb.hide()
             self.mode_account_lb.show()
             self.accountBox_lb.show()
@@ -434,13 +467,24 @@ class MainUI(QMainWindow) :
             self.PW_box_le.hide()
             self.mode_subject_lb.hide()
             self.mode_time_lb.show()
+            self.timeBox_lb.show()
+            self.hour_box_le.show()
+            self.min_box_le.show()
         elif self.subject_rb.isChecked() : 
             self.mode_account_lb.hide()
             self.accountBox_lb.hide()
             self.ID_box_le.hide()
             self.PW_box_le.hide()
             self.mode_time_lb.hide()
+            self.timeBox_lb.hide()
+            self.hour_box_le.hide()
+            self.min_box_le.hide()
             self.mode_subject_lb.show()
+
+
+
+    def setTime(self) : 
+        print("[system] TimeChange is detected.")               # Test code / please delete the contents of this line.
 
 
 
