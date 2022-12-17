@@ -279,18 +279,20 @@ class MainUI(QMainWindow) :
 
         self.hour_box_le = QLineEdit(self.body_frm)
         self.hour_box_le.setGeometry(682, 308, 90, 31)
-        self.hour_box_le.setFont(QFont("굴림", 14))
+        self.hour_box_le.setFont(QFont("굴림", 14, QFont.ExtraBold))
         self.hour_box_le.setStyleSheet(le_styleSheet)
-        self.hour_box_le.setValidator(QIntValidator(0, 23))
+        self.hour_box_le.setValidator(QIntValidator())
         self.hour_box_le.setAlignment(Qt.AlignCenter)
+        self.hour_box_le.setText("0")
         self.hour_box_le.hide()
 
         self.min_box_le = QLineEdit(self.body_frm)
         self.min_box_le.setGeometry(850, 308, 90, 31)
-        self.min_box_le.setFont(QFont("굴림", 14))
+        self.min_box_le.setFont(QFont("굴림", 14, QFont.ExtraBold))
         self.min_box_le.setStyleSheet(le_styleSheet)
-        self.min_box_le.setValidator(QIntValidator(0, 59))
+        self.min_box_le.setValidator(QIntValidator())
         self.min_box_le.setAlignment(Qt.AlignCenter)
+        self.min_box_le.setText("0")
         self.min_box_le.hide()
 
 
@@ -484,7 +486,21 @@ class MainUI(QMainWindow) :
 
 
     def setTime(self) : 
-        print("[system] TimeChange is detected.")               # Test code / please delete the contents of this line.
+        if self.hour_box_le.text() == "" : 
+            self.hour_box_le.setText("0")
+            self.hour_box_le.selectAll()
+        if int(self.hour_box_le.text()) > 0 : 
+            self.hour_box_le.setText(str(int(self.hour_box_le.text())))
+        if int(self.hour_box_le.text()) > 23 : 
+            self.hour_box_le.setText(str(int(self.hour_box_le.text())%24))
+
+        if self.min_box_le.text() == "" : 
+            self.min_box_le.setText("0")
+            self.min_box_le.selectAll()
+        if int(self.min_box_le.text()) > 0 : 
+            self.min_box_le.setText(str(int(self.min_box_le.text())))
+        if int(self.min_box_le.text()) > 59 : 
+            self.min_box_le.setText(str(int(self.min_box_le.text())%60))
 
 
 
