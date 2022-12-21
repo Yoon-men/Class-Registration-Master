@@ -1,7 +1,7 @@
 from img.img import *
 import sys
 from PySide2.QtGui import QFont, QIntValidator
-from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit
+from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber
 from PySide2.QtCore import Qt, QEvent
 
 class MainUI(QMainWindow) : 
@@ -307,6 +307,17 @@ class MainUI(QMainWindow) :
                                     "}")
         self.start_bt.hide()
 
+        self.time_lcd = QLCDNumber(self.body_frm)
+        self.time_lcd.setGeometry(555, 210, 521, 221)
+        self.time_lcd.setStyleSheet("QLCDNumber{\n"
+                                        "color : #4f2120;\n"
+                                        "border : 0px;\n"
+                                        "background-color : transparent;\n"
+                                    "}")
+        self.time_lcd.setSegmentStyle(QLCDNumber.Flat)
+        self.time_lcd.display("00:00")
+        self.time_lcd.hide()
+
         self.finale_notPrepared_lb = QLabel(self.superBody_frm)
         self.finale_notPrepared_lb.setGeometry(325, 120, 561, 401)
         self.finale_notPrepared_lb.setStyleSheet("QLabel{\n"
@@ -402,6 +413,7 @@ class MainUI(QMainWindow) :
                 self.mode_subject_lb.hide()
             #finale_part
             self.start_bt.hide()
+            self.time_lcd.hide()
             # info_part
             self.onestop_bt.show()
 
@@ -410,6 +422,7 @@ class MainUI(QMainWindow) :
             self.onestop_bt.hide()
             # finale_part
             self.start_bt.hide()
+            self.time_lcd.hide()
             # prepare_part
             self.account_rb.show()
             self.time_rb.show()
@@ -448,6 +461,7 @@ class MainUI(QMainWindow) :
                 self.mode_subject_lb.hide()
             #finale_part
             self.start_bt.show()
+            self.time_lcd.show()
 
 
 
@@ -491,7 +505,7 @@ class MainUI(QMainWindow) :
             self.hour_box_le.selectAll()
         if int(self.hour_box_le.text()) > 0 : 
             self.hour_box_le.setText(str(int(self.hour_box_le.text())))
-        if int(self.hour_box_le.text()) > 23 : 
+        if int(self.hour_box_le.text()) > 24 : 
             self.hour_box_le.setText(str(int(self.hour_box_le.text())%24))
 
         if self.min_box_le.text() == "" : 
@@ -501,6 +515,11 @@ class MainUI(QMainWindow) :
             self.min_box_le.setText(str(int(self.min_box_le.text())))
         if int(self.min_box_le.text()) > 59 : 
             self.min_box_le.setText(str(int(self.min_box_le.text())%60))
+        
+        if int(self.hour_box_le.text()) == 24 : 
+            self.min_box_le.setText("0")
+        
+        self.time_lcd.display(f"{self.hour_box_le.text().zfill(2)}:{self.min_box_le.text().zfill(2)}")
 
 
 
