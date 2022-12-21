@@ -72,8 +72,8 @@ class BasicFn(QObject) :
 
 
     def timeChk(self) : 
-        CR_H = 21               # Test code / please modify the contents of this line.
-        CR_M = 0                # Test code / please modify the contents of this line.
+        CR_H = int(mainUI.hour_box_le.text())
+        CR_M = int(mainUI.min_box_le.text())
         crt_H = time.localtime().tm_hour
         crt_M = time.localtime().tm_min
         crt_S = time.localtime().tm_sec
@@ -95,10 +95,11 @@ class BasicFn(QObject) :
 
 
 
-
     def classRegistration(self) : 
-        if (mainUI.ID_box_le.text() != "") and (mainUI.PW_box_le.text() != "") : accountIsPrepared = True
-        else : accountIsPrepared = False
+        if (mainUI.ID_box_le.text() == "") or (mainUI.PW_box_le.text() == "") : accountIsPrepared = False
+        else : accountIsPrepared = True
+        if (int(mainUI.hour_box_le.text()) == 0) and (int(mainUI.min_box_le.text()) == 0) : timeIsPrepared = False
+        else : timeIsPrepared = True
 
         if accountIsPrepared and timeIsPrepared and subjectIsPrepared : 
             remaining_time = self.timeChk()
@@ -113,12 +114,12 @@ class BasicFn(QObject) :
             mainUI.finale_notPrepared_lb.show()
             mainUI.finale_notPrepared_bt.show()
 
-            if not accountIsPrepared : mainUI.account_X_mark_lb.show()
-            else : mainUI.account_O_mark_lb.show()
-            if not timeIsPrepared : mainUI.time_X_mark_lb.show()
-            else : mainUI.time_O_mark_lb.show()
-            if not subjectIsPrepared : mainUI.subject_X_mark_lb.show()
-            else : mainUI.subject_O_mark_lb.show()
+            if accountIsPrepared : mainUI.account_O_mark_lb.show()
+            else : mainUI.account_X_mark_lb.show()
+            if timeIsPrepared : mainUI.time_O_mark_lb.show()
+            else : mainUI.time_X_mark_lb.show()
+            if subjectIsPrepared : mainUI.subject_O_mark_lb.show()
+            else : mainUI.subject_X_mark_lb.show()
 
 
 
