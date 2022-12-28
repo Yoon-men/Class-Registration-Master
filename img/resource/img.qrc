@@ -30,6 +30,10 @@
     <file>mode_time.png</file>
     <file>mode_subject.png</file>
     <file>accountBox_lb.png</file>
+    <file>PW_show_normal.png</file>
+    <file>PW_show_hover.png</file>
+    <file>PW_hide_normal.png</file>
+    <file>PW_hide_hover.png</file>
     <file>timeBox_lb.png</file>
     <file>finale_notPrepared_lb.png</file>
     <file>finale_notPrepared_bt_normal.png</file>
