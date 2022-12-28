@@ -1,7 +1,7 @@
 from img.img import *
 import sys
 from PySide2.QtGui import QFont, QIntValidator
-from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber
+from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox
 from PySide2.QtCore import Qt, QEvent
 
 class MainUI(QMainWindow) : 
@@ -268,6 +268,27 @@ class MainUI(QMainWindow) :
         self.PW_box_le.setEchoMode(QLineEdit.PasswordEchoOnEdit)
         self.PW_box_le.hide()
 
+        self.PW_show_ckb = QCheckBox(self.body_frm)
+        self.PW_show_ckb.setGeometry(986, 342, 35, 35)
+        self.PW_show_ckb.setStyleSheet("QCheckBox::indicator::unchecked{\n"
+                                            "image : url(:/img/PW_show_normal.png);\n"
+                                            "width : 35px;\n"
+                                            "height : 35px;\n"
+                                        "}\n"
+                                        "QCheckBox::indicator::unchecked::hover{\n"
+                                            "image : url(:/img/PW_show_hover.png);\n"
+                                        "}\n"
+                                        
+                                        "QCheckBox::indicator::checked{\n"
+                                            "image : url(:/img/PW_hide_normal.png);\n"
+                                            "width : 35px;\n"
+                                            "height : 35px;\n"
+                                        "}\n"
+                                        "QCheckBox::indicator::checked::hover{\n"
+                                            "image : url(:/img/PW_hide_hover.png);\n"
+                                        "}")
+        self.PW_show_ckb.hide()
+
         self.timeBox_lb = QLabel(self.body_frm)
         self.timeBox_lb.setGeometry(580, 177, 491, 291)
         self.timeBox_lb.setStyleSheet("QLabel{\n"
@@ -315,7 +336,7 @@ class MainUI(QMainWindow) :
                                         "background-color : transparent;\n"
                                     "}")
         self.time_lcd.setSegmentStyle(QLCDNumber.Flat)
-        self.time_lcd.display("00:00")
+        self.time_lcd.display("--:--")
         self.time_lcd.hide()
 
         self.finale_notPrepared_lb = QLabel(self.superBody_frm)
@@ -404,6 +425,7 @@ class MainUI(QMainWindow) :
                 self.accountBox_lb.hide()
                 self.ID_box_le.hide()
                 self.PW_box_le.hide()
+                self.PW_show_ckb.hide()
             elif self.time_rb.isChecked() : 
                 self.mode_time_lb.hide()
                 self.timeBox_lb.hide()
@@ -432,6 +454,7 @@ class MainUI(QMainWindow) :
                 self.accountBox_lb.show()
                 self.ID_box_le.show()
                 self.PW_box_le.show()
+                self.PW_show_ckb.show()
             elif self.time_rb.isChecked() : 
                 self.mode_time_lb.show()
                 self.timeBox_lb.show()
@@ -452,6 +475,7 @@ class MainUI(QMainWindow) :
                 self.accountBox_lb.hide()
                 self.ID_box_le.hide()
                 self.PW_box_le.hide()
+                self.PW_show_ckb.hide()
             elif self.time_rb.isChecked() : 
                 self.mode_time_lb.hide()
                 self.timeBox_lb.hide()
@@ -476,11 +500,13 @@ class MainUI(QMainWindow) :
             self.accountBox_lb.show()
             self.ID_box_le.show()
             self.PW_box_le.show()
+            self.PW_show_ckb.show()
         elif self.time_rb.isChecked() : 
             self.mode_account_lb.hide()
             self.accountBox_lb.hide()
             self.ID_box_le.hide()
             self.PW_box_le.hide()
+            self.PW_show_ckb.hide()
             self.mode_subject_lb.hide()
             self.mode_time_lb.show()
             self.timeBox_lb.show()
@@ -491,6 +517,7 @@ class MainUI(QMainWindow) :
             self.accountBox_lb.hide()
             self.ID_box_le.hide()
             self.PW_box_le.hide()
+            self.PW_show_ckb.hide()
             self.mode_time_lb.hide()
             self.timeBox_lb.hide()
             self.hour_box_le.hide()
