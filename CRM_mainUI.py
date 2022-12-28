@@ -407,6 +407,8 @@ class MainUI(QMainWindow) :
         self.time_rb.clicked.connect(self.setMode)
         self.subject_rb.clicked.connect(self.setMode)
 
+        self.PW_show_ckb.stateChanged.connect(self.showPW)
+
         self.hour_box_le.textChanged.connect(self.setTime)
         self.min_box_le.textChanged.connect(self.setTime)
 
@@ -523,6 +525,15 @@ class MainUI(QMainWindow) :
             self.hour_box_le.hide()
             self.min_box_le.hide()
             self.mode_subject_lb.show()
+
+
+
+    def showPW(self) : 
+        if self.PW_show_ckb.isChecked() : 
+            self.PW_box_le.setEchoMode(QLineEdit.Normal)
+
+        else : 
+            self.PW_box_le.setEchoMode(QLineEdit.PasswordEchoOnEdit)
 
 
 
