@@ -20,6 +20,7 @@ import time
 from CRM_mainUI import MainUI
 from CRM_keyFn import KeyFn
 
+
 class Main(QObject) : 
     def __init__(self) : 
         super().__init__()
@@ -106,9 +107,19 @@ class BasicFn(QObject) :
             if not remaining_time : 
                 print("[system] 수강신청 시간이 현재 시간 이전입니다.")                 # Test code / please delete the contents of this line.
                 return
+
             else : 
-                time.sleep(remaining_time)
+                H = remaining_time//3600; M = (remaining_time-H*3600)//60; S = remaining_time-H*3600-M*60
+                mainUI.time_HM_lcd.display(f"{str(H).zfill(2)}:{str(M).zfill(2)}")
+                mainUI.time_S_lcd.display(f":{str(S).zfill(2)}")
+                while remaining_time > 0 : 
+                    time.sleep(1)
+                    remaining_time -= 1
+                    H = remaining_time//3600; M = (remaining_time-H*3600)//60; S = remaining_time-H*3600-M*60
+                    mainUI.time_HM_lcd.display(f"{str(H).zfill(2)}:{str(M).zfill(2)}")
+                    mainUI.time_S_lcd.display(f":{str(S).zfill(2)}")
                 keyFn.classRegistration()
+
         else : 
             mainUI.body_frm.hide()
             mainUI.finale_notPrepared_lb.show()
