@@ -265,7 +265,7 @@ class MainUI(QMainWindow) :
         self.PW_box_le.setGeometry(680, 339, 351, 41)
         self.PW_box_le.setFont(QFont("굴림", 14))
         self.PW_box_le.setStyleSheet(le_styleSheet)
-        self.PW_box_le.setEchoMode(QLineEdit.PasswordEchoOnEdit)
+        self.PW_box_le.setEchoMode(QLineEdit.Password)
         self.PW_box_le.hide()
 
         self.PW_show_ckb = QCheckBox(self.body_frm)
@@ -328,16 +328,24 @@ class MainUI(QMainWindow) :
                                     "}")
         self.start_bt.hide()
 
-        self.time_lcd = QLCDNumber(self.body_frm)
-        self.time_lcd.setGeometry(555, 210, 521, 221)
-        self.time_lcd.setStyleSheet("QLCDNumber{\n"
-                                        "color : #4f2120;\n"
-                                        "border : 0px;\n"
-                                        "background-color : transparent;\n"
-                                    "}")
-        self.time_lcd.setSegmentStyle(QLCDNumber.Flat)
-        self.time_lcd.display("--:--")
-        self.time_lcd.hide()
+        lcd_styleSheet = ("QLCDNumber{\n"
+                            "color : #4f2120;\n"
+                            "border : 0px;\n"
+                            "background-color : transparent;\n"
+                        "}")
+        self.time_HM_lcd = QLCDNumber(self.body_frm)
+        self.time_HM_lcd.setGeometry(555, 253, 331, 141)
+        self.time_HM_lcd.setStyleSheet(lcd_styleSheet)
+        self.time_HM_lcd.setSegmentStyle(QLCDNumber.Flat)
+        self.time_HM_lcd.display("00:00")
+        self.time_HM_lcd.hide()
+
+        self.time_S_lcd = QLCDNumber(self.body_frm)
+        self.time_S_lcd.setGeometry(745, 253, 331, 141)
+        self.time_S_lcd.setStyleSheet(lcd_styleSheet)
+        self.time_S_lcd.setSegmentStyle(QLCDNumber.Flat)
+        self.time_S_lcd.display(":00")
+        self.time_S_lcd.hide()
 
         self.finale_notPrepared_lb = QLabel(self.superBody_frm)
         self.finale_notPrepared_lb.setGeometry(325, 120, 561, 401)
@@ -437,7 +445,7 @@ class MainUI(QMainWindow) :
                 self.mode_subject_lb.hide()
             #finale_part
             self.start_bt.hide()
-            self.time_lcd.hide()
+            self.time_HM_lcd.hide(); self.time_S_lcd.hide()
             # info_part
             self.onestop_bt.show()
 
@@ -446,7 +454,7 @@ class MainUI(QMainWindow) :
             self.onestop_bt.hide()
             # finale_part
             self.start_bt.hide()
-            self.time_lcd.hide()
+            self.time_HM_lcd.hide(); self.time_S_lcd.hide()
             # prepare_part
             self.account_rb.show()
             self.time_rb.show()
@@ -487,7 +495,7 @@ class MainUI(QMainWindow) :
                 self.mode_subject_lb.hide()
             #finale_part
             self.start_bt.show()
-            self.time_lcd.show()
+            self.time_HM_lcd.show(); self.time_S_lcd.show()
 
 
 
@@ -531,9 +539,8 @@ class MainUI(QMainWindow) :
     def showPW(self) : 
         if self.PW_show_ckb.isChecked() : 
             self.PW_box_le.setEchoMode(QLineEdit.Normal)
-
         else : 
-            self.PW_box_le.setEchoMode(QLineEdit.PasswordEchoOnEdit)
+            self.PW_box_le.setEchoMode(QLineEdit.Password)
 
 
 
@@ -556,8 +563,6 @@ class MainUI(QMainWindow) :
         
         if int(self.hour_box_le.text()) == 24 : 
             self.min_box_le.setText("0")
-        
-        self.time_lcd.display(f"{self.hour_box_le.text().zfill(2)}:{self.min_box_le.text().zfill(2)}")
 
 
 
