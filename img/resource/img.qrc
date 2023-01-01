@@ -40,5 +40,7 @@
     <file>finale_notPrepared_bt_hover.png</file>
     <file>o_mark_lb.png</file>
     <file>x_mark_lb.png</file>
+    <file>branch_closed.png</file>
+    <file>branch_open.png</file>
   </qresource>
 </RCC>
