@@ -1,7 +1,7 @@
 from img.img import *
 import sys
 from PySide2.QtGui import QFont, QIntValidator
-from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox
+from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox, QTreeWidget
 from PySide2.QtCore import Qt, QEvent
 
 class MainUI(QMainWindow) : 
@@ -316,6 +316,52 @@ class MainUI(QMainWindow) :
         self.min_box_le.setText("0")
         self.min_box_le.hide()
 
+        self.subjectBox_tw = QTreeWidget(self.body_frm)
+        self.subjectBox_tw.setGeometry(545, 175, 541, 301)
+        self.subjectBox_tw.setFont(QFont("나눔고딕OTF", 13, QFont.Bold))
+        self.subjectBox_tw.setStyleSheet("QTreeWidget{\n"
+                                            "border : 3px solid #8a2c2c;\n"
+                                            "background-color : #131514;\n"
+                                            "color : #ffffff;\n"
+                                        "}\n"
+
+                                        "QHeaderView{\n"
+                                            "border : 0px;\n"
+                                        "}\n"
+                                        "QHeaderView::section{\n"
+                                            "border : 1px solid #8a2c2c;\n"
+                                            "background-color : #642223;\n"
+                                            "font-family : 나눔고딕OTF;\n"
+                                            "font-weight : bold;\n"
+                                            "font-size : 13pt;\n"
+                                            "color : #ffffff;\n"
+                                        "}\n"
+
+                                        "QTreeWidget::item::selected{\n"
+                                            "background-color : #434343;\n"
+                                            "color : #ffffff;\n"
+                                        "}\n"
+                                        "QTreeWidget::item::hover{\n"
+                                            "background-color : #434343;\n"
+                                        "}\n"
+                                        
+                                        "QTreeView::branch{\n"              # Test code / please delete the contents of this line.
+                                            "color : #8a2c2c;\n"
+                                        "}\n"
+                                        "QTreeView::branch:has-children:!has-siblings:closed,\n"
+                                        "QTreeView::branch:closed:has-children:has-siblings{\n"
+                                            "border-image : none;\n"
+                                            "image : url(:/img/branch_closed.png);\n"
+                                        "}\n"
+                                        "QTreeView::branch:open:has-children:!has-siblings,\n"
+                                        "QTreeView::branch:open:has-children:has-siblings{\n"
+                                            "border-image : none;\n"
+                                            "image : url(:/img/branch_open.png);\n"
+                                        "}")
+        self.subjectBox_tw.setColumnWidth(0, 350)
+        self.subjectBox_tw.setHeaderLabels(["과목명", "교과목 코드"])
+        self.subjectBox_tw.hide()
+
 
         # finale_part
         self.start_bt = QPushButton(self.body_frm)
@@ -337,14 +383,14 @@ class MainUI(QMainWindow) :
         self.time_HM_lcd.setGeometry(555, 253, 331, 141)
         self.time_HM_lcd.setStyleSheet(lcd_styleSheet)
         self.time_HM_lcd.setSegmentStyle(QLCDNumber.Flat)
-        self.time_HM_lcd.display("00:00")
+        self.time_HM_lcd.display("--:--")
         self.time_HM_lcd.hide()
 
         self.time_S_lcd = QLCDNumber(self.body_frm)
         self.time_S_lcd.setGeometry(745, 253, 331, 141)
         self.time_S_lcd.setStyleSheet(lcd_styleSheet)
         self.time_S_lcd.setSegmentStyle(QLCDNumber.Flat)
-        self.time_S_lcd.display(":00")
+        self.time_S_lcd.display(":--")
         self.time_S_lcd.hide()
 
         self.finale_notPrepared_lb = QLabel(self.superBody_frm)
@@ -443,6 +489,7 @@ class MainUI(QMainWindow) :
                 self.min_box_le.hide()
             elif self.subject_rb.isChecked() : 
                 self.mode_subject_lb.hide()
+                self.subjectBox_tw.hide()
             #finale_part
             self.start_bt.hide()
             self.time_HM_lcd.hide(); self.time_S_lcd.hide()
@@ -472,6 +519,7 @@ class MainUI(QMainWindow) :
                 self.min_box_le.show()
             elif self.subject_rb.isChecked() : 
                 self.mode_subject_lb.show()
+                self.subjectBox_tw.show()
 
         elif self.finale_rb.isChecked() : 
             # info_part
@@ -493,6 +541,7 @@ class MainUI(QMainWindow) :
                 self.min_box_le.hide()
             elif self.subject_rb.isChecked() : 
                 self.mode_subject_lb.hide()
+                self.subjectBox_tw.hide()
             #finale_part
             self.start_bt.show()
             self.time_HM_lcd.show(); self.time_S_lcd.show()
@@ -506,6 +555,7 @@ class MainUI(QMainWindow) :
             self.hour_box_le.hide()
             self.min_box_le.hide()
             self.mode_subject_lb.hide()
+            self.subjectBox_tw.hide()
             self.mode_account_lb.show()
             self.accountBox_lb.show()
             self.ID_box_le.show()
@@ -518,6 +568,7 @@ class MainUI(QMainWindow) :
             self.PW_box_le.hide()
             self.PW_show_ckb.hide()
             self.mode_subject_lb.hide()
+            self.subjectBox_tw.hide()
             self.mode_time_lb.show()
             self.timeBox_lb.show()
             self.hour_box_le.show()
@@ -533,6 +584,7 @@ class MainUI(QMainWindow) :
             self.hour_box_le.hide()
             self.min_box_le.hide()
             self.mode_subject_lb.show()
+            self.subjectBox_tw.show()
 
 
 
