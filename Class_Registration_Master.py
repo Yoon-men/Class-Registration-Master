@@ -13,7 +13,7 @@
 import sys
 from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import QThread, QObject
-from collections import deque
+from PySide2.QtWidgets import QTreeWidgetItem
 import webbrowser
 import time
 
@@ -47,6 +47,9 @@ class Main(QObject) :
         global subjectIsPrepared
         subjectIsPrepared = False
 
+        global subjectData
+        subjectData = {}
+
         mainUI.show()
         self.signal()
         sys.exit(app.exec_())
@@ -59,6 +62,9 @@ class Main(QObject) :
         ## info_part
         mainUI.onestop_bt.clicked.connect(basicFn.openOnestop)
 
+        ## prepare_part
+        mainUI.addSubject_bt.clicked.connect(basicFn.addSubject)
+        mainUI.subjectCode_le.returnPressed.connect(basicFn.addSubject)
 
         ## finale_part
         mainUI.start_bt.clicked.connect(basicFn.classRegistration)
@@ -69,6 +75,28 @@ class Main(QObject) :
 class BasicFn(QObject) : 
     def openOnestop(self) : 
         webbrowser.open("https://onestop.kumoh.ac.kr/")
+
+
+
+    def addSubject(self) : 
+        subjectName, subjectCode = mainUI.subjectName_le.text(), mainUI.subjectCode_le.text()
+        if (subjectName == "") or (subjectCode == "") : 
+            print("[system] 교과목정보를 정확하게 입력해 주십시오.")                # Test code / please delete the contents of this line.
+        else : 
+            print(f"[system] 교과목명 : {subjectName}")             # Test code / please delete the contents of this line.
+            print(f"[system] 교과목 코드 : {subjectCode}")                # Test code / please delete the contents of this line.
+            subjectData[(subjectName, subjectCode)] = []
+            tmp = []
+            for major, insurances in subjectData.items() : 
+                item = QTreeWidgetItem(major)
+                for insurance in insurances : 
+                    subItem = QTreeWidgetItem(insurance)
+                    item.addChild(subItem)
+                tmp.append(item)
+            mainUI.subjectBox_tw.clear()
+            mainUI.subjectBox_tw.insertTopLevelItems(0, tmp)
+
+            mainUI.subjectName_le.setText(""); mainUI.subjectCode_le.setText("")
 
 
 
