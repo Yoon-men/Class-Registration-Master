@@ -1,7 +1,7 @@
 from img.img import *
 import sys
 from PySide2.QtGui import QFont, QIntValidator
-from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox, QTreeWidget
+from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox, QTreeWidget, QAbstractItemView
 from PySide2.QtCore import Qt, QEvent
 
 class MainUI(QMainWindow) : 
@@ -324,19 +324,19 @@ class MainUI(QMainWindow) :
                                         "}")
         self.addSubject_lb.hide()
 
-        self.addSubjectName_le = QLineEdit(self.body_frm)
-        self.addSubjectName_le.setGeometry(555, 152, 239, 30)
-        self.addSubjectName_le.setFont(QFont("굴림", 12))
-        self.addSubjectName_le.setStyleSheet(le_styleSheet)
-        self.addSubjectName_le.setPlaceholderText("(과목명)")
-        self.addSubjectName_le.hide()
+        self.subjectName_le = QLineEdit(self.body_frm)
+        self.subjectName_le.setGeometry(555, 152, 239, 30)
+        self.subjectName_le.setFont(QFont("굴림", 12))
+        self.subjectName_le.setStyleSheet(le_styleSheet)
+        self.subjectName_le.setPlaceholderText("(교과목명)")
+        self.subjectName_le.hide()
 
-        self.addSubjectCode_le = QLineEdit(self.body_frm)
-        self.addSubjectCode_le.setGeometry(800, 152, 180, 30)
-        self.addSubjectCode_le.setFont(QFont("굴림", 12))
-        self.addSubjectCode_le.setStyleSheet(le_styleSheet)
-        self.addSubjectCode_le.setPlaceholderText("(교과목 코드)")
-        self.addSubjectCode_le.hide()
+        self.subjectCode_le = QLineEdit(self.body_frm)
+        self.subjectCode_le.setGeometry(800, 152, 180, 30)
+        self.subjectCode_le.setFont(QFont("굴림", 12))
+        self.subjectCode_le.setStyleSheet(le_styleSheet)
+        self.subjectCode_le.setPlaceholderText("(교과목코드)")
+        self.subjectCode_le.hide()
 
         self.addSubject_bt = QPushButton(self.body_frm)
         self.addSubject_bt.setGeometry(986, 152, 91, 30)
@@ -351,6 +351,7 @@ class MainUI(QMainWindow) :
                                             "color : #000000;\n"
                                         "}")
         self.addSubject_bt.setText("추가")
+        self.addSubject_bt.setFocusPolicy(Qt.NoFocus)
         self.addSubject_bt.hide()
 
         self.subjectBox_tw = QTreeWidget(self.body_frm)
@@ -381,10 +382,7 @@ class MainUI(QMainWindow) :
                                         "QTreeWidget::item::hover{\n"
                                             "background-color : #434343;\n"
                                         "}\n"
-                                        
-                                        "QTreeView::branch{\n"              # Test code / please delete the contents of this line.
-                                            "color : #8a2c2c;\n"
-                                        "}\n"
+
                                         "QTreeView::branch:has-children:!has-siblings:closed,\n"
                                         "QTreeView::branch:closed:has-children:has-siblings{\n"
                                             "border-image : none;\n"
@@ -396,7 +394,10 @@ class MainUI(QMainWindow) :
                                             "image : url(:/img/branch_open.png);\n"
                                         "}")
         self.subjectBox_tw.setColumnWidth(0, 350)
-        self.subjectBox_tw.setHeaderLabels(["과목명", "교과목 코드"])
+        self.subjectBox_tw.setHeaderLabels(["교과목명", "교과목코드"])
+        self.subjectBox_tw.setFocusPolicy(Qt.NoFocus)
+        self.subjectBox_tw.setDragDropMode(QAbstractItemView.DragDrop)
+        self.subjectBox_tw.setDefaultDropAction(Qt.MoveAction)
         self.subjectBox_tw.hide()
 
 
@@ -409,6 +410,7 @@ class MainUI(QMainWindow) :
                                     "QPushButton:hover{\n"
                                         "image : url(:/img/start_bt_hover.png);\n"
                                     "}")
+        self.start_bt.setFocusPolicy(Qt.NoFocus)
         self.start_bt.hide()
 
         lcd_styleSheet = ("QLCDNumber{\n"
@@ -526,7 +528,7 @@ class MainUI(QMainWindow) :
                 self.min_box_le.hide()
             elif self.subject_rb.isChecked() : 
                 self.mode_subject_lb.hide()
-                self.addSubject_lb.hide(); self.addSubjectName_le.hide(); self.addSubjectCode_le.hide(); self.addSubject_bt.hide()
+                self.addSubject_lb.hide(); self.subjectName_le.hide(); self.subjectCode_le.hide(); self.addSubject_bt.hide()
                 self.subjectBox_tw.hide()
             #finale_part
             self.start_bt.hide()
@@ -557,7 +559,7 @@ class MainUI(QMainWindow) :
                 self.min_box_le.show()
             elif self.subject_rb.isChecked() : 
                 self.mode_subject_lb.show()
-                self.addSubject_lb.show(); self.addSubjectName_le.show(); self.addSubjectCode_le.show(); self.addSubject_bt.show()
+                self.addSubject_lb.show(); self.subjectName_le.show(); self.subjectCode_le.show(); self.addSubject_bt.show()
                 self.subjectBox_tw.show()
 
         elif self.finale_rb.isChecked() : 
@@ -580,7 +582,7 @@ class MainUI(QMainWindow) :
                 self.min_box_le.hide()
             elif self.subject_rb.isChecked() : 
                 self.mode_subject_lb.hide()
-                self.addSubject_lb.hide(); self.addSubjectName_le.hide(); self.addSubjectCode_le.hide(); self.addSubject_bt.hide()
+                self.addSubject_lb.hide(); self.subjectName_le.hide(); self.subjectCode_le.hide(); self.addSubject_bt.hide()
                 self.subjectBox_tw.hide()
             #finale_part
             self.start_bt.show()
@@ -595,7 +597,7 @@ class MainUI(QMainWindow) :
             self.hour_box_le.hide()
             self.min_box_le.hide()
             self.mode_subject_lb.hide()
-            self.addSubject_lb.hide(); self.addSubjectName_le.hide(); self.addSubjectCode_le.hide(); self.addSubject_bt.hide()
+            self.addSubject_lb.hide(); self.subjectName_le.hide(); self.subjectCode_le.hide(); self.addSubject_bt.hide()
             self.subjectBox_tw.hide()
             self.mode_account_lb.show()
             self.accountBox_lb.show()
@@ -609,7 +611,7 @@ class MainUI(QMainWindow) :
             self.PW_box_le.hide()
             self.PW_show_ckb.hide()
             self.mode_subject_lb.hide()
-            self.addSubject_lb.hide(); self.addSubjectName_le.hide(); self.addSubjectCode_le.hide(); self.addSubject_bt.hide()
+            self.addSubject_lb.hide(); self.subjectName_le.hide(); self.subjectCode_le.hide(); self.addSubject_bt.hide()
             self.subjectBox_tw.hide()
             self.mode_time_lb.show()
             self.timeBox_lb.show()
@@ -626,7 +628,7 @@ class MainUI(QMainWindow) :
             self.hour_box_le.hide()
             self.min_box_le.hide()
             self.mode_subject_lb.show()
-            self.addSubject_lb.show(); self.addSubjectName_le.show(); self.addSubjectCode_le.show(); self.addSubject_bt.show()
+            self.addSubject_lb.show(); self.subjectName_le.show(); self.subjectCode_le.show(); self.addSubject_bt.show()
             self.subjectBox_tw.show()
 
 
