@@ -12,10 +12,11 @@
 
 import sys
 from PySide2.QtWidgets import QApplication
-from PySide2.QtCore import QThread, QObject
+from PySide2.QtCore import QThread, QObject, QEvent
 from PySide2.QtWidgets import QTreeWidgetItem
 import webbrowser
 import time
+from collections import defaultdict
 
 from CRM_mainUI import MainUI
 from CRM_keyFn import KeyFn
@@ -63,11 +64,21 @@ class Main(QObject) :
         mainUI.onestop_bt.clicked.connect(basicFn.openOnestop)
 
         ## prepare_part
-        mainUI.addSubject_bt.clicked.connect(basicFn.addSubject)
         mainUI.subjectCode_le.returnPressed.connect(basicFn.addSubject)
+        mainUI.addSubject_bt.clicked.connect(basicFn.addSubject)
+
+        mainUI.subjectBox_tw.viewport().installEventFilter(self)
 
         ## finale_part
         mainUI.start_bt.clicked.connect(basicFn.classRegistration)
+
+
+
+    def eventFilter(self, object, event) : 
+        if event.type() == QEvent.Drop : 
+            print(f"[system] topLevelItemCount = {mainUI.subjectBox_tw.topLevelItemCount()}")               # Test code / please delete the contents of this line.
+    
+        return False
 
 
 
@@ -83,8 +94,8 @@ class BasicFn(QObject) :
         if (subjectName == "") or (subjectCode == "") : 
             print("[system] 교과목정보를 정확하게 입력해 주십시오.")                # Test code / please delete the contents of this line.
         else : 
-            print(f"[system] 교과목명 : {subjectName}")             # Test code / please delete the contents of this line.
-            print(f"[system] 교과목 코드 : {subjectCode}")                # Test code / please delete the contents of this line.
+            print(f"[system] 새로 추가된 교과목명 : {subjectName}    |    그 과목의 교과목코드 : {subjectCode}")                # Test code / please delete the contents of this line.
+
             subjectData[(subjectName, subjectCode)] = []
             tmp = []
             for major, insurances in subjectData.items() : 
@@ -97,6 +108,12 @@ class BasicFn(QObject) :
             mainUI.subjectBox_tw.insertTopLevelItems(0, tmp)
 
             mainUI.subjectName_le.setText(""); mainUI.subjectCode_le.setText("")
+
+
+
+    def setSubject(self) : 
+        # Drag and Drop으로 주요 과목과 보험 과목의 체계가 바뀌었기 때문에 subjectData(Dictionary)를 다시 짜는 함수             # Test code / please delete the contents of this line.
+        pass                # Test code / please delete the contents of this line.
 
 
 
