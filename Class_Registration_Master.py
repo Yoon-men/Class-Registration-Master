@@ -6,7 +6,7 @@
 
 * Made by Yoonmen *
 
-- 22.??.?? (???) ??:?? -
+- 23.??.?? (???) ??:?? -
 ======================================
 '''
 
@@ -16,7 +16,6 @@ from PySide2.QtCore import QThread, QObject, QEvent
 from PySide2.QtWidgets import QTreeWidgetItem
 import webbrowser
 import time
-from collections import defaultdict
 
 from CRM_mainUI import MainUI
 from CRM_keyFn import KeyFn
@@ -51,6 +50,9 @@ class Main(QObject) :
         global subjectData
         subjectData = {}
 
+        global majorSubjectCnt
+        majorSubjectCnt = 0
+
         mainUI.show()
         self.signal()
         sys.exit(app.exec_())
@@ -65,7 +67,8 @@ class Main(QObject) :
 
         ## prepare_part
         mainUI.subjectCode_le.returnPressed.connect(basicFn.addSubject)
-        mainUI.addSubject_bt.clicked.connect(basicFn.addSubject)
+        # mainUI.addSubject_bt.clicked.connect(basicFn.addSubject)              # Test code / please unlock the contents of this line.
+        mainUI.addSubject_bt.clicked.connect(basicFn.setSubjectData)                # Test code / please delete the contents of this line.
 
         mainUI.subjectBox_tw.viewport().installEventFilter(self)
 
@@ -76,7 +79,7 @@ class Main(QObject) :
 
     def eventFilter(self, object, event) : 
         if event.type() == QEvent.Drop : 
-            print(f"[system] topLevelItemCount = {mainUI.subjectBox_tw.topLevelItemCount()}")               # Test code / please delete the contents of this line.
+            pass                # Test code / please delete the contents of this line.
     
         return False
 
@@ -89,31 +92,58 @@ class BasicFn(QObject) :
 
 
 
+    def setSubjectBox(self) : 
+        tmp = []
+        for major, insurances in subjectData.items() : 
+            item = QTreeWidgetItem(major)
+            for insurance in insurances : 
+                subItem = QTreeWidgetItem(insurance)
+                item.addChild(subItem)
+            tmp.append(item)
+        mainUI.subjectBox_tw.clear()
+        mainUI.subjectBox_tw.insertTopLevelItems(0, tmp)
+
+
+
     def addSubject(self) : 
         subjectName, subjectCode = mainUI.subjectName_le.text(), mainUI.subjectCode_le.text()
         if (subjectName == "") or (subjectCode == "") : 
             print("[system] 교과목정보를 정확하게 입력해 주십시오.")                # Test code / please delete the contents of this line.
         else : 
-            print(f"[system] 새로 추가된 교과목명 : {subjectName}    |    그 과목의 교과목코드 : {subjectCode}")                # Test code / please delete the contents of this line.
-
+            global subjectData
             subjectData[(subjectName, subjectCode)] = []
-            tmp = []
-            for major, insurances in subjectData.items() : 
-                item = QTreeWidgetItem(major)
-                for insurance in insurances : 
-                    subItem = QTreeWidgetItem(insurance)
-                    item.addChild(subItem)
-                tmp.append(item)
-            mainUI.subjectBox_tw.clear()
-            mainUI.subjectBox_tw.insertTopLevelItems(0, tmp)
+            basicFn.setSubjectBox()
+
+            global majorSubjectCnt
+            majorSubjectCnt += 1
+            mainUI.completed_txt_lb.setText(f"0 / {majorSubjectCnt}")
 
             mainUI.subjectName_le.setText(""); mainUI.subjectCode_le.setText("")
 
 
 
-    def setSubject(self) : 
-        # Drag and Drop으로 주요 과목과 보험 과목의 체계가 바뀌었기 때문에 subjectData(Dictionary)를 다시 짜는 함수             # Test code / please delete the contents of this line.
-        pass                # Test code / please delete the contents of this line.
+    def setSubjectData(self) : 
+        def recursiveSet(veryMajor, major) : 
+            insuranceCnt = major.childCount()
+            for j in range(insuranceCnt) : 
+                insurance = major.child(j)
+                subjectData[(veryMajor.text(0), veryMajor.text(1))].append((insurance.text(0), insurance.text(1)))
+                ininsuranceCnt = insurance.childCount()
+                if ininsuranceCnt > 0 : 
+                    recursiveSet(veryMajor, insurance)
+
+
+        global subjectData, majorSubjectCnt
+        subjectData = {}
+        majorSubjectCnt = 0
+        for i in range(mainUI.subjectBox_tw.topLevelItemCount()) : 
+            major = mainUI.subjectBox_tw.topLevelItem(i)
+            subjectData[(major.text(0), major.text(1))] = []
+            majorSubjectCnt += 1
+            recursiveSet(major, major)
+
+        basicFn.setSubjectBox()
+        mainUI.completed_txt_lb.setText(f"0 / {majorSubjectCnt}")
 
 
 
@@ -150,7 +180,7 @@ class BasicFn(QObject) :
         if accountIsPrepared and timeIsPrepared and subjectIsPrepared : 
             remaining_time = self.timeChk()
             if not remaining_time : 
-                print("[system] 수강신청 시간이 현재 시간 이전입니다.")                 # Test code / please delete the contents of this line.
+                print("[system] 수강신청 시간이 현재 시간의 이전 시간입니다.")                 # Test code / please delete the contents of this line.
                 return
 
             else : 
