@@ -69,6 +69,7 @@ class Main(QObject) :
 
         ## finale_part
         mainUI.start_bt.clicked.connect(basicFn.classRegistration)
+        mainUI.cancel_bt.clicked.connect(self.powerOff)
 
 
 
@@ -77,6 +78,12 @@ class Main(QObject) :
             pass                # Test code / please delete the contents of this line.
     
         return False
+
+
+
+    def powerOff(self) : 
+        global power
+        power = False
 
 
 
@@ -178,6 +185,7 @@ class BasicFn(QObject) :
             remaining_time = self.timeChk()
             if not remaining_time : 
                 print("[system] 수강신청 시간이 현재 시간의 이전 시간입니다.")                 # Test code / please delete the contents of this line.
+                mainUI.changeSCMode()
                 return
 
             else : 
@@ -185,6 +193,7 @@ class BasicFn(QObject) :
                 mainUI.time_HM_lcd.display(f"{str(H).zfill(2)}:{str(M).zfill(2)}")
                 mainUI.time_S_lcd.display(f":{str(S).zfill(2)}")
 
+                global power
                 power = True
                 while (remaining_time > 0) and (power) : 
                     time.sleep(1)
@@ -193,8 +202,9 @@ class BasicFn(QObject) :
                     mainUI.time_HM_lcd.display(f"{str(H).zfill(2)}:{str(M).zfill(2)}")
                     mainUI.time_S_lcd.display(f":{str(S).zfill(2)}")
 
-                # keyFn.classRegistration()               # Test code / please unlock the contents of this line.
-                print("[system] 수강신청이 시작되었습니다.")                # Test code / please delete the contents of this line.
+                if power : 
+                    # keyFn.classRegistration()               # Test code / please unlock the contents of this line.
+                    print("[system] 수강신청이 시작되었습니다.")                # Test code / please delete the contents of this line.
                 mainUI.time_HM_lcd.display("--:--"); mainUI.time_S_lcd.display(":--")
 
 
