@@ -42,5 +42,7 @@
     <file>x_mark_lb.png</file>
     <file>branch_closed.png</file>
     <file>branch_open.png</file>
+    <file>cancel_bt_normal.png</file>
+    <file>cancel_bt_hover.png</file>
   </qresource>
 </RCC>
