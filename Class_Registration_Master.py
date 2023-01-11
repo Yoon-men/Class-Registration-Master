@@ -42,11 +42,6 @@ class Main(QObject) :
         basicFn = BasicFn()
         basicFn.moveToThread(thread_basicFn)
 
-        global timeIsPrepared
-        timeIsPrepared = False
-        global subjectIsPrepared
-        subjectIsPrepared = False
-
         global subjectData
         subjectData = {}
 
@@ -176,6 +171,8 @@ class BasicFn(QObject) :
         else : accountIsPrepared = True
         if (int(mainUI.hour_box_le.text()) == 0) and (int(mainUI.min_box_le.text()) == 0) : timeIsPrepared = False
         else : timeIsPrepared = True
+        if len(subjectData) == 0 : subjectIsPrepared = False
+        else : subjectIsPrepared = True
 
         if accountIsPrepared and timeIsPrepared and subjectIsPrepared : 
             remaining_time = self.timeChk()
@@ -187,13 +184,19 @@ class BasicFn(QObject) :
                 H = remaining_time//3600; M = (remaining_time-H*3600)//60; S = remaining_time-H*3600-M*60
                 mainUI.time_HM_lcd.display(f"{str(H).zfill(2)}:{str(M).zfill(2)}")
                 mainUI.time_S_lcd.display(f":{str(S).zfill(2)}")
-                while remaining_time > 0 : 
+
+                power = True
+                while (remaining_time > 0) and (power) : 
                     time.sleep(1)
                     remaining_time -= 1
                     H = remaining_time//3600; M = (remaining_time-H*3600)//60; S = remaining_time-H*3600-M*60
                     mainUI.time_HM_lcd.display(f"{str(H).zfill(2)}:{str(M).zfill(2)}")
                     mainUI.time_S_lcd.display(f":{str(S).zfill(2)}")
-                keyFn.classRegistration()
+
+                # keyFn.classRegistration()               # Test code / please unlock the contents of this line.
+                print("[system] 수강신청이 시작되었습니다.")                # Test code / please delete the contents of this line.
+                mainUI.time_HM_lcd.display("--:--"); mainUI.time_S_lcd.display(":--")
+
 
         else : 
             mainUI.body_frm.hide()
