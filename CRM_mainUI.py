@@ -4,8 +4,8 @@ from PySide2.QtGui import QFont, QIntValidator
 from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox, QTreeWidget, QAbstractItemView
 from PySide2.QtCore import Qt, QEvent
 
-global SCType
-SCType = "start"
+global SCMode
+SCMode = "start"
 
 class MainUI(QMainWindow) : 
     def __init__(self) : 
@@ -422,7 +422,7 @@ class MainUI(QMainWindow) :
                                         "image : url(:/img/cancel_bt_normal.png);\n"
                                     "}\n"
                                     "QPushButton:hover{\n"
-                                        "imgae : url(:/img/cancel_bt_hover.png);\n"
+                                        "image : url(:/img/cancel_bt_hover.png);\n"
                                     "}")
         self.cancel_bt.setFocusPolicy(Qt.NoFocus)
         self.cancel_bt.hide()
@@ -519,6 +519,9 @@ class MainUI(QMainWindow) :
         self.hour_box_le.textChanged.connect(self.setTime)
         self.min_box_le.textChanged.connect(self.setTime)
 
+        self.start_bt.clicked.connect(self.changeSCMode)
+        self.cancel_bt.clicked.connect(self.changeSCMode)
+
         self.finale_notPrepared_bt.clicked.connect(self.returnToMain)
 
 
@@ -546,6 +549,7 @@ class MainUI(QMainWindow) :
                 self.subjectBox_tw.hide()
             #finale_part
             self.start_bt.hide()
+            self.cancel_bt.hide()
             self.time_HM_lcd.hide(); self.time_S_lcd.hide()
             # info_part
             self.onestop_bt.show()
@@ -555,6 +559,7 @@ class MainUI(QMainWindow) :
             self.onestop_bt.hide()
             # finale_part
             self.start_bt.hide()
+            self.cancel_bt.hide()
             self.time_HM_lcd.hide(); self.time_S_lcd.hide()
             # prepare_part
             self.account_rb.show()
@@ -599,7 +604,10 @@ class MainUI(QMainWindow) :
                 self.addSubject_lb.hide(); self.subjectName_le.hide(); self.subjectCode_le.hide(); self.addSubject_bt.hide()
                 self.subjectBox_tw.hide()
             #finale_part
-            self.start_bt.show()
+            if SCMode == "start" : 
+                self.start_bt.show()
+            elif SCMode == "cancel" : 
+                self.cancel_bt.show()
             self.time_HM_lcd.show(); self.time_S_lcd.show()
 
 
@@ -684,19 +692,22 @@ class MainUI(QMainWindow) :
         self.subject_X_mark_lb.hide() ; self.subject_O_mark_lb.hide()
         self.finale_notPrepared_bt.hide()
         self.body_frm.show()
+        self.changeSCMode()
 
 
 
     def changeSCMode(self) : 
-        if SCType == "start" : 
+        global SCMode
+
+        if SCMode == "start" : 
             self.start_bt.hide()
             self.cancel_bt.show()
-            SCType = "cancel"
+            SCMode = "cancel"
 
-        elif SCType == "cancel" : 
+        elif SCMode == "cancel" : 
             self.cancel_bt.hide()
             self.start_bt.show()
-            SCType = "start"
+            SCMode = "start"
 
 
 
