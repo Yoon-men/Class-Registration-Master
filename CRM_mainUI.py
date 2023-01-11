@@ -4,6 +4,9 @@ from PySide2.QtGui import QFont, QIntValidator
 from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox, QTreeWidget, QAbstractItemView
 from PySide2.QtCore import Qt, QEvent
 
+global SCType
+SCType = "start"
+
 class MainUI(QMainWindow) : 
     def __init__(self) : 
         super().__init__()
@@ -681,6 +684,19 @@ class MainUI(QMainWindow) :
         self.subject_X_mark_lb.hide() ; self.subject_O_mark_lb.hide()
         self.finale_notPrepared_bt.hide()
         self.body_frm.show()
+
+
+
+    def changeSCMode(self) : 
+        if SCType == "start" : 
+            self.start_bt.hide()
+            self.cancel_bt.show()
+            SCType = "cancel"
+
+        elif SCType == "cancel" : 
+            self.cancel_bt.hide()
+            self.start_bt.show()
+            SCType = "start"
 
 
 
