@@ -413,6 +413,17 @@ class MainUI(QMainWindow) :
         self.start_bt.setFocusPolicy(Qt.NoFocus)
         self.start_bt.hide()
 
+        self.cancel_bt = QPushButton(self.body_frm)
+        self.cancel_bt.setGeometry(849, 578, 341, 51)
+        self.cancel_bt.setStyleSheet("QPushButton{\n"
+                                        "image : url(:/img/cancel_bt_normal.png);\n"
+                                    "}\n"
+                                    "QPushButton:hover{\n"
+                                        "imgae : url(:/img/cancel_bt_hover.png);\n"
+                                    "}")
+        self.cancel_bt.setFocusPolicy(Qt.NoFocus)
+        self.cancel_bt.hide()
+
         lcd_styleSheet = ("QLCDNumber{\n"
                             "color : #4f2120;\n"
                             "border : 0px;\n"
