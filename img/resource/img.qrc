@@ -46,5 +46,7 @@
     <file>cancel_bt_hover.png</file>
     <file>subjectBin_bt_normal.png</file>
     <file>subjectBin_bt_hover.png</file>
+    <file>subjectSave_bt_normal.png</file>
+    <file>subjectSave_bt_hover.png</file>
   </qresource>
 </RCC>
