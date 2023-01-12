@@ -77,8 +77,10 @@ class Main(QObject) :
 
     def eventFilter(self, object, event) : 
         if event.type() == QEvent.Drop : 
-            pass                # Test code / please delete the contents of this line.
-    
+            global subjectIsSaved
+            subjectIsSaved = False
+            mainUI.savePoint_lb.show()
+
         return False
 
 
@@ -149,6 +151,10 @@ class BasicFn(QObject) :
         basicFn.setSubjectBox()
         mainUI.completed_txt_lb.setText(f"0 / {majorSubjectCnt}")
 
+        global subjectIsSaved
+        subjectIsSaved = True
+        mainUI.savePoint_lb.hide()
+
 
 
     def delSubject(self) : 
@@ -185,7 +191,7 @@ class BasicFn(QObject) :
         else : accountIsPrepared = True
         if (int(mainUI.hour_box_le.text()) == 0) and (int(mainUI.min_box_le.text()) == 0) : timeIsPrepared = False
         else : timeIsPrepared = True
-        if len(subjectData) == 0 : subjectIsPrepared = False
+        if (len(subjectData) == 0) or (not subjectIsSaved) : subjectIsPrepared = False
         else : subjectIsPrepared = True
 
         if accountIsPrepared and timeIsPrepared and subjectIsPrepared : 
