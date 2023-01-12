@@ -62,10 +62,12 @@ class Main(QObject) :
 
         ## prepare_part
         mainUI.subjectCode_le.returnPressed.connect(basicFn.addSubject)
-        # mainUI.addSubject_bt.clicked.connect(basicFn.addSubject)              # Test code / please unlock the contents of this line.
-        mainUI.addSubject_bt.clicked.connect(basicFn.setSubjectData)                # Test code / please delete the contents of this line.
+        mainUI.addSubject_bt.clicked.connect(basicFn.addSubject)
 
         mainUI.subjectBox_tw.viewport().installEventFilter(self)
+
+        mainUI.subjectSave_bt.clicked.connect(basicFn.setSubjectData)
+        mainUI.subjectBin_bt.clicked.connect(basicFn.delSubject)
 
         ## finale_part
         mainUI.start_bt.clicked.connect(basicFn.classRegistration)
@@ -146,6 +148,11 @@ class BasicFn(QObject) :
 
         basicFn.setSubjectBox()
         mainUI.completed_txt_lb.setText(f"0 / {majorSubjectCnt}")
+
+
+
+    def delSubject(self) : 
+        print("[system] Click of mainUI.subjectBin_bt has been detected.")              # Test code / please delete the contents of this line.
 
 
 
