@@ -578,6 +578,7 @@ class MainUI(QMainWindow) :
                 self.subjectBox_tw.hide()
                 self.subjectBin_bt.hide()
                 self.subjectSave_bt.hide()
+                self.savePoint_lb.hide()
             #finale_part
             self.start_bt.hide()
             self.cancel_bt.hide()
@@ -638,6 +639,7 @@ class MainUI(QMainWindow) :
                 self.subjectBox_tw.hide()
                 self.subjectBin_bt.hide()
                 self.subjectSave_bt.hide()
+                self.savePoint_lb.hide()
             #finale_part
             if SCMode == "start" : 
                 self.start_bt.show()
@@ -658,6 +660,7 @@ class MainUI(QMainWindow) :
             self.subjectBox_tw.hide()
             self.subjectBin_bt.hide()
             self.subjectSave_bt.hide()
+            self.savePoint_lb.hide()
             self.mode_account_lb.show()
             self.accountBox_lb.show()
             self.ID_box_le.show()
@@ -674,6 +677,7 @@ class MainUI(QMainWindow) :
             self.subjectBox_tw.hide()
             self.subjectBin_bt.hide()
             self.subjectSave_bt.hide()
+            self.savePoint_lb.hide()
             self.mode_time_lb.show()
             self.timeBox_lb.show()
             self.hour_box_le.show()
