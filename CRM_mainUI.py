@@ -423,6 +423,15 @@ class MainUI(QMainWindow) :
                                             "}")
         self.subjectSave_bt.hide()
 
+        self.savePoint_lb = QLabel(self.body_frm)
+        self.savePoint_lb.setGeometry(1139, 431, 8, 8)
+        self.savePoint_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/savePoint.png);\n"
+                                            "border : 0px;\n"
+                                            "background-color : transparent;\n"
+                                        "}")
+        self.savePoint_lb.hide()
+
 
         # finale_part
         self.start_bt = QPushButton(self.body_frm)
