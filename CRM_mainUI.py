@@ -403,6 +403,16 @@ class MainUI(QMainWindow) :
         self.subjectBox_tw.setDefaultDropAction(Qt.MoveAction)
         self.subjectBox_tw.hide()
 
+        self.subjectBin_bt = QPushButton(self.body_frm)
+        self.subjectBin_bt.setGeometry(1092, 452, 51, 51)
+        self.subjectBin_bt.setStyleSheet("QPushButton{\n"
+                                            "image : url(:/img/subjectBin_bt_normal.png);\n"
+                                        "}\n"
+                                        "QPushButton:hover{\n"
+                                            "image : url(:/img/subjectBin_bt_hover.png);\n"
+                                        "}")
+        self.subjectBin_bt.hide()
+
 
         # finale_part
         self.start_bt = QPushButton(self.body_frm)
@@ -547,6 +557,7 @@ class MainUI(QMainWindow) :
                 self.mode_subject_lb.hide()
                 self.addSubject_lb.hide(); self.subjectName_le.hide(); self.subjectCode_le.hide(); self.addSubject_bt.hide()
                 self.subjectBox_tw.hide()
+                self.subjectBin_bt.hide()
             #finale_part
             self.start_bt.hide()
             self.cancel_bt.hide()
@@ -580,6 +591,7 @@ class MainUI(QMainWindow) :
                 self.mode_subject_lb.show()
                 self.addSubject_lb.show(); self.subjectName_le.show(); self.subjectCode_le.show(); self.addSubject_bt.show()
                 self.subjectBox_tw.show()
+                self.subjectBin_bt.show()
 
         elif self.finale_rb.isChecked() : 
             # info_part
@@ -603,6 +615,7 @@ class MainUI(QMainWindow) :
                 self.mode_subject_lb.hide()
                 self.addSubject_lb.hide(); self.subjectName_le.hide(); self.subjectCode_le.hide(); self.addSubject_bt.hide()
                 self.subjectBox_tw.hide()
+                self.subjectBin_bt.hide()
             #finale_part
             if SCMode == "start" : 
                 self.start_bt.show()
@@ -621,6 +634,7 @@ class MainUI(QMainWindow) :
             self.mode_subject_lb.hide()
             self.addSubject_lb.hide(); self.subjectName_le.hide(); self.subjectCode_le.hide(); self.addSubject_bt.hide()
             self.subjectBox_tw.hide()
+            self.subjectBin_bt.hide()
             self.mode_account_lb.show()
             self.accountBox_lb.show()
             self.ID_box_le.show()
@@ -635,6 +649,7 @@ class MainUI(QMainWindow) :
             self.mode_subject_lb.hide()
             self.addSubject_lb.hide(); self.subjectName_le.hide(); self.subjectCode_le.hide(); self.addSubject_bt.hide()
             self.subjectBox_tw.hide()
+            self.subjectBin_bt.hide()
             self.mode_time_lb.show()
             self.timeBox_lb.show()
             self.hour_box_le.show()
@@ -652,6 +667,7 @@ class MainUI(QMainWindow) :
             self.mode_subject_lb.show()
             self.addSubject_lb.show(); self.subjectName_le.show(); self.subjectCode_le.show(); self.addSubject_bt.show()
             self.subjectBox_tw.show()
+            self.subjectBin_bt.show()
 
 
 
@@ -718,6 +734,7 @@ class MainUI(QMainWindow) :
         if event.type() == QEvent.HoverLeave : 
             self.onestop_img_lb.hide()
             self.onestop_txt_lb.hide()
+
         return False
 
 
