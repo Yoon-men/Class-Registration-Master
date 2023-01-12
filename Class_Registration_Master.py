@@ -48,6 +48,9 @@ class Main(QObject) :
         global majorSubjectCnt
         majorSubjectCnt = 0
 
+        global subjectIsSaved
+        subjectIsSaved = True
+
         mainUI.show()
         self.signal()
         sys.exit(app.exec_())
@@ -69,6 +72,9 @@ class Main(QObject) :
         mainUI.subjectSave_bt.clicked.connect(basicFn.setSubjectData)
         mainUI.subjectBin_bt.clicked.connect(basicFn.delSubject)
 
+        mainUI.prepare_rb.clicked.connect(self.chkSubjectSave)
+        mainUI.subject_rb.clicked.connect(self.chkSubjectSave)
+
         ## finale_part
         mainUI.start_bt.clicked.connect(basicFn.classRegistration)
         mainUI.cancel_bt.clicked.connect(self.powerOff)
@@ -82,6 +88,13 @@ class Main(QObject) :
             mainUI.savePoint_lb.show()
 
         return False
+
+
+
+    def chkSubjectSave(self) : 
+        if mainUI.subject_rb.isChecked() : 
+            if not subjectIsSaved : 
+                mainUI.savePoint_lb.show()
 
 
 
