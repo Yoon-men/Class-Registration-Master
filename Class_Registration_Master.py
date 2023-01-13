@@ -140,7 +140,9 @@ class BasicFn(QObject) :
     def addSubject(self) : 
         subjectName, subjectCode = mainUI.subjectName_le.text(), mainUI.subjectCode_le.text()
         if (subjectName == "") or (subjectCode == "") : 
-            print("[system] 교과목정보를 정확하게 입력해 주십시오.")                # Test code / please delete the contents of this line.
+            mainUI.body_frm.hide()
+            mainUI.subjectError_lb.show()
+            mainUI.subjectError_bt.show()
         else : 
             global subjectData
             subjectData[(subjectName, subjectCode)] = []
