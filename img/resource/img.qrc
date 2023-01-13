@@ -49,6 +49,7 @@
     <file>subjectSave_bt_normal.png</file>
     <file>subjectSave_bt_hover.png</file>
     <file>savePoint.png</file>
-    <file>finale_inProgress.png</file>
+    <file>finale_inProgress_lb.png</file>
+    <file>timeError_lb.png</file>
   </qresource>
 </RCC>
