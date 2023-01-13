@@ -1,13 +1,13 @@
 '''
-======================================
-< Class_Registration_Master_v1.0 >
+======================================================================================
+                          < Class_Registration_Master_v1.0 >
 
 '수강신청 마스터'를 사용해 나머지 99%의 사람들에게 당신과의 격차를 확실히 느끼게 해주십시오.
 
-* Made by Yoonmen *
+                                 * Made by Yoonmen *
 
-- 23.??.?? (???) ??:?? -
-======================================
+                              - 23.??.?? (???) ??:?? -
+======================================================================================
 '''
 
 import sys
@@ -48,6 +48,9 @@ class Main(QObject) :
         global majorSubjectCnt
         majorSubjectCnt = 0
 
+        global power
+        power = False
+
         global subjectIsSaved
         subjectIsSaved = True
 
@@ -64,13 +67,15 @@ class Main(QObject) :
         mainUI.onestop_bt.clicked.connect(basicFn.openOnestop)
 
         ## prepare_part
+        mainUI.prepare_rb.clicked.connect(self.finale_inProgress)
+
         mainUI.subjectCode_le.returnPressed.connect(basicFn.addSubject)
         mainUI.addSubject_bt.clicked.connect(basicFn.addSubject)
 
         mainUI.subjectBox_tw.viewport().installEventFilter(self)
 
         mainUI.subjectSave_bt.clicked.connect(basicFn.setSubjectData)
-        mainUI.subjectBin_bt.clicked.connect(basicFn.delSubject)
+        mainUI.subjectBin_bt.clicked.connect(BasicFn.delSubject)
 
         mainUI.prepare_rb.clicked.connect(self.chkSubjectSave)
         mainUI.subject_rb.clicked.connect(self.chkSubjectSave)
@@ -101,6 +106,14 @@ class Main(QObject) :
     def powerOff(self) : 
         global power
         power = False
+
+
+
+    def finale_inProgress(self) : 
+        if power : 
+            mainUI.body_frm.hide()
+            mainUI.finale_inProgress_lb.show()
+            mainUI.finale_inProgress_bt.show()
 
 
 
