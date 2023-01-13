@@ -171,7 +171,14 @@ class BasicFn(QObject) :
 
 
     def delSubject(self) : 
-        print("[system] Click of mainUI.subjectBin_bt has been detected.")              # Test code / please delete the contents of this line.
+        if mainUI.subjectBox_tw.currentItem() : 
+            item = mainUI.subjectBox_tw.currentItem()
+            if item.parent() : 
+                item.parent().removeChild(item)
+            else : 
+                mainUI.subjectBox_tw.takeTopLevelItem(mainUI.subjectBox_tw.indexOfTopLevelItem(item))
+
+            basicFn.setSubjectData()
 
 
 
