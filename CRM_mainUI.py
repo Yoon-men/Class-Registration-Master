@@ -484,14 +484,16 @@ class MainUI(QMainWindow) :
                                                 "}")
         self.finale_notPrepared_lb.hide()
 
+        error_bt_styleSheet = ("QPushButton{\n"
+                                    "image : url(:/img/finale_notPrepared_bt_normal.png);\n"
+                                "}\n"
+                                "QPushButton:hover{\n"
+                                    "image : url(:/img/finale_notPrepared_bt_hover.png);\n"
+                                "}")
+
         self.finale_notPrepared_bt = QPushButton(self.superBody_frm)
         self.finale_notPrepared_bt.setGeometry(340, 458, 529, 53)
-        self.finale_notPrepared_bt.setStyleSheet("QPushButton{\n"
-                                                    "image : url(:/img/finale_notPrepared_bt_normal.png);\n"
-                                                "}\n"
-                                                "QPushButton:hover{\n"
-                                                    "image : url(:/img/finale_notPrepared_bt_hover.png);\n"
-                                                "}")
+        self.finale_notPrepared_bt.setStyleSheet(error_bt_styleSheet)
         self.finale_notPrepared_bt.hide()
 
         O_mark_styleSheet = ("QLabel{\n"
@@ -543,13 +545,22 @@ class MainUI(QMainWindow) :
 
         self.finale_inProgress_bt = QPushButton(self.superBody_frm)
         self.finale_inProgress_bt.setGeometry(340, 458, 529, 53)
-        self.finale_inProgress_bt.setStyleSheet("QPushButton{\n"
-                                                    "image : url(:/img/finale_notPrepared_bt_normal.png);\n"
-                                                "}\n"
-                                                "QPushButton:hover{\n"
-                                                    "image : url(:/img/finale_notPrepared_bt_hover.png);\n"
-                                                "}")
+        self.finale_inProgress_bt.setStyleSheet(error_bt_styleSheet)
         self.finale_inProgress_bt.hide()
+
+        self.timeError_lb = QLabel(self.superBody_frm)
+        self.timeError_lb.setGeometry(325, 120, 561, 401)
+        self.timeError_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/timeError_lb.png);\n"
+                                            "border : 0px;\n"
+                                            "background-color : transparent;\n"
+                                        "}")
+        self.timeError_lb.hide()
+
+        self.timeError_bt = QPushButton(self.superBody_frm)
+        self.timeError_bt.setGeometry(340, 458, 529, 53)
+        self.timeError_bt.setStyleSheet(error_bt_styleSheet)
+        self.timeError_bt.hide()
 
 
 
@@ -572,6 +583,7 @@ class MainUI(QMainWindow) :
 
         self.finale_notPrepared_bt.clicked.connect(self.returnToMain_1)
         self.finale_inProgress_bt.clicked.connect(self.returnToMain_2)
+        self.timeError_bt.clicked.connect(self.returnToMain_3)
 
 
     def setMenu(self) : 
@@ -766,6 +778,13 @@ class MainUI(QMainWindow) :
         self.body_frm.show()
         self.finale_rb.setChecked(True)
         self.setMenu()
+    
+
+
+    def returnToMain_3(self) : 
+        self.timeError_lb.hide()
+        self.timeError_bt.hide()
+        self.body_frm.show()
 
 
 
