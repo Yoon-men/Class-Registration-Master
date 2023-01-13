@@ -230,7 +230,9 @@ class BasicFn(QObject) :
         if accountIsPrepared and timeIsPrepared and subjectIsPrepared : 
             remaining_time = self.timeChk()
             if not remaining_time : 
-                print("[system] 수강신청 시간이 현재 시간의 이전 시간입니다.")                 # Test code / please delete the contents of this line.
+                mainUI.body_frm.hide()
+                mainUI.timeError_lb.show()
+                mainUI.timeError_bt.show()
                 mainUI.changeSCMode()
                 return
 
