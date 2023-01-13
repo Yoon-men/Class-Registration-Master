@@ -532,6 +532,25 @@ class MainUI(QMainWindow) :
         self.subject_X_mark_lb.setStyleSheet(X_mark_styleSheet)
         self.subject_X_mark_lb.hide()
 
+        self.finale_inProgress_lb = QLabel(self.superBody_frm)
+        self.finale_inProgress_lb.setGeometry(325, 120, 561, 401)
+        self.finale_inProgress_lb.setStyleSheet("QLabel{\n"
+                                                    "image : url(:/img/finale_inProgress_lb.png);\n"
+                                                    "border : 0px;\n"
+                                                    "background-color : transparent;\n"
+                                                "}")
+        self.finale_inProgress_lb.hide()
+
+        self.finale_inProgress_bt = QPushButton(self.superBody_frm)
+        self.finale_inProgress_bt.setGeometry(340, 458, 529, 53)
+        self.finale_inProgress_bt.setStyleSheet("QPushButton{\n"
+                                                    "image : url(:/img/finale_notPrepared_bt_normal.png);\n"
+                                                "}\n"
+                                                "QPushButton:hover{\n"
+                                                    "image : url(:/img/finale_notPrepared_bt_hover.png);\n"
+                                                "}")
+        self.finale_inProgress_bt.hide()
+
 
 
     def signal(self) : 
@@ -551,8 +570,8 @@ class MainUI(QMainWindow) :
         self.start_bt.clicked.connect(self.changeSCMode)
         self.cancel_bt.clicked.connect(self.changeSCMode)
 
-        self.finale_notPrepared_bt.clicked.connect(self.returnToMain)
-
+        self.finale_notPrepared_bt.clicked.connect(self.returnToMain_1)
+        self.finale_inProgress_bt.clicked.connect(self.returnToMain_2)
 
 
     def setMenu(self) : 
@@ -730,7 +749,7 @@ class MainUI(QMainWindow) :
 
 
 
-    def returnToMain(self) : 
+    def returnToMain_1(self) : 
         self.finale_notPrepared_lb.hide()
         self.account_X_mark_lb.hide() ; self.account_O_mark_lb.hide()
         self.time_X_mark_lb.hide() ; self.time_O_mark_lb.hide()
@@ -738,6 +757,15 @@ class MainUI(QMainWindow) :
         self.finale_notPrepared_bt.hide()
         self.body_frm.show()
         self.changeSCMode()
+
+
+
+    def returnToMain_2(self) : 
+        self.finale_inProgress_lb.hide()
+        self.finale_inProgress_bt.hide()
+        self.body_frm.show()
+        self.finale_rb.setChecked(True)
+        self.setMenu()
 
 
 
