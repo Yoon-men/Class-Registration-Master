@@ -562,6 +562,20 @@ class MainUI(QMainWindow) :
         self.timeError_bt.setStyleSheet(error_bt_styleSheet)
         self.timeError_bt.hide()
 
+        self.subjectError_lb = QLabel(self.superBody_frm)
+        self.subjectError_lb.setGeometry(325, 120, 561, 401)
+        self.subjectError_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/subjectError_lb.png);\n"
+                                                "border : 0px;\n"
+                                                "background-color : transparent;\n"
+                                            "}")
+        self.subjectError_lb.hide()
+
+        self.subjectError_bt = QPushButton(self.superBody_frm)
+        self.subjectError_bt.setGeometry(340, 458, 529, 53)
+        self.subjectError_bt.setStyleSheet(error_bt_styleSheet)
+        self.subjectError_bt.hide()
+
 
 
     def signal(self) : 
@@ -584,6 +598,7 @@ class MainUI(QMainWindow) :
         self.finale_notPrepared_bt.clicked.connect(self.returnToMain_1)
         self.finale_inProgress_bt.clicked.connect(self.returnToMain_2)
         self.timeError_bt.clicked.connect(self.returnToMain_3)
+        self.subjectError_bt.clicked.connect(self.returnToMain_4)
 
 
     def setMenu(self) : 
@@ -784,6 +799,13 @@ class MainUI(QMainWindow) :
     def returnToMain_3(self) : 
         self.timeError_lb.hide()
         self.timeError_bt.hide()
+        self.body_frm.show()
+
+
+
+    def returnToMain_4(self) : 
+        self.subjectError_lb.hide()
+        self.subjectError_bt.hide()
         self.body_frm.show()
 
 
