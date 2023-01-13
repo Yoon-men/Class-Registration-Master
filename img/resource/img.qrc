@@ -51,5 +51,6 @@
     <file>savePoint.png</file>
     <file>finale_inProgress_lb.png</file>
     <file>timeError_lb.png</file>
+    <file>subjectError_lb.png</file>
   </qresource>
 </RCC>
