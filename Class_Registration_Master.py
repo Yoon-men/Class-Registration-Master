@@ -81,19 +81,18 @@ class Main(QObject) :
         mainUI.subject_rb.clicked.connect(self.chkSubjectSave)
 
         ## finale_part
+        mainUI.finale_rb.clicked.connect(self.setFinale_lb)
+
         mainUI.start_bt.clicked.connect(basicFn.classRegistration)
         mainUI.cancel_bt.clicked.connect(self.powerOff)
 
 
 
-    def eventFilter(self, object, event) : 
-        if object == mainUI.subjectBox_tw.viewport() : 
-            if event.type() == QEvent.Drop : 
-                global subjectIsSaved
-                subjectIsSaved = False
-                mainUI.savePoint_lb.show()
-
-        return False
+    def finale_inProgress(self) : 
+        if power : 
+            mainUI.body_frm.hide()
+            mainUI.finale_inProgress_lb.show()
+            mainUI.finale_inProgress_bt.show()
 
 
 
@@ -104,17 +103,39 @@ class Main(QObject) :
 
 
 
+    def setFinale_lb(self) : 
+        if (mainUI.ID_box_le.text() == "") or (mainUI.PW_box_le.text() == "") : accountIsPrepared = False
+        else : accountIsPrepared = True
+        if (int(mainUI.hour_box_le.text()) == 0) and (int(mainUI.min_box_le.text()) == 0) : timeIsPrepared = False
+        else : timeIsPrepared = True
+        if (len(subjectData) == 0) or (not subjectIsSaved) : subjectIsPrepared = False
+        else : subjectIsPrepared = True
+
+        if accountIsPrepared : mainUI.accountIsPrepared()
+        else : mainUI.accountIsNotPrepared()
+
+        if timeIsPrepared : mainUI.timeIsPrepared()
+        else : mainUI.timeIsNotPrepared()
+
+        if subjectIsPrepared : mainUI.subjectIsPrepared()
+        else : mainUI.subjectIsNotPrepared()
+
+
+
     def powerOff(self) : 
         global power
         power = False
 
+    
 
+    def eventFilter(self, object, event) : 
+        if object == mainUI.subjectBox_tw.viewport() : 
+            if event.type() == QEvent.Drop : 
+                global subjectIsSaved
+                subjectIsSaved = False
+                mainUI.savePoint_lb.show()
 
-    def finale_inProgress(self) : 
-        if power : 
-            mainUI.body_frm.hide()
-            mainUI.finale_inProgress_lb.show()
-            mainUI.finale_inProgress_bt.show()
+        return False
 
 
 
