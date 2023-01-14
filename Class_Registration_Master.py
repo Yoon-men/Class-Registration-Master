@@ -74,7 +74,7 @@ class Main(QObject) :
 
         mainUI.subjectBox_tw.viewport().installEventFilter(self)
 
-        mainUI.subjectSave_bt.clicked.connect(basicFn.setSubjectData)
+        mainUI.subjectSave_bt.clicked.connect(BasicFn.setSubjectData)
         mainUI.subjectBin_bt.clicked.connect(BasicFn.delSubject)
 
         mainUI.prepare_rb.clicked.connect(self.chkSubjectSave)
@@ -87,10 +87,11 @@ class Main(QObject) :
 
 
     def eventFilter(self, object, event) : 
-        if event.type() == QEvent.Drop : 
-            global subjectIsSaved
-            subjectIsSaved = False
-            mainUI.savePoint_lb.show()
+        if object == mainUI.subjectBox_tw.viewport() : 
+            if event.type() == QEvent.Drop : 
+                global subjectIsSaved
+                subjectIsSaved = False
+                mainUI.savePoint_lb.show()
 
         return False
 
