@@ -52,17 +52,17 @@
     <file>finale_inProgress_lb.png</file>
     <file>timeError_lb.png</file>
     <file>subjectError_lb.png</file>
-    <file>finaleAccount_lb_notCompleted_normal.png</file>
-    <file>finaleAccount_lb_notCompleted_hover.png</file>
-    <file>finaleAccount_lb_completed_normal.png</file>
-    <file>finaleAccount_lb_completed_hover.png</file>
-    <file>finaleTime_lb_notCompleted_normal.png</file>
-    <file>finaleTime_lb_notCompleted_hover.png</file>
-    <file>finaleTime_lb_completed_normal.png</file>
-    <file>finaleTime_lb_completed_hover.png</file>
-    <file>finaleSubject_lb_notCompleted_normal.png</file>
-    <file>finaleSubject_lb_notCompleted_hover.png</file>
-    <file>finaleSubject_lb_completed_normal.png</file>
-    <file>finaleSubject_lb_completed_hover.png</file>
+    <file>finaleAccount_lb_notPrepared_normal.png</file>
+    <file>finaleAccount_lb_notPrepared_hover.png</file>
+    <file>finaleAccount_lb_prepared_normal.png</file>
+    <file>finaleAccount_lb_prepared_hover.png</file>
+    <file>finaleTime_lb_notPrepared_normal.png</file>
+    <file>finaleTime_lb_notPrepared_hover.png</file>
+    <file>finaleTime_lb_prepared_normal.png</file>
+    <file>finaleTime_lb_prepared_hover.png</file>
+    <file>finaleSubject_lb_notPrepared_normal.png</file>
+    <file>finaleSubject_lb_notPrepared_hover.png</file>
+    <file>finaleSubject_lb_prepared_normal.png</file>
+    <file>finaleSubject_lb_prepared_hover.png</file>
   </qresource>
 </RCC>
