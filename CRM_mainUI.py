@@ -826,12 +826,13 @@ class MainUI(QMainWindow) :
 
 
     def eventFilter(self, object, event) : 
-        if event.type() == QEvent.HoverEnter : 
-            self.onestop_img_lb.show()
-            self.onestop_txt_lb.show()
-        if event.type() == QEvent.HoverLeave : 
-            self.onestop_img_lb.hide()
-            self.onestop_txt_lb.hide()
+        if object == self.onestop_bt : 
+            if event.type() == QEvent.HoverEnter : 
+                self.onestop_img_lb.show()
+                self.onestop_txt_lb.show()
+            if event.type() == QEvent.HoverLeave : 
+                self.onestop_img_lb.hide()
+                self.onestop_txt_lb.hide()
 
         return False
 
