@@ -586,6 +586,7 @@ class MainUI(QMainWindow) :
                                             "QLabel:hover{\n"
                                                 "image : url(:/img/finaleAccount_lb_notPrepared_hover.png);\n"
                                             "}")
+        self.finaleAccount_lb.installEventFilter(self)
         self.finaleAccount_lb.hide()
 
         self.finaleTime_lb = QLabel(self.body_frm)
@@ -598,6 +599,7 @@ class MainUI(QMainWindow) :
                                         "QLabel:hover{\n"
                                             "image : url(:/img/finaleTime_lb_notPrepared_hover.png);\n"
                                         "}")
+        self.finaleTime_lb.installEventFilter(self)
         self.finaleTime_lb.hide()
 
         self.finaleSubject_lb = QLabel(self.body_frm)
@@ -610,6 +612,7 @@ class MainUI(QMainWindow) :
                                             "QLabel:hover{\n"
                                                 "image : url(:/img/finaleSubject_lb_notPrepared_hover.png);\n"
                                             "}")
+        self.finaleSubject_lb.installEventFilter(self)
         self.finaleSubject_lb.hide()
 
 
@@ -875,18 +878,41 @@ class MainUI(QMainWindow) :
             if event.type() == QEvent.HoverEnter : 
                 self.onestop_img_lb.show()
                 self.onestop_txt_lb.show()
-            if event.type() == QEvent.HoverLeave : 
+            elif event.type() == QEvent.HoverLeave : 
                 self.onestop_img_lb.hide()
                 self.onestop_txt_lb.hide()
         
         elif object == self.finaleAccount_lb : 
-            pass                # Test code / please delete the contents of this line.
+            if event.type() == QEvent.HoverEnter : 
+                self.accountBox_lb.show()
+                self.ID_box_le.show()
+                self.PW_box_le.show()
+                self.time_HM_lcd.hide(); self.time_S_lcd.hide()
+            elif event.type() == QEvent.HoverLeave : 
+                self.accountBox_lb.hide()
+                self.ID_box_le.hide()
+                self.PW_box_le.hide()
+                self.time_HM_lcd.show(); self.time_S_lcd.show()
 
         elif object == self.finaleTime_lb : 
-            pass                # Test code / please delete the contents of this line.
+            if event.type() == QEvent.HoverEnter : 
+                self.timeBox_lb.show()
+                self.hour_box_le.show()
+                self.min_box_le.show()
+                self.time_HM_lcd.hide(); self.time_S_lcd.hide()
+            elif event.type() == QEvent.HoverLeave : 
+                self.timeBox_lb.hide()
+                self.hour_box_le.hide()
+                self.min_box_le.hide()
+                self.time_HM_lcd.show(); self.time_S_lcd.show()
 
         elif object == self.finaleSubject_lb : 
-            pass                # Test code / please delete the contents of this line.
+            if event.type() == QEvent.HoverEnter : 
+                self.subjectBox_tw.show()
+                self.time_HM_lcd.hide(); self.time_S_lcd.hide()
+            elif event.type() == QEvent.HoverLeave : 
+                self.subjectBox_tw.hide()
+                self.time_HM_lcd.show(); self.time_S_lcd.show()
 
         return False
 
