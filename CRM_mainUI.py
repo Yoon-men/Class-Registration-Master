@@ -578,40 +578,19 @@ class MainUI(QMainWindow) :
 
         self.finaleAccount_lb = QLabel(self.body_frm)
         self.finaleAccount_lb.setGeometry(17, 52, 399, 34)
-        self.finaleAccount_lb.setStyleSheet("QLabel{\n"
-                                                "image : url(:/img/finaleAccount_lb_notPrepared_normal.png);\n"
-                                                "border : 0px;\n"
-                                                "background-color : transparent;\n"
-                                            "}\n"
-                                            "QLabel:hover{\n"
-                                                "image : url(:/img/finaleAccount_lb_notPrepared_hover.png);\n"
-                                            "}")
+        self.accountIsNotPrepared()
         self.finaleAccount_lb.installEventFilter(self)
         self.finaleAccount_lb.hide()
 
         self.finaleTime_lb = QLabel(self.body_frm)
         self.finaleTime_lb.setGeometry(17, 100, 399, 34)
-        self.finaleTime_lb.setStyleSheet("QLabel{\n"
-                                            "image : url(:/img/finaleTime_lb_notPrepared_normal.png);\n"
-                                            "border : 0px;\n"
-                                            "background-color : transparent;\n"
-                                        "}\n"
-                                        "QLabel:hover{\n"
-                                            "image : url(:/img/finaleTime_lb_notPrepared_hover.png);\n"
-                                        "}")
+        self.timeIsNotPrepared()
         self.finaleTime_lb.installEventFilter(self)
         self.finaleTime_lb.hide()
 
         self.finaleSubject_lb = QLabel(self.body_frm)
         self.finaleSubject_lb.setGeometry(17, 148, 399, 34)
-        self.finaleSubject_lb.setStyleSheet("QLabel{\n"
-                                                "image : url(:/img/finaleSubject_lb_notPrepared_normal.png);\n"
-                                                "border : 0px;\n"
-                                                "background-color : transparent;\n"
-                                            "}\n"
-                                            "QLabel:hover{\n"
-                                                "image : url(:/img/finaleSubject_lb_notPrepared_hover.png);\n"
-                                            "}")
+        self.subjectIsNotPrepared()
         self.finaleSubject_lb.installEventFilter(self)
         self.finaleSubject_lb.hide()
 
@@ -870,6 +849,8 @@ class MainUI(QMainWindow) :
             self.cancel_bt.hide()
             self.start_bt.show()
             SCMode = "start"
+
+
 
     # preparationState_group
     ## << finaleAccount_lb (1/3) >>
