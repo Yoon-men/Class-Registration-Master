@@ -432,6 +432,27 @@ class MainUI(QMainWindow) :
                                         "}")
         self.savePoint_lb.hide()
 
+        error_bt_styleSheet = ("QPushButton{\n"
+                                    "image : url(:/img/finale_notPrepared_bt_normal.png);\n"
+                                "}\n"
+                                "QPushButton:hover{\n"
+                                    "image : url(:/img/finale_notPrepared_bt_hover.png);\n"
+                                "}")
+
+        self.subjectError_lb = QLabel(self.superBody_frm)
+        self.subjectError_lb.setGeometry(325, 120, 561, 401)
+        self.subjectError_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/subjectError_lb.png);\n"
+                                                "border : 0px;\n"
+                                                "background-color : transparent;\n"
+                                            "}")
+        self.subjectError_lb.hide()
+
+        self.subjectError_bt = QPushButton(self.superBody_frm)
+        self.subjectError_bt.setGeometry(340, 458, 529, 53)
+        self.subjectError_bt.setStyleSheet(error_bt_styleSheet)
+        self.subjectError_bt.hide()
+
 
         # finale_part
         self.start_bt = QPushButton(self.body_frm)
@@ -483,13 +504,6 @@ class MainUI(QMainWindow) :
                                                     "background-color : transparent;\n"
                                                 "}")
         self.finale_notPrepared_lb.hide()
-
-        error_bt_styleSheet = ("QPushButton{\n"
-                                    "image : url(:/img/finale_notPrepared_bt_normal.png);\n"
-                                "}\n"
-                                "QPushButton:hover{\n"
-                                    "image : url(:/img/finale_notPrepared_bt_hover.png);\n"
-                                "}")
 
         self.finale_notPrepared_bt = QPushButton(self.superBody_frm)
         self.finale_notPrepared_bt.setGeometry(340, 458, 529, 53)
@@ -562,19 +576,41 @@ class MainUI(QMainWindow) :
         self.timeError_bt.setStyleSheet(error_bt_styleSheet)
         self.timeError_bt.hide()
 
-        self.subjectError_lb = QLabel(self.superBody_frm)
-        self.subjectError_lb.setGeometry(325, 120, 561, 401)
-        self.subjectError_lb.setStyleSheet("QLabel{\n"
-                                                "image : url(:/img/subjectError_lb.png);\n"
+        self.finaleAccount_lb = QLabel(self.body_frm)
+        self.finaleAccount_lb.setGeometry(17, 52, 399, 34)
+        self.finaleAccount_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/finaleAccount_lb_notPrepared_normal.png);\n"
                                                 "border : 0px;\n"
                                                 "background-color : transparent;\n"
+                                            "}\n"
+                                            "QLabel:hover{\n"
+                                                "image : url(:/img/finaleAccount_lb_notPrepared_hover.png);\n"
                                             "}")
-        self.subjectError_lb.hide()
+        self.finaleAccount_lb.hide()
 
-        self.subjectError_bt = QPushButton(self.superBody_frm)
-        self.subjectError_bt.setGeometry(340, 458, 529, 53)
-        self.subjectError_bt.setStyleSheet(error_bt_styleSheet)
-        self.subjectError_bt.hide()
+        self.finaleTime_lb = QLabel(self.body_frm)
+        self.finaleTime_lb.setGeometry(17, 100, 399, 34)
+        self.finaleTime_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/finaleTime_lb_notPrepared_normal.png);\n"
+                                            "border : 0px;\n"
+                                            "background-color : transparent;\n"
+                                        "}\n"
+                                        "QLabel:hover{\n"
+                                            "image : url(:/img/finaleTime_lb_notPrepared_hover.png);\n"
+                                        "}")
+        self.finaleTime_lb.hide()
+
+        self.finaleSubject_lb = QLabel(self.body_frm)
+        self.finaleSubject_lb.setGeometry(17, 148, 399, 34)
+        self.finaleSubject_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/finaleSubject_lb_notPrepared_normal.png);\n"
+                                                "border : 0px;\n"
+                                                "background-color : transparent;\n"
+                                            "}\n"
+                                            "QLabel:hover{\n"
+                                                "image : url(:/img/finaleSubject_lb_notPrepared_hover.png);\n"
+                                            "}")
+        self.finaleSubject_lb.hide()
 
 
 
@@ -629,6 +665,9 @@ class MainUI(QMainWindow) :
             self.start_bt.hide()
             self.cancel_bt.hide()
             self.time_HM_lcd.hide(); self.time_S_lcd.hide()
+            self.finaleAccount_lb.hide()
+            self.finaleTime_lb.hide()
+            self.finaleSubject_lb.hide()
             # info_part
             self.onestop_bt.show()
 
@@ -639,6 +678,9 @@ class MainUI(QMainWindow) :
             self.start_bt.hide()
             self.cancel_bt.hide()
             self.time_HM_lcd.hide(); self.time_S_lcd.hide()
+            self.finaleAccount_lb.hide()
+            self.finaleTime_lb.hide()
+            self.finaleSubject_lb.hide()
             # prepare_part
             self.account_rb.show()
             self.time_rb.show()
@@ -692,6 +734,9 @@ class MainUI(QMainWindow) :
             elif SCMode == "cancel" : 
                 self.cancel_bt.show()
             self.time_HM_lcd.show(); self.time_S_lcd.show()
+            self.finaleAccount_lb.show()
+            self.finaleTime_lb.show()
+            self.finaleSubject_lb.show()
 
 
 
@@ -833,6 +878,15 @@ class MainUI(QMainWindow) :
             if event.type() == QEvent.HoverLeave : 
                 self.onestop_img_lb.hide()
                 self.onestop_txt_lb.hide()
+        
+        elif object == self.finaleAccount_lb : 
+            pass                # Test code / please delete the contents of this line.
+
+        elif object == self.finaleTime_lb : 
+            pass                # Test code / please delete the contents of this line.
+
+        elif object == self.finaleSubject_lb : 
+            pass                # Test code / please delete the contents of this line.
 
         return False
 
