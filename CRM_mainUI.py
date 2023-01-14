@@ -871,6 +871,72 @@ class MainUI(QMainWindow) :
             self.start_bt.show()
             SCMode = "start"
 
+    # preparationState_group
+    ## << finaleAccount_lb (1/3) >>
+    def accountIsPrepared(self) : 
+        self.finaleAccount_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/finaleAccount_lb_prepared_normal.png);\n"
+                                                "border : 0px;\n"
+                                                "background-color : transparent;\n"
+                                            "}\n"
+                                            "QLabel:hover{\n"
+                                                "image : url(:/img/finaleAccount_lb_prepared_hover.png);\n"
+                                            "}")
+
+    def accountIsNotPrepared(self) : 
+        self.finaleAccount_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/finaleAccount_lb_notPrepared_normal.png);\n"
+                                                "border : 0px;\n"
+                                                "background-color : transparent;\n"
+                                            "}\n"
+                                            "QLabel:hover{\n"
+                                                "image : url(:/img/finaleAccount_lb_notPrepared_hover.png);\n"
+                                            "}")
+
+
+    ## << finaleTime_lb (2/3) >>
+    def timeIsPrepared(self) : 
+        self.finaleTime_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/finaleTime_lb_prepared_normal.png);\n"
+                                            "border : 0px;\n"
+                                            "background-color : transparent;\n"
+                                        "}\n"
+                                        "QLabel:hover{\n"
+                                            "image : url(:/img/finaleTime_lb_prepared_hover.png);\n"
+                                        "}")
+
+    def timeIsNotPrepared(self) : 
+        self.finaleTime_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/finaleTime_lb_notPrepared_normal.png);\n"
+                                            "border : 0px;\n"
+                                            "background-color : transparent;\n"
+                                        "}\n"
+                                        "QLabel:hover{\n"
+                                            "image : url(:/img/finaleTime_lb_notPrepared_hover.png);\n"
+                                        "}")
+
+
+    # << finaleSubject_lb (3/3) >>
+    def subjectIsPrepared(self) : 
+        self.finaleSubject_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/finaleSubject_lb_prepared_normal.png);\n"
+                                                "border : 0px;\n"
+                                                "background-color : transparent;\n"
+                                            "}\n"
+                                            "QLabel:hover{\n"
+                                                "image : url(:/img/finaleSubject_lb_prepared_hover.png);\n"
+                                            "}")
+
+    def subjectIsNotPrepared(self) : 
+        self.finaleSubject_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/finaleSubject_lb_notPrepared_normal.png);\n"
+                                                "border : 0px;\n"
+                                                "background-color : transparent;\n"
+                                            "}\n"
+                                            "QLabel:hover{\n"
+                                                "image : url(:/img/finaleSubject_lb_notPrepared_hover.png);\n"
+                                            "}")
+
 
 
     def eventFilter(self, object, event) : 
