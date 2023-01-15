@@ -1,15 +1,20 @@
+import sys
+from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import QObject
+import time
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import chromedriver_autoinstaller
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import ElementNotInteractableException, NoAlertPresentException, StaleElementReferenceException
+from selenium.common.exceptions import ElementNotInteractableException, NoAlertPresentException, StaleElementReferenceException, NoSuchElementException
 
-import time
+from CRM_mainUI import MainUI
 
 class KeyFn(QObject) : 
-    def classRegistration(self) : 
+    def classRegistration(self, account, subjectData) : 
+        mainUI = MainUI()
+
         option = Options()
         # option.add_argument("headless")               # Test code / please unlock the contents of this line.
         option.add_argument("start-maximized")
@@ -22,12 +27,16 @@ class KeyFn(QObject) :
             chromedriver_autoinstaller.install()
             driver = webdriver.Chrome(options=option)
 
-        driver.implicitly_wait(60)
+        driver.implicitly_wait(3)
 
         driver.get("https://sugang.kumoh.ac.kr/html/stud/sugang.html")
         time.sleep(0.2)
-        driver.find_element(By.ID, "Form_로그인.아이디").send_keys("20774796")
-        driver.find_element(By.ID, "Form_로그인.비밀번호").send_keys("123456789")
+        try : 
+            driver.find_element(By.ID, "Form_로그인.아이디").send_keys(account[0])
+            driver.find_element(By.ID, "Form_로그인.비밀번호").send_keys(account[1])
+        except NoSuchElementException : 
+            print("[system] 수강신청 사이트가 아직 열리지 않았거나 사이트의 내용이 변경되었습니다.")                 # Test code / please delete the contents of this line.
+            return
 
         try : 
             driver.find_element(By.ID, "Form_버튼.pb_확인").click()
@@ -42,8 +51,8 @@ class KeyFn(QObject) :
         except NoAlertPresentException : 
             print("[system] 로그인을 완료했습니다.")             # Test code / please delete the contents of this line.
 
-        subjects = ["CD006001"]
-        for i in subjects : 
+
+        for i in subjectData : 
             driver.find_element(By.ID, "Form_희망수강과목입력.개설교과목코드").send_keys(i)
             try : 
                 driver.find_element(By.ID, "Form_버튼.pb1").click()
@@ -62,4 +71,7 @@ class KeyFn(QObject) :
 
 
 if __name__ == "__main__" : 
-    KeyFn().classRegistration()
+    app = QApplication(sys.argv)
+    account = (20772077, 20772077)
+    subjectData = {("努力 未来 A BEAUTIFUL STAR", "YK1012-22")}
+    KeyFn().classRegistration(account, subjectData)
