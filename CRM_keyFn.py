@@ -9,8 +9,9 @@ import chromedriver_autoinstaller
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import ElementNotInteractableException, NoAlertPresentException, StaleElementReferenceException, NoSuchElementException
 
+
 class KeyFn(QObject) : 
-    def classRegistration(self, account, subjectData) : 
+    def classRegistration_KIT(self, account, subjectData) : 
         option = Options()
         # option.add_argument("headless")               # Test code / please unlock the contents of this line.
         option.add_argument("start-maximized")
@@ -87,10 +88,15 @@ class KeyFn(QObject) :
 
 
 
+    def classRegistration_OOO(self) : 
+        pass                # Test code / please delete the contents of this line.
+
+
+
 
 
 if __name__ == "__main__" : 
     app = QApplication(sys.argv)
     account = (20772077, 20772077)
     subjectData = {("努力 未来 A BEAUTIFUL STAR", "YK1012-22"): []}
-    KeyFn().classRegistration(account, subjectData)
+    KeyFn().classRegistration_KIT(account, subjectData)
