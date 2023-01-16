@@ -9,12 +9,8 @@ import chromedriver_autoinstaller
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import ElementNotInteractableException, NoAlertPresentException, StaleElementReferenceException, NoSuchElementException
 
-from CRM_mainUI import MainUI
-
 class KeyFn(QObject) : 
     def classRegistration(self, account, subjectData) : 
-        mainUI = MainUI()
-
         option = Options()
         # option.add_argument("headless")               # Test code / please unlock the contents of this line.
         option.add_argument("start-maximized")
@@ -52,7 +48,7 @@ class KeyFn(QObject) :
             alert.accept()
         except NoAlertPresentException : 
             print("[system] 로그인을 완료했습니다.")             # Test code / please delete the contents of this line.
-        
+
 
         def registration(subject) : 
             subjectName, subjectCode = subject[0], subject[1]
@@ -73,7 +69,7 @@ class KeyFn(QObject) :
 
                 alert.accept()
             except NoAlertPresentException : 
-                print(f"[system] '{subjectName}' 과목의 수강신청이 완료되었습니다.")                 # Test code / please delete the contents of this line.
+                print(f"[system] '{subjectName}({subjectCode})' 과목의 수강신청이 완료되었습니다.")                 # Test code / please delete the contents of this line.
                 return True
 
         subjectData = subjectData.items()
@@ -85,7 +81,6 @@ class KeyFn(QObject) :
                     if registration(insurance) : 
                         break
             majorSubjectCnt += 1
-            mainUI.completed_txt_lb.setText(f"{registrationCnt} / {majorSubjectCnt}")
 
         time.sleep(100)                 # Test code / please delete the contents of this line.
         driver.quit()
@@ -97,5 +92,5 @@ class KeyFn(QObject) :
 if __name__ == "__main__" : 
     app = QApplication(sys.argv)
     account = (20772077, 20772077)
-    subjectData = {("努力 未来 A BEAUTIFUL STAR", "YK1012-22")}
+    subjectData = {("努力 未来 A BEAUTIFUL STAR", "YK1012-22"): []}
     KeyFn().classRegistration(account, subjectData)
