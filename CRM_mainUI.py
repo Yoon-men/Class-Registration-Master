@@ -1,8 +1,9 @@
 from img.img import *
 import sys
-from PySide2.QtGui import QFont, QIntValidator
 from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox, QTreeWidget, QAbstractItemView
+from PySide2.QtGui import QFont, QIntValidator, QMovie
 from PySide2.QtCore import Qt, QEvent
+
 
 global SCMode
 SCMode = "start"
@@ -64,7 +65,7 @@ class MainUI(QMainWindow) :
                                                 "border : 0px;\n"
                                                 "background-color : transparent;\n"
                                             "}")
-        self.completed_txt_lb.setText("0 / 0")
+        self.completed_txt_lb.setText("0")
         self.completed_txt_lb.setAlignment(Qt.AlignCenter)
 
 
@@ -617,6 +618,7 @@ class MainUI(QMainWindow) :
         self.finale_inProgress_bt.clicked.connect(self.returnToMain_2)
         self.timeError_bt.clicked.connect(self.returnToMain_3)
         self.subjectError_bt.clicked.connect(self.returnToMain_4)
+
 
 
     def setMenu(self) : 
