@@ -64,7 +64,7 @@ class Main(QObject) :
         # << mainUI (1/1) >> --------------------
 
         ## info_part
-        mainUI.onestop_bt.clicked.connect(basicFn.openOnestop)
+        mainUI.onestop_bt.clicked.connect(BasicFn.openOnestop)
 
         ## prepare_part
         mainUI.prepare_rb.clicked.connect(self.finale_inProgress)
@@ -172,7 +172,7 @@ class BasicFn(QObject) :
 
             global majorSubjectCnt
             majorSubjectCnt += 1
-            mainUI.completed_txt_lb.setText(f"0 / {majorSubjectCnt}")
+            mainUI.completed_txt_lb.setText(str(majorSubjectCnt))
 
             mainUI.subjectName_le.setText(""); mainUI.subjectCode_le.setText("")
 
@@ -199,7 +199,7 @@ class BasicFn(QObject) :
             recursiveSet(major, major)
 
         basicFn.setSubjectBox()
-        mainUI.completed_txt_lb.setText(f"0 / {majorSubjectCnt}")
+        mainUI.completed_txt_lb.setText(str(majorSubjectCnt))
 
         global subjectIsSaved
         subjectIsSaved = True
@@ -276,11 +276,12 @@ class BasicFn(QObject) :
 
                 if power : 
                     account = (mainUI.ID_box_le.text(), mainUI.PW_box_le.text())
-                    keyFn.classRegistration(account, subjectData)
+                    keyFn.classRegistration_KIT(account, subjectData)
                     print("[system] 수강신청이 완료되었습니다.")                # Test code / please delete the contents of this line.
+                    power = False
+                    mainUI.changeSCMode()
                 
                 mainUI.time_HM_lcd.display("--:--"); mainUI.time_S_lcd.display(":--")
-                power = False
 
 
         else : 
