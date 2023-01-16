@@ -277,11 +277,10 @@ class BasicFn(QObject) :
                 if power : 
                     account = (mainUI.ID_box_le.text(), mainUI.PW_box_le.text())
                     keyFn.classRegistration(account, subjectData)
-                    print("[system] 수강신청이 시작되었습니다.")                # Test code / please delete the contents of this line.
+                    print("[system] 수강신청이 완료되었습니다.")                # Test code / please delete the contents of this line.
                 
                 mainUI.time_HM_lcd.display("--:--"); mainUI.time_S_lcd.display(":--")
                 power = False
-                mainUI.changeSCMode()
 
 
         else : 
