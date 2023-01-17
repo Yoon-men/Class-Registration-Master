@@ -13,7 +13,6 @@ from selenium.common.exceptions import ElementNotInteractableException, NoAlertP
 class KeyFn(QObject) : 
     def classRegistration_KIT(self, account, subjectData) : 
         option = Options()
-        # option.add_argument("headless")               # Test code / please unlock the contents of this line.
         option.add_argument("start-maximized")
         option.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chromedriver_autoinstaller.get_chrome_version()} Safari/537.36")
         option.add_experimental_option("excludeSwitches", ["enable-logging"])
@@ -24,7 +23,7 @@ class KeyFn(QObject) :
             chromedriver_autoinstaller.install()
             driver = webdriver.Chrome(options=option)
 
-        driver.implicitly_wait(3)
+        driver.implicitly_wait(30)
         driver.get("https://sugang.kumoh.ac.kr/html/stud/sugang.html")
 
         time.sleep(0.2)
@@ -32,23 +31,22 @@ class KeyFn(QObject) :
             driver.find_element(By.ID, "Form_로그인.아이디").send_keys(account[0])
             driver.find_element(By.ID, "Form_로그인.비밀번호").send_keys(account[1])
         except NoSuchElementException : 
-            print("[system] 수강신청 사이트가 아직 열리지 않았거나 사이트의 내용이 변경되었습니다.")                 # Test code / please delete the contents of this line.
-            return
+            return "pageError"
 
         try : 
             driver.find_element(By.ID, "Form_버튼.pb_확인").click()
 
             time.sleep(0.2)
             alert = driver.switch_to.alert
-            print(alert.text)               # Test code / please delete the contents of this line.
-            if "수강신청기간이" in alert.text.split() : 
-                print("[system] 해당 학년의 수강 신청 기간이 아닙니다.")                # Test code / please delete the contents of this line.
-            elif "아이디" in alert.text.split() : 
-                print("[system] 아이디 또는 비밀번호를 다시 확인해 주십시오.")              # Test code / please delete the contents of this line.
+            if "아이디" in alert.text.split() : 
+                return "accountError"
+            elif "수강신청기간이" in alert.text.split() : 
+                return "periodError"
+            
 
             alert.accept()
-        except NoAlertPresentException : 
-            print("[system] 로그인을 완료했습니다.")             # Test code / please delete the contents of this line.
+        except NoAlertPresentException :        # Login Successful.
+            pass
 
 
         def registration(subject) : 
@@ -66,7 +64,7 @@ class KeyFn(QObject) :
                 elif "이중으로" in alert.text.split() : 
                     print("[system] 이미 수강신청을 완료한 과목입니다.")                # Test code / please delete the contents of this line.
                     return False
-                # (+ 수강신청하려는 과목의 인원이 마감된 경우)                 # Test code / please delete the contents of this line.
+                # (+ 수강신청하려는 과목의 인원이 마감된 경우 -> return False)               # Test code / please delete the contents of this line.
 
                 alert.accept()
             except NoAlertPresentException : 
@@ -86,6 +84,8 @@ class KeyFn(QObject) :
         time.sleep(100)                 # Test code / please delete the contents of this line.
         driver.quit()
 
+        return True             # 보고서 작성을 위해 과목 반환              # Test code / please delete the contents of this line.
+
 
 
     def classRegistration_OOO(self) : 
@@ -99,4 +99,12 @@ if __name__ == "__main__" :
     app = QApplication(sys.argv)
     account = (20772077, 20772077)
     subjectData = {("努力 未来 A BEAUTIFUL STAR", "YK1012-22"): []}
-    KeyFn().classRegistration_KIT(account, subjectData)
+    result = KeyFn().classRegistration_KIT(account, subjectData)
+    if result == "pageError" : 
+        print("[system] 수강신청 사이트가 아직 열리지 않았거나 사이트의 내용이 변경되었습니다.")                 # Test code / please delete the contents of this line.
+    elif result == "accountError" : 
+        print("[system] 아이디 또는 비밀번호를 다시 확인해 주십시오.")              # Test code / please delete the contents of this line.
+    elif result == "periodError" : 
+        print("[system] 해당 학년의 수강 신청 기간이 아닙니다.")                # Test code / please delete the contents of this line.
+    else : 
+        print("[system] 수강신청이 완료되었습니다.")                # Test code / please delete the contents of this line.
