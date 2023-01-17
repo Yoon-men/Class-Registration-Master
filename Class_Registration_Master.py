@@ -238,7 +238,7 @@ class BasicFn(QObject) :
         if crt_S == 0 : 
             remaining_M += 1
             remaining_S = 0
-        
+
         return 60*60*remaining_H + 60*remaining_M + remaining_S
 
 
@@ -269,6 +269,7 @@ class BasicFn(QObject) :
                 power = True
                 while (remaining_time > 0) and (power) : 
                     time.sleep(1)
+                    if (remaining_time == 300) or (remaining_time == 60) : remaining_time = self.timeChk()
                     remaining_time -= 1
                     H = remaining_time//3600; M = (remaining_time-H*3600)//60; S = remaining_time-H*3600-M*60
                     mainUI.time_HM_lcd.display(f"{str(H).zfill(2)}:{str(M).zfill(2)}")
@@ -276,8 +277,24 @@ class BasicFn(QObject) :
 
                 if power : 
                     account = (mainUI.ID_box_le.text(), mainUI.PW_box_le.text())
-                    keyFn.classRegistration_KIT(account, subjectData)
-                    print("[system] 수강신청이 완료되었습니다.")                # Test code / please delete the contents of this line.
+                    mainUI.body_frm.hide()
+                    mainUI.registrationScreen_txt_lb.show()
+
+                    # 학교 선택 파트 추가               # Test code / please delete the contents of this line.
+                    result = keyFn.classRegistration_KIT(account, subjectData)               # Test code / please modify the contents of this line.
+                    if result == "pageError" : 
+                        print("[system] 수강신청 사이트가 아직 열리지 않았거나 사이트의 내용이 변경되었습니다.")                 # Test code / please delete the contents of this line.
+                    elif result == "accountError" : 
+                        print("[system] 아이디 또는 비밀번호를 다시 확인해 주십시오.")              # Test code / please delete the contents of this line.
+                    elif result == "periodError" : 
+                        print("[system] 해당 학년의 수강 신청 기간이 아닙니다.")                # Test code / please delete the contents of this line.
+                    else : 
+                        print("[system] 수강신청이 완료되었습니다.")                # Test code / please delete the contents of this line.
+                        # 보고서 출력               # Test code / please delete the contents of this line.
+                        pass                # Test code / please delete the contents of this line.
+
+                    mainUI.registrationScreen_txt_lb.hide()
+                    mainUI.body_frm.show()
                     power = False
                     mainUI.changeSCMode()
                 
