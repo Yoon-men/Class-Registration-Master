@@ -64,5 +64,9 @@
     <file>finaleSubject_lb_notPrepared_hover.png</file>
     <file>finaleSubject_lb_prepared_normal.png</file>
     <file>finaleSubject_lb_prepared_hover.png</file>
+    <file>registrationScreen_txt_lb.png</file>
+    <file>pageError_lb.png</file>
+    <file>accountError_lb.png</file>
+    <file>periodError_lb.png</file>
   </qresource>
 </RCC>
