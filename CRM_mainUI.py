@@ -1,7 +1,7 @@
 from img.img import *
 import sys
 from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox, QTreeWidget, QAbstractItemView
-from PySide2.QtGui import QFont, QIntValidator, QMovie
+from PySide2.QtGui import QFont, QIntValidator
 from PySide2.QtCore import Qt, QEvent
 
 
@@ -26,6 +26,7 @@ class MainUI(QMainWindow) :
         self.superBody_frm.setStyleSheet("QFrame{\n"
                                             "background-color : #131514;\n"
                                         "}")
+
 
         # body_part
         self.body_frm = QFrame(self)
@@ -595,6 +596,57 @@ class MainUI(QMainWindow) :
         self.finaleSubject_lb.installEventFilter(self)
         self.finaleSubject_lb.hide()
 
+        self.registrationScreen_txt_lb = QLabel(self.superBody_frm)
+        self.registrationScreen_txt_lb.setGeometry(320, 300, 581, 61)
+        self.registrationScreen_txt_lb.setStyleSheet("QLabel{\n"
+                                                        "image : url(:/img/registrationScreen_txt_lb.png);\n"
+                                                        "border : 0px;\n"
+                                                        "background-color : transparent;\n"
+                                                    "}")
+        self.registrationScreen_txt_lb.hide()
+
+        self.pageError_lb = QLabel(self.superBody_frm)
+        self.pageError_lb.setGeometry(325, 120, 561, 401)
+        self.pageError_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/pageError_lb.png);\n"
+                                            "border : 0px;\n"
+                                            "background-color : transparent;\n"
+                                        "}")
+        self.pageError_lb.hide()
+
+        self.pageError_bt = QPushButton(self.superBody_frm)
+        self.pageError_bt.setGeometry(340, 458, 529, 53)
+        self.pageError_bt.setStyleSheet(error_bt_styleSheet)
+        self.pageError_bt.hide()
+
+        self.accountError_lb = QLabel(self.superBody_frm)
+        self.accountError_lb.setGeometry(325, 120, 561, 401)
+        self.accountError_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/accountError_lb.png);\n"
+                                                "border : 0px;\n"
+                                                "background-color : transparent;\n"
+                                            "}")
+        self.accountError_lb.hide()
+
+        self.accountError_bt = QPushButton(self.superBody_frm)
+        self.accountError_bt.setGeometry(340, 458, 529, 53)
+        self.accountError_bt.setStyleSheet(error_bt_styleSheet)
+        self.accountError_bt.hide()
+
+        self.periodError_lb = QLabel(self.superBody_frm)
+        self.periodError_lb.setGeometry(325, 120, 561, 401)
+        self.periodError_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/periodError_lb.png);\n"
+                                                "border : 0px;\n"
+                                                "background-color : transparent;\n"
+                                            "}")
+        self.periodError_lb.hide()
+
+        self.periodError_bt = QPushButton(self.superBody_frm)
+        self.periodError_bt.setGeometry(340, 458, 529, 53)
+        self.periodError_bt.setStyleSheet(error_bt_styleSheet)
+        self.periodError_bt.hide()
+
 
 
     def signal(self) : 
@@ -614,10 +666,13 @@ class MainUI(QMainWindow) :
         self.start_bt.clicked.connect(self.changeSCMode)
         self.cancel_bt.clicked.connect(self.changeSCMode)
 
-        self.finale_notPrepared_bt.clicked.connect(self.returnToMain_1)
-        self.finale_inProgress_bt.clicked.connect(self.returnToMain_2)
-        self.timeError_bt.clicked.connect(self.returnToMain_3)
-        self.subjectError_bt.clicked.connect(self.returnToMain_4)
+        self.finale_notPrepared_bt.clicked.connect(self.returnToMain_finale_notPrepared)
+        self.finale_inProgress_bt.clicked.connect(self.returnToMain_finale_inProgress)
+        self.timeError_bt.clicked.connect(self.returnToMain_timeError)
+        self.subjectError_bt.clicked.connect(self.returnToMain_subjectError)
+        self.pageError_bt.clicked.connect(self.returnToMain_pageError)
+        self.accountError_bt.clicked.connect(self.returnToMain_accountError)
+        self.periodError_bt.clicked.connect(self.returnToMain_periodError)
 
 
 
@@ -805,7 +860,7 @@ class MainUI(QMainWindow) :
 
 
 
-    def returnToMain_1(self) : 
+    def returnToMain_finale_notPrepared(self) : 
         self.finale_notPrepared_lb.hide()
         self.account_X_mark_lb.hide() ; self.account_O_mark_lb.hide()
         self.time_X_mark_lb.hide() ; self.time_O_mark_lb.hide()
@@ -816,7 +871,7 @@ class MainUI(QMainWindow) :
 
 
 
-    def returnToMain_2(self) : 
+    def returnToMain_finale_inProgress(self) : 
         self.finale_inProgress_lb.hide()
         self.finale_inProgress_bt.hide()
         self.body_frm.show()
@@ -825,16 +880,37 @@ class MainUI(QMainWindow) :
     
 
 
-    def returnToMain_3(self) : 
+    def returnToMain_timeError(self) : 
         self.timeError_lb.hide()
         self.timeError_bt.hide()
         self.body_frm.show()
 
 
 
-    def returnToMain_4(self) : 
+    def returnToMain_subjectError(self) : 
         self.subjectError_lb.hide()
         self.subjectError_bt.hide()
+        self.body_frm.show()
+
+
+
+    def returnToMain_pageError(self) : 
+        self.pageError_lb.hide()
+        self.pageError_bt.hide()
+        self.body_frm.show()
+
+
+
+    def returnToMain_accountError(self) : 
+        self.accountError_lb.hide()
+        self.accountError_bt.hide()
+        self.body_frm.show()
+
+
+
+    def returnToMain_periodError(self) : 
+        self.periodError_lb.hide()
+        self.periodError_bt.hide()
         self.body_frm.show()
 
 
