@@ -282,19 +282,22 @@ class BasicFn(QObject) :
 
                     # 학교 선택 파트 추가               # Test code / please delete the contents of this line.
                     result = keyFn.classRegistration_KIT(account, subjectData)               # Test code / please modify the contents of this line.
-                    if result == "pageError" : 
-                        print("[system] 수강신청 사이트가 아직 열리지 않았거나 사이트의 내용이 변경되었습니다.")                 # Test code / please delete the contents of this line.
-                    elif result == "accountError" : 
-                        print("[system] 아이디 또는 비밀번호를 다시 확인해 주십시오.")              # Test code / please delete the contents of this line.
-                    elif result == "periodError" : 
-                        print("[system] 해당 학년의 수강 신청 기간이 아닙니다.")                # Test code / please delete the contents of this line.
-                    else : 
-                        print("[system] 수강신청이 완료되었습니다.")                # Test code / please delete the contents of this line.
+                    if isinstance(result, set) : 
                         # 보고서 출력               # Test code / please delete the contents of this line.
-                        pass                # Test code / please delete the contents of this line.
+                        mainUI.registrationScreen_txt_lb.hide()
+                        mainUI.body_frm.show()
+                    else : 
+                        mainUI.registrationScreen_txt_lb.hide()
+                        if result == "pageError" : 
+                            mainUI.pageError_lb.show()
+                            mainUI.pageError_bt.show()
+                        elif result == "accountError" : 
+                            mainUI.accountError_lb.show()
+                            mainUI.accountError_bt.show()
+                        elif result == "periodError" : 
+                            mainUI.periodError_lb.show()
+                            mainUI.periodError_bt.show()
 
-                    mainUI.registrationScreen_txt_lb.hide()
-                    mainUI.body_frm.show()
                     power = False
                     mainUI.changeSCMode()
                 
