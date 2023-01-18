@@ -12,6 +12,9 @@
     <file>onestop_bt_normal.png</file>
     <file>onestop_bt_hover.png</file>
     <file>tile.png</file>
+    <file>university_rb_normal.png</file>
+    <file>university_rb_hover.png</file>
+    <file>university_rb_checked.png</file>
     <file>account_rb_normal.png</file>
     <file>account_rb_hover.png</file>
     <file>account_rb_checked.png</file>
@@ -52,6 +55,10 @@
     <file>finale_inProgress_lb.png</file>
     <file>timeError_lb.png</file>
     <file>subjectError_lb.png</file>
+    <file>finaleUniversity_lb_notPrepared_normal.png</file>
+    <file>finaleUniversity_lb_notPrepared_hover.png</file>
+    <file>finaleUniversity_lb_prepared_normal.png</file>
+    <file>finaleUniversity_lb_prepared_hover.png</file>
     <file>finaleAccount_lb_notPrepared_normal.png</file>
     <file>finaleAccount_lb_notPrepared_hover.png</file>
     <file>finaleAccount_lb_prepared_normal.png</file>
