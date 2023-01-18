@@ -22,6 +22,7 @@
   ![image](https://user-images.githubusercontent.com/64591335/212486354-9bd31f75-b624-47de-96b4-e3f583afa16b.png)
 </details>
 
+- 학교 설정
 - 계정 설정
 - 시간 설정
 - 주요과목 및 보험과목 설정
