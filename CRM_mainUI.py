@@ -596,20 +596,27 @@ class MainUI(QMainWindow) :
         self.timeError_bt.setStyleSheet(error_bt_styleSheet)
         self.timeError_bt.hide()
 
+        self.finaleUniversity_lb = QLabel(self.body_frm)
+        self.finaleUniversity_lb.setGeometry(17, 52, 399, 34)
+        self.universityIsNotPrepared()
+        self.finaleUniversity_lb.installEventFilter(self)
+        self.finaleUniversity_lb.hide()
+        
+
         self.finaleAccount_lb = QLabel(self.body_frm)
-        self.finaleAccount_lb.setGeometry(17, 52, 399, 34)
+        self.finaleAccount_lb.setGeometry(17, 100, 399, 34)
         self.accountIsNotPrepared()
         self.finaleAccount_lb.installEventFilter(self)
         self.finaleAccount_lb.hide()
 
         self.finaleTime_lb = QLabel(self.body_frm)
-        self.finaleTime_lb.setGeometry(17, 100, 399, 34)
+        self.finaleTime_lb.setGeometry(17, 148, 399, 34)
         self.timeIsNotPrepared()
         self.finaleTime_lb.installEventFilter(self)
         self.finaleTime_lb.hide()
 
         self.finaleSubject_lb = QLabel(self.body_frm)
-        self.finaleSubject_lb.setGeometry(17, 148, 399, 34)
+        self.finaleSubject_lb.setGeometry(17, 196, 399, 34)
         self.subjectIsNotPrepared()
         self.finaleSubject_lb.installEventFilter(self)
         self.finaleSubject_lb.hide()
@@ -726,6 +733,7 @@ class MainUI(QMainWindow) :
             self.start_bt.hide()
             self.cancel_bt.hide()
             self.time_HM_lcd.hide(); self.time_S_lcd.hide()
+            self.finaleUniversity_lb.hide()
             self.finaleAccount_lb.hide()
             self.finaleTime_lb.hide()
             self.finaleSubject_lb.hide()
@@ -739,6 +747,7 @@ class MainUI(QMainWindow) :
             self.start_bt.hide()
             self.cancel_bt.hide()
             self.time_HM_lcd.hide(); self.time_S_lcd.hide()
+            self.finaleUniversity_lb.hide()
             self.finaleAccount_lb.hide()
             self.finaleTime_lb.hide()
             self.finaleSubject_lb.hide()
@@ -801,6 +810,7 @@ class MainUI(QMainWindow) :
             elif SCMode == "cancel" : 
                 self.cancel_bt.show()
             self.time_HM_lcd.show(); self.time_S_lcd.show()
+            self.finaleUniversity_lb.show()
             self.finaleAccount_lb.show()
             self.finaleTime_lb.show()
             self.finaleSubject_lb.show()
@@ -975,7 +985,29 @@ class MainUI(QMainWindow) :
 
 
     # preparationState_group
-    ## << finaleAccount_lb (1/3) >>
+    ## << finaleUniversity_lb(1/4) >>
+    def universityIsPrepared(self) : 
+        self.finaleUniversity_lb.setStyleSheet("QLabel{\n"
+                                                    "image : url(:/img/finaleUniversity_lb_prepared_normal.png);\n"
+                                                    "border : 0px;\n"
+                                                    "background-color : transparent;\n"
+                                                "}\n"
+                                                "QLabel:hover{\n"
+                                                    "image : url(:/img/finaleUniversity_lb_prepared_hover.png);\n"
+                                                "}")
+
+    def universityIsNotPrepared(self) : 
+        self.finaleUniversity_lb.setStyleSheet("QLabel{\n"
+                                                    "image : url(:/img/finaleUniversity_lb_notPrepared_normal.png);\n"
+                                                    "border : 0px;\n"
+                                                    "background-color : transparent;\n"
+                                                "}\n"
+                                                "QLabel:hover{\n"
+                                                    "image : url(:/img/finaleUniversity_lb_notPrepared_hover.png);\n"
+                                                "}")
+
+
+    ## << finaleAccount_lb (2/4) >>
     def accountIsPrepared(self) : 
         self.finaleAccount_lb.setStyleSheet("QLabel{\n"
                                                 "image : url(:/img/finaleAccount_lb_prepared_normal.png);\n"
@@ -997,7 +1029,7 @@ class MainUI(QMainWindow) :
                                             "}")
 
 
-    ## << finaleTime_lb (2/3) >>
+    ## << finaleTime_lb (3/4) >>
     def timeIsPrepared(self) : 
         self.finaleTime_lb.setStyleSheet("QLabel{\n"
                                             "image : url(:/img/finaleTime_lb_prepared_normal.png);\n"
@@ -1019,7 +1051,7 @@ class MainUI(QMainWindow) :
                                         "}")
 
 
-    # << finaleSubject_lb (3/3) >>
+    # << finaleSubject_lb (4/4) >>
     def subjectIsPrepared(self) : 
         self.finaleSubject_lb.setStyleSheet("QLabel{\n"
                                                 "image : url(:/img/finaleSubject_lb_prepared_normal.png);\n"
@@ -1051,37 +1083,43 @@ class MainUI(QMainWindow) :
                 self.onestop_img_lb.hide()
                 self.onestop_txt_lb.hide()
         
+        elif object == self.finaleUniversity_lb : 
+            if event.type() == QEvent.HoverEnter : 
+                self.time_HM_lcd.hide(); self.time_S_lcd.hide()
+            elif event.type() == QEvent.HoverLeave : 
+                self.time_HM_lcd.show(); self.time_S_lcd.show()
+        
         elif object == self.finaleAccount_lb : 
             if event.type() == QEvent.HoverEnter : 
+                self.time_HM_lcd.hide(); self.time_S_lcd.hide()
                 self.accountBox_lb.show()
                 self.ID_box_le.show()
                 self.PW_box_le.show()
-                self.time_HM_lcd.hide(); self.time_S_lcd.hide()
             elif event.type() == QEvent.HoverLeave : 
+                self.time_HM_lcd.show(); self.time_S_lcd.show()
                 self.accountBox_lb.hide()
                 self.ID_box_le.hide()
                 self.PW_box_le.hide()
-                self.time_HM_lcd.show(); self.time_S_lcd.show()
 
         elif object == self.finaleTime_lb : 
             if event.type() == QEvent.HoverEnter : 
+                self.time_HM_lcd.hide(); self.time_S_lcd.hide()
                 self.timeBox_lb.show()
                 self.hour_box_le.show()
                 self.min_box_le.show()
-                self.time_HM_lcd.hide(); self.time_S_lcd.hide()
             elif event.type() == QEvent.HoverLeave : 
+                self.time_HM_lcd.show(); self.time_S_lcd.show()
                 self.timeBox_lb.hide()
                 self.hour_box_le.hide()
                 self.min_box_le.hide()
-                self.time_HM_lcd.show(); self.time_S_lcd.show()
 
         elif object == self.finaleSubject_lb : 
             if event.type() == QEvent.HoverEnter : 
-                self.subjectBox_tw.show()
                 self.time_HM_lcd.hide(); self.time_S_lcd.hide()
+                self.subjectBox_tw.show()
             elif event.type() == QEvent.HoverLeave : 
-                self.subjectBox_tw.hide()
                 self.time_HM_lcd.show(); self.time_S_lcd.show()
+                self.subjectBox_tw.hide()
 
         return False
 
