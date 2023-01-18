@@ -156,8 +156,26 @@ class MainUI(QMainWindow) :
 
 
         # prepare_part
+        self.university_rb = QRadioButton(self.body_frm)
+        self.university_rb.setGeometry(16, 51, 401, 61)
+        self.university_rb.setStyleSheet("QRadioButton::indicator{\n"
+                                            "width : 401px;\n"
+                                            "height : 111px;\n"
+                                        "}\n"
+                                        "QRadioButton::indicator::unchecked{\n"
+                                            "image : url(:/img/university_rb_normal.png);\n"
+                                        "}\n"
+                                        "QRadioButton::indicator::hover{\n"
+                                            "image : url(:/img/university_rb_hover.png);\n"
+                                        "}\n"
+                                        "QRadioButton::indicator::checked{\n"
+                                            "image : url(:/img/university_rb_checked.png);\n"
+                                        "}")
+        self.university_rb.setChecked(True)
+        self.university_rb.hide()
+
         self.account_rb = QRadioButton(self.body_frm)
-        self.account_rb.setGeometry(16, 51, 401, 61)
+        self.account_rb.setGeometry(16, 125, 401, 61)
         self.account_rb.setStyleSheet("QRadioButton::indicator{\n"
                                             "width : 401px;\n"
                                             "height : 111px;\n"
@@ -171,11 +189,10 @@ class MainUI(QMainWindow) :
                                         "QRadioButton::indicator::checked{\n"
                                             "image : url(:/img/account_rb_checked.png);\n"
                                         "}")
-        self.account_rb.setChecked(True)
         self.account_rb.hide()
 
         self.time_rb = QRadioButton(self.body_frm)
-        self.time_rb.setGeometry(16, 125, 401, 61)
+        self.time_rb.setGeometry(16, 199, 401, 61)
         self.time_rb.setStyleSheet("QRadioButton::indicator{\n"
                                         "width : 401px;\n"
                                         "height : 111px;\n"
@@ -192,7 +209,7 @@ class MainUI(QMainWindow) :
         self.time_rb.hide()
 
         self.subject_rb = QRadioButton(self.body_frm)
-        self.subject_rb.setGeometry(16, 199, 401, 61)
+        self.subject_rb.setGeometry(16, 273, 401, 61)
         self.subject_rb.setStyleSheet("QRadioButton::indicator{\n"
                                             "width : 401px;\n"
                                             "height : 111px;\n"
@@ -236,6 +253,7 @@ class MainUI(QMainWindow) :
         self.mode_subject_lb.hide()
 
         self.prepareGroup = QButtonGroup(self)
+        self.prepareGroup.addButton(self.university_rb)
         self.prepareGroup.addButton(self.account_rb)
         self.prepareGroup.addButton(self.time_rb)
         self.prepareGroup.addButton(self.subject_rb)
@@ -654,6 +672,7 @@ class MainUI(QMainWindow) :
         self.prepare_rb.clicked.connect(self.setMenu)
         self.finale_rb.clicked.connect(self.setMenu)
 
+        self.university_rb.clicked.connect(self.setMode)
         self.account_rb.clicked.connect(self.setMode)
         self.time_rb.clicked.connect(self.setMode)
         self.subject_rb.clicked.connect(self.setMode)
@@ -679,10 +698,13 @@ class MainUI(QMainWindow) :
     def setMenu(self) : 
         if self.info_rb.isChecked() : 
             # prepare_part
+            self.university_rb.hide()
             self.account_rb.hide()
             self.time_rb.hide()
             self.subject_rb.hide()
-            if self.account_rb.isChecked() : 
+            if self.university_rb.isChecked() : 
+                pass                # Test code / please delete the contents of this line.
+            elif self.account_rb.isChecked() : 
                 self.mode_account_lb.hide()
                 self.accountBox_lb.hide()
                 self.ID_box_le.hide()
@@ -721,10 +743,13 @@ class MainUI(QMainWindow) :
             self.finaleTime_lb.hide()
             self.finaleSubject_lb.hide()
             # prepare_part
+            self.university_rb.show()
             self.account_rb.show()
             self.time_rb.show()
             self.subject_rb.show()
-            if self.account_rb.isChecked() : 
+            if self.university_rb.isChecked() : 
+                pass                # Test code / please delete the contents of this line.
+            elif self.account_rb.isChecked() : 
                 self.mode_account_lb.show()
                 self.accountBox_lb.show()
                 self.ID_box_le.show()
@@ -746,10 +771,13 @@ class MainUI(QMainWindow) :
             # info_part
             self.onestop_bt.hide()
             # prepare_part
+            self.university_rb.hide()
             self.account_rb.hide()
             self.time_rb.hide()
             self.subject_rb.hide()
-            if self.account_rb.isChecked() : 
+            if self.university_rb.isChecked() : 
+                pass                # Test code / please delete the contents of this line.
+            elif self.account_rb.isChecked() : 
                 self.mode_account_lb.hide()
                 self.accountBox_lb.hide()
                 self.ID_box_le.hide()
@@ -780,7 +808,23 @@ class MainUI(QMainWindow) :
 
 
     def setMode(self) : 
-        if self.account_rb.isChecked() : 
+        if self.university_rb.isChecked() : 
+            self.mode_account_lb.hide()
+            self.accountBox_lb.hide()
+            self.ID_box_le.hide()
+            self.PW_box_le.hide()
+            self.PW_show_ckb.hide()
+            self.mode_time_lb.hide()
+            self.timeBox_lb.hide()
+            self.hour_box_le.hide()
+            self.min_box_le.hide()
+            self.mode_subject_lb.hide()
+            self.addSubject_lb.hide(); self.subjectName_le.hide(); self.subjectCode_le.hide(); self.addSubject_bt.hide()
+            self.subjectBox_tw.hide()
+            self.subjectBin_bt.hide()
+            self.subjectSave_bt.hide()
+            self.savePoint_lb.hide()
+        elif self.account_rb.isChecked() : 
             self.mode_time_lb.hide()
             self.timeBox_lb.hide()
             self.hour_box_le.hide()
