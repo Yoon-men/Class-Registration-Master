@@ -225,6 +225,15 @@ class MainUI(QMainWindow) :
                                         "}")
         self.subject_rb.hide()
 
+        self.mode_university_lb = QLabel(self.body_frm)
+        self.mode_university_lb.setGeometry(444, 11, 380, 50)
+        self.mode_university_lb.setStyleSheet("QLabel{\n"
+                                                    "image : url(:/img/mode_university.png);\n"
+                                                    "border : 0px;\n"
+                                                    "background-color : transparent;\n"
+                                                "}")
+        self.mode_university_lb.hide()
+
         self.mode_account_lb = QLabel(self.body_frm)
         self.mode_account_lb.setGeometry(444, 15, 341, 41)
         self.mode_account_lb.setStyleSheet("QLabel{\n"
@@ -710,7 +719,7 @@ class MainUI(QMainWindow) :
             self.time_rb.hide()
             self.subject_rb.hide()
             if self.university_rb.isChecked() : 
-                pass                # Test code / please delete the contents of this line.
+                self.mode_university_lb.hide()
             elif self.account_rb.isChecked() : 
                 self.mode_account_lb.hide()
                 self.accountBox_lb.hide()
@@ -757,7 +766,7 @@ class MainUI(QMainWindow) :
             self.time_rb.show()
             self.subject_rb.show()
             if self.university_rb.isChecked() : 
-                pass                # Test code / please delete the contents of this line.
+                self.mode_university_lb.show()
             elif self.account_rb.isChecked() : 
                 self.mode_account_lb.show()
                 self.accountBox_lb.show()
@@ -785,7 +794,7 @@ class MainUI(QMainWindow) :
             self.time_rb.hide()
             self.subject_rb.hide()
             if self.university_rb.isChecked() : 
-                pass                # Test code / please delete the contents of this line.
+                self.mode_university_lb.hide()
             elif self.account_rb.isChecked() : 
                 self.mode_account_lb.hide()
                 self.accountBox_lb.hide()
@@ -834,7 +843,9 @@ class MainUI(QMainWindow) :
             self.subjectBin_bt.hide()
             self.subjectSave_bt.hide()
             self.savePoint_lb.hide()
+            self.mode_university_lb.show()
         elif self.account_rb.isChecked() : 
+            self.mode_university_lb.hide()
             self.mode_time_lb.hide()
             self.timeBox_lb.hide()
             self.hour_box_le.hide()
@@ -851,6 +862,7 @@ class MainUI(QMainWindow) :
             self.PW_box_le.show()
             self.PW_show_ckb.show()
         elif self.time_rb.isChecked() : 
+            self.mode_university_lb.hide()
             self.mode_account_lb.hide()
             self.accountBox_lb.hide()
             self.ID_box_le.hide()
@@ -867,6 +879,7 @@ class MainUI(QMainWindow) :
             self.hour_box_le.show()
             self.min_box_le.show()
         elif self.subject_rb.isChecked() : 
+            self.mode_university_lb.hide()
             self.mode_account_lb.hide()
             self.accountBox_lb.hide()
             self.ID_box_le.hide()
