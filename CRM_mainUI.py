@@ -1,6 +1,6 @@
 from img.img import *
 import sys
-from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox, QTreeWidget, QAbstractItemView
+from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox, QTreeWidget, QAbstractItemView, QComboBox
 from PySide2.QtGui import QFont, QIntValidator
 from PySide2.QtCore import Qt, QEvent
 
@@ -266,6 +266,23 @@ class MainUI(QMainWindow) :
         self.prepareGroup.addButton(self.account_rb)
         self.prepareGroup.addButton(self.time_rb)
         self.prepareGroup.addButton(self.subject_rb)
+
+        self.universityBox_lb = QLabel(self.body_frm)
+        self.universityBox_lb.setGeometry(580, 177, 491, 291)
+        self.universityBox_lb.setStyleSheet("QLabel{\n"
+                                                "image : url(:/img/universityBox_lb.png);\n"
+                                                "border : 0px;\n"
+                                                "background-color : transparent;\n"
+                                            "}")
+        self.universityBox_lb.hide()
+
+        self.university_cb = QComboBox(self.body_frm)
+        self.university_cb.setGeometry(675, 310, 300, 40)
+        self.university_cb.setStyleSheet(138)
+        self.university_cb.addItem("---")
+        self.university_cb.addItem("KIT")
+        self.university_cb.addItem("SKKU")
+        self.university_cb.hide()
 
         self.accountBox_lb = QLabel(self.body_frm)
         self.accountBox_lb.setGeometry(580, 177, 491, 291)
@@ -693,6 +710,8 @@ class MainUI(QMainWindow) :
         self.time_rb.clicked.connect(self.setMode)
         self.subject_rb.clicked.connect(self.setMode)
 
+        self.university_cb.currentIndexChanged.connect(self.setUniversity_cb_Alignment)
+
         self.PW_show_ckb.stateChanged.connect(self.showPW)
 
         self.hour_box_le.textChanged.connect(self.setTime)
@@ -720,6 +739,8 @@ class MainUI(QMainWindow) :
             self.subject_rb.hide()
             if self.university_rb.isChecked() : 
                 self.mode_university_lb.hide()
+                self.universityBox_lb.hide()
+                self.university_cb.hide()
             elif self.account_rb.isChecked() : 
                 self.mode_account_lb.hide()
                 self.accountBox_lb.hide()
@@ -767,6 +788,8 @@ class MainUI(QMainWindow) :
             self.subject_rb.show()
             if self.university_rb.isChecked() : 
                 self.mode_university_lb.show()
+                self.universityBox_lb.show()
+                self.university_cb.show()
             elif self.account_rb.isChecked() : 
                 self.mode_account_lb.show()
                 self.accountBox_lb.show()
@@ -795,6 +818,8 @@ class MainUI(QMainWindow) :
             self.subject_rb.hide()
             if self.university_rb.isChecked() : 
                 self.mode_university_lb.hide()
+                self.universityBox_lb.hide()
+                self.university_cb.hide()
             elif self.account_rb.isChecked() : 
                 self.mode_account_lb.hide()
                 self.accountBox_lb.hide()
@@ -844,8 +869,12 @@ class MainUI(QMainWindow) :
             self.subjectSave_bt.hide()
             self.savePoint_lb.hide()
             self.mode_university_lb.show()
+            self.universityBox_lb.show()
+            self.university_cb.show()
         elif self.account_rb.isChecked() : 
             self.mode_university_lb.hide()
+            self.universityBox_lb.hide()
+            self.university_cb.hide()
             self.mode_time_lb.hide()
             self.timeBox_lb.hide()
             self.hour_box_le.hide()
@@ -863,6 +892,8 @@ class MainUI(QMainWindow) :
             self.PW_show_ckb.show()
         elif self.time_rb.isChecked() : 
             self.mode_university_lb.hide()
+            self.universityBox_lb.hide()
+            self.university_cb.hide()
             self.mode_account_lb.hide()
             self.accountBox_lb.hide()
             self.ID_box_le.hide()
@@ -880,6 +911,8 @@ class MainUI(QMainWindow) :
             self.min_box_le.show()
         elif self.subject_rb.isChecked() : 
             self.mode_university_lb.hide()
+            self.universityBox_lb.hide()
+            self.university_cb.hide()
             self.mode_account_lb.hide()
             self.accountBox_lb.hide()
             self.ID_box_le.hide()
@@ -894,6 +927,42 @@ class MainUI(QMainWindow) :
             self.subjectBox_tw.show()
             self.subjectBin_bt.show()
             self.subjectSave_bt.show()
+
+
+
+    def setUniversity_cb_StyleSheet(self, px) : 
+        self.university_cb.setStyleSheet("QComboBox{\n"
+                                            "font-family : 나눔고딕OTF;\n"
+                                            "font-weight : bold;\n"
+                                            "font-size : 15pt;\n"
+                                            "border-radius : 5px;\n"
+                                            "color : #cccccc;\n"
+                                            "background-color : #303030;\n"
+                                            f"padding-left : {px}px;\n"
+                                        "}\n"
+                                        "QComboBox QAbstractItemView{\n"
+                                            "border : 2px solid #aaaaaa;\n"
+                                            "border-radius : 0px;\n"
+                                            "background-color : #303030;\n"
+                                            "color : #cccccc;\n"
+                                            "selection-background-color : #ffffff;\n"
+                                            "selection-color : #000000;\n"
+                                            "outline : 0px;\n"
+                                        "}\n"
+                                        "QComboBox::down-arrow{\n"
+                                            "image : url(:/img/drop_down.png);\n"
+                                            "width : 18px;\n"
+                                            "height : 18px;\n"
+                                        "}\n"
+                                        "QComboBox::drop-down{\n"
+                                            "border-color : #b1b1b1;\n"
+                                            "padding-right : 10px;\n"
+                                        "}")
+
+    def setUniversity_cb_Alignment(self) : 
+        textLen = len(self.university_cb.currentText())
+        if textLen == 3 : self.setUniversity_cb_StyleSheet(138)
+        elif textLen == 4 : self.setUniversity_cb_StyleSheet(128)
 
 
 
