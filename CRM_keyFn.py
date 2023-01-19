@@ -17,6 +17,7 @@ class KeyFn(QObject) :
         option.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chromedriver_autoinstaller.get_chrome_version()} Safari/537.36")
         option.add_experimental_option("excludeSwitches", ["enable-logging"])
 
+
         try : 
             driver = webdriver.Chrome(options=option)
         except : 
@@ -25,6 +26,7 @@ class KeyFn(QObject) :
 
         driver.implicitly_wait(30)
         driver.get("https://sugang.kumoh.ac.kr/html/stud/sugang.html")
+
 
         time.sleep(0.2)
         try : 
@@ -35,27 +37,23 @@ class KeyFn(QObject) :
 
         try : 
             driver.find_element(By.ID, "Form_버튼.pb_확인").click()
-
             time.sleep(0.2)
             alert = driver.switch_to.alert
             if "아이디" in alert.text.split() : 
                 return "accountError"
             elif "수강신청기간이" in alert.text.split() : 
                 return "periodError"
-            
-
             alert.accept()
         except NoAlertPresentException :        # Login Successful.
             pass
 
-
+        subjectSet = set()
         def registration(subject) : 
             subjectName, subjectCode = subject[0], subject[1]
 
             driver.find_element(By.ID, "Form_희망수강과목입력.개설교과목코드").send_keys(subjectCode)
             try : 
                 driver.find_element(By.ID, "Form_버튼.pb1").click()
-
                 time.sleep(0.2)
                 alert = driver.switch_to.alert
                 if "아니므로" in alert.text.split() : 
@@ -65,10 +63,10 @@ class KeyFn(QObject) :
                     print("[system] 이미 수강신청을 완료한 과목입니다.")                # Test code / please delete the contents of this line.
                     return False
                 # (+ 수강신청하려는 과목의 인원이 마감된 경우 -> return False)               # Test code / please delete the contents of this line.
-
                 alert.accept()
             except NoAlertPresentException : 
                 print(f"[system] '{subjectName}({subjectCode})' 과목의 수강신청이 완료되었습니다.")                 # Test code / please delete the contents of this line.
+                subjectSet.add((subjectName, subjectCode))
                 return True
 
         subjectData = subjectData.items()
@@ -84,11 +82,21 @@ class KeyFn(QObject) :
         time.sleep(100)                 # Test code / please delete the contents of this line.
         driver.quit()
 
-        return True             # 보고서 작성을 위해 과목 반환              # Test code / please delete the contents of this line.
+        return subjectSet
 
 
 
-    def classRegistration_OOO(self) : 
+    def classRegistration_DNUE(self, account, subjectData) : 
+        pass                # Test code / please delete the contents of this line.
+
+
+
+    def classRegistration_SKKU(self, account, subjectData) : 
+        pass                # Test code / please delete the contents of this line.
+
+
+
+    def classRegistration_OOO(self, account, subjectData) : 
         pass                # Test code / please delete the contents of this line.
 
 
