@@ -104,12 +104,17 @@ class Main(QObject) :
 
 
     def setFinale_lb(self) : 
+        if mainUI.university_cb.currentIndex() == 0 : universityIsPrepared = False
+        else : universityIsPrepared = True
         if (mainUI.ID_box_le.text() == "") or (mainUI.PW_box_le.text() == "") : accountIsPrepared = False
         else : accountIsPrepared = True
         if (int(mainUI.hour_box_le.text()) == 0) and (int(mainUI.min_box_le.text()) == 0) : timeIsPrepared = False
         else : timeIsPrepared = True
         if (len(subjectData) == 0) or (not subjectIsSaved) : subjectIsPrepared = False
         else : subjectIsPrepared = True
+
+        if universityIsPrepared : mainUI.universityIsPrepared()
+        else : mainUI.universityIsNotPrepared()
 
         if accountIsPrepared : mainUI.accountIsPrepared()
         else : mainUI.accountIsNotPrepared()
@@ -244,6 +249,8 @@ class BasicFn(QObject) :
 
 
     def classRegistration(self) : 
+        if mainUI.university_cb.currentIndex() == 0 : universityIsPrepared = False
+        else : universityIsPrepared = True
         if (mainUI.ID_box_le.text() == "") or (mainUI.PW_box_le.text() == "") : accountIsPrepared = False
         else : accountIsPrepared = True
         if (int(mainUI.hour_box_le.text()) == 0) and (int(mainUI.min_box_le.text()) == 0) : timeIsPrepared = False
@@ -251,7 +258,7 @@ class BasicFn(QObject) :
         if (len(subjectData) == 0) or (not subjectIsSaved) : subjectIsPrepared = False
         else : subjectIsPrepared = True
 
-        if accountIsPrepared and timeIsPrepared and subjectIsPrepared : 
+        if universityIsPrepared and accountIsPrepared and timeIsPrepared and subjectIsPrepared : 
             remaining_time = self.timeChk()
             if not remaining_time : 
                 mainUI.body_frm.hide()
@@ -280,8 +287,14 @@ class BasicFn(QObject) :
                     mainUI.body_frm.hide()
                     mainUI.registrationScreen_txt_lb.show()
 
-                    # 학교 선택 파트 추가               # Test code / please delete the contents of this line.
-                    result = keyFn.classRegistration_KIT(account, subjectData)               # Test code / please modify the contents of this line.
+                    universityNum = mainUI.university_cb.currentIndex()
+                    if universityNum == 1 : 
+                        result = keyFn.classRegistration_KIT(account, subjectData)
+                    elif universityNum == 2 : 
+                        result = keyFn.classRegistration_DNUE(account, subjectData)
+                    elif universityNum == 3 : 
+                        result = keyFn.classRegistration_SKKU(account, subjectData)
+
                     if isinstance(result, set) : 
                         # 보고서 출력               # Test code / please delete the contents of this line.
                         mainUI.registrationScreen_txt_lb.hide()
