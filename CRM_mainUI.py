@@ -278,9 +278,10 @@ class MainUI(QMainWindow) :
 
         self.university_cb = QComboBox(self.body_frm)
         self.university_cb.setGeometry(675, 310, 300, 40)
-        self.university_cb.setStyleSheet(138)
+        self.setUniversity_cb_StyleSheet(138)
         self.university_cb.addItem("---")
         self.university_cb.addItem("KIT")
+        self.university_cb.addItem("DNUE")
         self.university_cb.addItem("SKKU")
         self.university_cb.hide()
 
