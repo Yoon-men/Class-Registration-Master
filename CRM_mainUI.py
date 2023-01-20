@@ -1179,8 +1179,12 @@ class MainUI(QMainWindow) :
         elif object == self.finaleUniversity_lb : 
             if event.type() == QEvent.HoverEnter : 
                 self.time_HM_lcd.hide(); self.time_S_lcd.hide()
+                self.universityBox_lb.show()
+                self.university_cb.show()
             elif event.type() == QEvent.HoverLeave : 
                 self.time_HM_lcd.show(); self.time_S_lcd.show()
+                self.universityBox_lb.hide()
+                self.university_cb.hide()
         
         elif object == self.finaleAccount_lb : 
             if event.type() == QEvent.HoverEnter : 
