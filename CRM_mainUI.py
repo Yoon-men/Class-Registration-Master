@@ -618,20 +618,6 @@ class MainUI(QMainWindow) :
         self.finale_inProgress_bt.setStyleSheet(error_bt_styleSheet)
         self.finale_inProgress_bt.hide()
 
-        self.timeError_lb = QLabel(self.superBody_frm)
-        self.timeError_lb.setGeometry(325, 120, 561, 401)
-        self.timeError_lb.setStyleSheet("QLabel{\n"
-                                            "image : url(:/img/timeError_lb.png);\n"
-                                            "border : 0px;\n"
-                                            "background-color : transparent;\n"
-                                        "}")
-        self.timeError_lb.hide()
-
-        self.timeError_bt = QPushButton(self.superBody_frm)
-        self.timeError_bt.setGeometry(340, 458, 529, 53)
-        self.timeError_bt.setStyleSheet(error_bt_styleSheet)
-        self.timeError_bt.hide()
-
         self.finaleUniversity_lb = QLabel(self.body_frm)
         self.finaleUniversity_lb.setGeometry(17, 52, 399, 34)
         self.universityIsNotPrepared()
@@ -732,7 +718,6 @@ class MainUI(QMainWindow) :
 
         self.finale_notPrepared_bt.clicked.connect(self.returnToMain_finale_notPrepared)
         self.finale_inProgress_bt.clicked.connect(self.returnToMain_finale_inProgress)
-        self.timeError_bt.clicked.connect(self.returnToMain_timeError)
         self.subjectError_bt.clicked.connect(self.returnToMain_subjectError)
         self.pageError_bt.clicked.connect(self.returnToMain_pageError)
         self.accountError_bt.clicked.connect(self.returnToMain_accountError)
@@ -972,7 +957,7 @@ class MainUI(QMainWindow) :
     def setUniversity_cb_Alignment(self) : 
         textLen = len(self.university_cb.currentText())
         if textLen == 3 : self.setUniversity_cb_StyleSheet(138)
-        elif textLen == 4 : self.setUniversity_cb_StyleSheet(128)
+        elif textLen == 4 : self.setUniversity_cb_StyleSheet(126)
 
 
 
@@ -1024,13 +1009,6 @@ class MainUI(QMainWindow) :
         self.body_frm.show()
         self.finale_rb.setChecked(True)
         self.setMenu()
-    
-
-
-    def returnToMain_timeError(self) : 
-        self.timeError_lb.hide()
-        self.timeError_bt.hide()
-        self.body_frm.show()
 
 
 
