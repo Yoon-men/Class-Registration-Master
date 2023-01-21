@@ -232,7 +232,7 @@ class BasicFn(QObject) :
         crt_S = time.localtime().tm_sec
 
         if CR_H < crt_H or (CR_H == crt_H and CR_M <= crt_M) : 
-            return False
+            return 0
 
         remaining_H = CR_H - crt_H
         remaining_M = CR_M - crt_M - 1
@@ -260,61 +260,51 @@ class BasicFn(QObject) :
 
         if universityIsPrepared and accountIsPrepared and timeIsPrepared and subjectIsPrepared : 
             remaining_time = self.timeChk()
-            if not remaining_time : 
-                mainUI.body_frm.hide()
-                mainUI.timeError_lb.show()
-                mainUI.timeError_bt.show()
-                mainUI.changeSCMode()
-                return
-
-            else : 
+            
+            global power
+            power = True
+            while (remaining_time > 0) and (power) : 
+                # time.sleep(1)
+                if (remaining_time == 300) or (remaining_time == 60) : remaining_time = self.timeChk()
+                remaining_time -= 1
                 H = remaining_time//3600; M = (remaining_time-H*3600)//60; S = remaining_time-H*3600-M*60
                 mainUI.time_HM_lcd.display(f"{str(H).zfill(2)}:{str(M).zfill(2)}")
                 mainUI.time_S_lcd.display(f":{str(S).zfill(2)}")
+                time.sleep(1)
 
-                global power
-                power = True
-                while (remaining_time > 0) and (power) : 
-                    time.sleep(1)
-                    if (remaining_time == 300) or (remaining_time == 60) : remaining_time = self.timeChk()
-                    remaining_time -= 1
-                    H = remaining_time//3600; M = (remaining_time-H*3600)//60; S = remaining_time-H*3600-M*60
-                    mainUI.time_HM_lcd.display(f"{str(H).zfill(2)}:{str(M).zfill(2)}")
-                    mainUI.time_S_lcd.display(f":{str(S).zfill(2)}")
+            if power : 
+                account = (mainUI.ID_box_le.text(), mainUI.PW_box_le.text())
+                mainUI.body_frm.hide()
+                mainUI.registrationScreen_txt_lb.show()
 
-                if power : 
-                    account = (mainUI.ID_box_le.text(), mainUI.PW_box_le.text())
-                    mainUI.body_frm.hide()
-                    mainUI.registrationScreen_txt_lb.show()
+                universityNum = mainUI.university_cb.currentIndex()
+                if universityNum == 1 : 
+                    result = keyFn.classRegistration_KIT(account, subjectData)
+                elif universityNum == 2 : 
+                    result = keyFn.classRegistration_DNUE(account, subjectData)
+                elif universityNum == 3 : 
+                    result = keyFn.classRegistration_SKKU(account, subjectData)
 
-                    universityNum = mainUI.university_cb.currentIndex()
-                    if universityNum == 1 : 
-                        result = keyFn.classRegistration_KIT(account, subjectData)
-                    elif universityNum == 2 : 
-                        result = keyFn.classRegistration_DNUE(account, subjectData)
-                    elif universityNum == 3 : 
-                        result = keyFn.classRegistration_SKKU(account, subjectData)
+                if isinstance(result, set) : 
+                    # 보고서 출력               # Test code / please delete the contents of this line.
+                    mainUI.registrationScreen_txt_lb.hide()
+                    mainUI.body_frm.show()
+                else : 
+                    mainUI.registrationScreen_txt_lb.hide()
+                    if result == "pageError" : 
+                        mainUI.pageError_lb.show()
+                        mainUI.pageError_bt.show()
+                    elif result == "accountError" : 
+                        mainUI.accountError_lb.show()
+                        mainUI.accountError_bt.show()
+                    elif result == "periodError" : 
+                        mainUI.periodError_lb.show()
+                        mainUI.periodError_bt.show()
 
-                    if isinstance(result, set) : 
-                        # 보고서 출력               # Test code / please delete the contents of this line.
-                        mainUI.registrationScreen_txt_lb.hide()
-                        mainUI.body_frm.show()
-                    else : 
-                        mainUI.registrationScreen_txt_lb.hide()
-                        if result == "pageError" : 
-                            mainUI.pageError_lb.show()
-                            mainUI.pageError_bt.show()
-                        elif result == "accountError" : 
-                            mainUI.accountError_lb.show()
-                            mainUI.accountError_bt.show()
-                        elif result == "periodError" : 
-                            mainUI.periodError_lb.show()
-                            mainUI.periodError_bt.show()
-
-                    power = False
-                    mainUI.changeSCMode()
-                
-                mainUI.time_HM_lcd.display("--:--"); mainUI.time_S_lcd.display(":--")
+                power = False
+                mainUI.changeSCMode()
+            
+            mainUI.time_HM_lcd.display("--:--"); mainUI.time_S_lcd.display(":--")
 
 
         else : 
@@ -322,6 +312,8 @@ class BasicFn(QObject) :
             mainUI.finale_notPrepared_lb.show()
             mainUI.finale_notPrepared_bt.show()
 
+            if universityIsPrepared : mainUI.university_O_mark_lb.show()
+            else : mainUI.university_X_mark_lb.show()
             if accountIsPrepared : mainUI.account_O_mark_lb.show()
             else : mainUI.account_X_mark_lb.show()
             if timeIsPrepared : mainUI.time_O_mark_lb.show()
