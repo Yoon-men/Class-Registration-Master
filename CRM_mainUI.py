@@ -648,13 +648,13 @@ class MainUI(QMainWindow) :
         self.loading = QMovie(":/img/loading.gif", QByteArray(), self.superBody_frm)
         self.loading.setCacheMode(QMovie.CacheAll)
         self.registrationScreen_gif_lb = QLabel(self.superBody_frm)
-        self.registrationScreen_gif_lb.setGeometry(550, 180, 100, 100)
+        self.registrationScreen_gif_lb.setGeometry(550, 245, 100, 100)
         self.registrationScreen_gif_lb.setMovie(self.loading)
         self.loading.start()
         self.registrationScreen_gif_lb.hide()
 
         self.registrationScreen_txt_lb = QLabel(self.superBody_frm)
-        self.registrationScreen_txt_lb.setGeometry(320, 300, 581, 61)
+        self.registrationScreen_txt_lb.setGeometry(320, 365, 581, 61)
         self.registrationScreen_txt_lb.setStyleSheet("QLabel{\n"
                                                         "image : url(:/img/registrationScreen_txt_lb.png);\n"
                                                         "border : 0px;\n"
