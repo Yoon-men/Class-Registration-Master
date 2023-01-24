@@ -14,6 +14,7 @@ import sys
 from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import QThread, QObject, QEvent
 from PySide2.QtWidgets import QTreeWidgetItem
+from PySide2.QtGui import QIcon
 import webbrowser
 import time
 
@@ -287,9 +288,32 @@ class BasicFn(QObject) :
                 
                 mainUI.registrationScreen_gif_lb.hide()
                 mainUI.registrationScreen_txt_lb.hide()
-                if isinstance(result, set) : 
-                    # 보고서 출력               # Test code / please delete the contents of this line.
-                    mainUI.body_frm.show()
+                if isinstance(result, dict) : 
+                    tmp = []
+                    for major, insurances in subjectData.items() : 
+                        item = QTreeWidgetItem()
+                        item.setText(0, major[0]); item.setText(1, major[1])
+                        if not major in result : 
+                            item.setIcon(2, QIcon(":/img/o_mark_lb.png"))
+                        else : 
+                            item.setIcon(2, QIcon(":/img/x_mark_lb.png"))
+                            item.setText(3, result[major])
+                            for insurance in insurances : 
+                                subItem = QTreeWidgetItem()
+                                subItem.setText(0, insurance[0]); subItem.setText(1, insurance[1])
+                                if not insurance in result : 
+                                    subItem.setIcon(2, QIcon(":/img/o_mark_lb.png"))
+                                else : 
+                                    subItem.setIcon(2, QIcon(":/img/x_mark_lb.png"))
+                                    subItem.setText(3, result[insurance])
+                                item.addChild(subItem)
+                        tmp.append(item)
+                    mainUI.report_tw.clear()
+                    mainUI.report_tw.insertTopLevelItems(0, tmp)
+
+                    mainUI.report_tw.show()
+                    # 우측 하단에 확인 버튼 추가                # Test code / please delete the contents of this line.
+
                 else : 
                     if result == "pageError" : 
                         mainUI.pageError_lb.show()
@@ -300,10 +324,6 @@ class BasicFn(QObject) :
                     elif result == "periodError" : 
                         mainUI.periodError_lb.show()
                         mainUI.periodError_bt.show()
-                    else : 
-                        # 예기치 못한 오류가 발생했을 경우              # Test code / please delete the contents of this line.
-                        ## if 수강인원 Full                 # Test code / please delete the contents of this line.
-                        pass                # Test code / please delete the contents of this line.
 
                 power = False
                 mainUI.changeSCMode()
