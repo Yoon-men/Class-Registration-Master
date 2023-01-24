@@ -285,6 +285,8 @@ class BasicFn(QObject) :
                     result = keyFn.classRegistration_DNUE(account, subjectData)
                 elif universityNum == 3 : 
                     result = keyFn.classRegistration_SKKU(account, subjectData)
+                elif universityNum == 4 :               # Test code / please delete the contents of this line.
+                    result = keyFn.classRegistration_OOO(account, subjectData)
                 
                 mainUI.registrationScreen_gif_lb.hide()
                 mainUI.registrationScreen_txt_lb.hide()
@@ -303,15 +305,20 @@ class BasicFn(QObject) :
                                 subItem.setText(0, insurance[0]); subItem.setText(1, insurance[1])
                                 if not insurance in result : 
                                     subItem.setIcon(2, QIcon(":/img/o_mark_lb.png"))
+                                    item.addChild(subItem)
+                                    break
                                 else : 
                                     subItem.setIcon(2, QIcon(":/img/x_mark_lb.png"))
                                     subItem.setText(3, result[insurance])
-                                item.addChild(subItem)
+                                    item.addChild(subItem)
                         tmp.append(item)
-                    mainUI.report_tw.clear()
                     mainUI.report_tw.insertTopLevelItems(0, tmp)
 
                     mainUI.report_tw.show()
+                    mainUI.report_tw.expandAll()
+                    time.sleep(10)              # Test code / please delete the contents of this line.
+                    mainUI.report_tw.hide()                 # Test code / please delete the contents of this line.
+                    mainUI.body_frm.show()              # Test code / please delete the contents of this line.
                     # 우측 하단에 확인 버튼 추가                # Test code / please delete the contents of this line.
 
                 else : 
