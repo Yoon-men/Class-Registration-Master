@@ -1,8 +1,8 @@
 from img.img import *
 import sys
 from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox, QTreeWidget, QAbstractItemView, QComboBox
-from PySide2.QtGui import QFont, QIntValidator
-from PySide2.QtCore import Qt, QEvent
+from PySide2.QtGui import QFont, QIntValidator, QMovie
+from PySide2.QtCore import Qt, QEvent, QByteArray
 
 
 global SCMode
@@ -404,45 +404,47 @@ class MainUI(QMainWindow) :
         self.addSubject_bt.setFocusPolicy(Qt.NoFocus)
         self.addSubject_bt.hide()
 
+        tw_styleSheet = ("QTreeWidget{\n"
+                            "border : 3px solid #8a2c2c;\n"
+                            "background-color : #131514;\n"
+                            "color : #ffffff;\n"
+                        "}\n"
+
+                        "QHeaderView{\n"
+                            "border : 0px;\n"
+                        "}\n"
+                        "QHeaderView::section{\n"
+                            "border : 1px solid #8a2c2c;\n"
+                            "background-color : #642223;\n"
+                            "font-family : 나눔고딕OTF;\n"
+                            "font-weight : bold;\n"
+                            "font-size : 13pt;\n"
+                            "color : #ffffff;\n"
+                        "}\n"
+
+                        "QTreeWidget::item::selected{\n"
+                            "background-color : #434343;\n"
+                            "color : #ffffff;\n"
+                        "}\n"
+                        "QTreeWidget::item::hover{\n"
+                            "background-color : #434343;\n"
+                        "}\n"
+
+                        "QTreeView::branch:has-children:!has-siblings:closed,\n"
+                        "QTreeView::branch:closed:has-children:has-siblings{\n"
+                            "border-image : none;\n"
+                            "image : url(:/img/branch_closed.png);\n"
+                        "}\n"
+                        "QTreeView::branch:open:has-children:!has-siblings,\n"
+                        "QTreeView::branch:open:has-children:has-siblings{\n"
+                            "border-image : none;\n"
+                            "image : url(:/img/branch_open.png);\n"
+                        "}")
+
         self.subjectBox_tw = QTreeWidget(self.body_frm)
         self.subjectBox_tw.setGeometry(546, 200, 541, 301)
         self.subjectBox_tw.setFont(QFont("나눔고딕OTF", 13, QFont.Bold))
-        self.subjectBox_tw.setStyleSheet("QTreeWidget{\n"
-                                            "border : 3px solid #8a2c2c;\n"
-                                            "background-color : #131514;\n"
-                                            "color : #ffffff;\n"
-                                        "}\n"
-
-                                        "QHeaderView{\n"
-                                            "border : 0px;\n"
-                                        "}\n"
-                                        "QHeaderView::section{\n"
-                                            "border : 1px solid #8a2c2c;\n"
-                                            "background-color : #642223;\n"
-                                            "font-family : 나눔고딕OTF;\n"
-                                            "font-weight : bold;\n"
-                                            "font-size : 13pt;\n"
-                                            "color : #ffffff;\n"
-                                        "}\n"
-
-                                        "QTreeWidget::item::selected{\n"
-                                            "background-color : #434343;\n"
-                                            "color : #ffffff;\n"
-                                        "}\n"
-                                        "QTreeWidget::item::hover{\n"
-                                            "background-color : #434343;\n"
-                                        "}\n"
-
-                                        "QTreeView::branch:has-children:!has-siblings:closed,\n"
-                                        "QTreeView::branch:closed:has-children:has-siblings{\n"
-                                            "border-image : none;\n"
-                                            "image : url(:/img/branch_closed.png);\n"
-                                        "}\n"
-                                        "QTreeView::branch:open:has-children:!has-siblings,\n"
-                                        "QTreeView::branch:open:has-children:has-siblings{\n"
-                                            "border-image : none;\n"
-                                            "image : url(:/img/branch_open.png);\n"
-                                        "}")
+        self.subjectBox_tw.setStyleSheet(tw_styleSheet)
         self.subjectBox_tw.setColumnWidth(0, 350)
         self.subjectBox_tw.setHeaderLabels(["교과목명", "교과목코드"])
         self.subjectBox_tw.setFocusPolicy(Qt.NoFocus)
@@ -643,6 +645,14 @@ class MainUI(QMainWindow) :
         self.finaleSubject_lb.installEventFilter(self)
         self.finaleSubject_lb.hide()
 
+        self.loading = QMovie(":/img/loading.gif", QByteArray(), self.superBody_frm)
+        self.loading.setCacheMode(QMovie.CacheAll)
+        self.registrationScreen_gif_lb = QLabel(self.superBody_frm)
+        self.registrationScreen_gif_lb.setGeometry(550, 180, 100, 100)
+        self.registrationScreen_gif_lb.setMovie(self.loading)
+        self.loading.start()
+        self.registrationScreen_gif_lb.hide()
+
         self.registrationScreen_txt_lb = QLabel(self.superBody_frm)
         self.registrationScreen_txt_lb.setGeometry(320, 300, 581, 61)
         self.registrationScreen_txt_lb.setStyleSheet("QLabel{\n"
@@ -693,6 +703,15 @@ class MainUI(QMainWindow) :
         self.periodError_bt.setGeometry(340, 458, 529, 53)
         self.periodError_bt.setStyleSheet(error_bt_styleSheet)
         self.periodError_bt.hide()
+
+        # self.report_tw = QTreeWidget(self.superBody_frm)              # Test code / please modify the contents of this lines.
+        # self.report_tw.setGeometry()
+        # self.report_tw.setFont(QFont("나눔고딕OTF", 13, QFont.Bold))
+        # self.report_tw.setStyleSheet(tw_styleSheet)
+        # self.report_tw.setColumnWidth()
+        # self.report_tw.setHeaderLabels(["교과목명", "교과목코드", "성공여부", "비고란"])
+        # self.report_tw.setFocusPolicy(Qt.NoFocus)
+        # self.report_tw.hide()
 
 
 
