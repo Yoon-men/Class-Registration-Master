@@ -264,7 +264,6 @@ class BasicFn(QObject) :
             global power
             power = True
             while (remaining_time > 0) and (power) : 
-                # time.sleep(1)
                 if (remaining_time == 300) or (remaining_time == 60) : remaining_time = self.timeChk()
                 remaining_time -= 1
                 H = remaining_time//3600; M = (remaining_time-H*3600)//60; S = remaining_time-H*3600-M*60
@@ -275,6 +274,7 @@ class BasicFn(QObject) :
             if power : 
                 account = (mainUI.ID_box_le.text(), mainUI.PW_box_le.text())
                 mainUI.body_frm.hide()
+                mainUI.registrationScreen_gif_lb.show()
                 mainUI.registrationScreen_txt_lb.show()
 
                 universityNum = mainUI.university_cb.currentIndex()
@@ -284,13 +284,13 @@ class BasicFn(QObject) :
                     result = keyFn.classRegistration_DNUE(account, subjectData)
                 elif universityNum == 3 : 
                     result = keyFn.classRegistration_SKKU(account, subjectData)
-
+                
+                mainUI.registrationScreen_gif_lb.hide()
+                mainUI.registrationScreen_txt_lb.hide()
                 if isinstance(result, set) : 
                     # 보고서 출력               # Test code / please delete the contents of this line.
-                    mainUI.registrationScreen_txt_lb.hide()
                     mainUI.body_frm.show()
                 else : 
-                    mainUI.registrationScreen_txt_lb.hide()
                     if result == "pageError" : 
                         mainUI.pageError_lb.show()
                         mainUI.pageError_bt.show()
@@ -300,6 +300,10 @@ class BasicFn(QObject) :
                     elif result == "periodError" : 
                         mainUI.periodError_lb.show()
                         mainUI.periodError_bt.show()
+                    else : 
+                        # 예기치 못한 오류가 발생했을 경우              # Test code / please delete the contents of this line.
+                        ## if 수강인원 Full                 # Test code / please delete the contents of this line.
+                        pass                # Test code / please delete the contents of this line.
 
                 power = False
                 mainUI.changeSCMode()
