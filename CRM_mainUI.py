@@ -704,14 +704,14 @@ class MainUI(QMainWindow) :
         self.periodError_bt.setStyleSheet(error_bt_styleSheet)
         self.periodError_bt.hide()
 
-        # self.report_tw = QTreeWidget(self.superBody_frm)              # Test code / please modify the contents of this lines.
-        # self.report_tw.setGeometry()
-        # self.report_tw.setFont(QFont("나눔고딕OTF", 13, QFont.Bold))
-        # self.report_tw.setStyleSheet(tw_styleSheet)
-        # self.report_tw.setColumnWidth()
-        # self.report_tw.setHeaderLabels(["교과목명", "교과목코드", "성공여부", "비고란"])
-        # self.report_tw.setFocusPolicy(Qt.NoFocus)
-        # self.report_tw.hide()
+        self.report_tw = QTreeWidget(self.superBody_frm)
+        self.report_tw.setGeometry(337, 180, 541, 301)
+        self.report_tw.setFont(QFont("나눔고딕OTF", 13, QFont.Bold))
+        self.report_tw.setStyleSheet(tw_styleSheet)
+        self.report_tw.setColumnWidth(0, 230)
+        self.report_tw.setHeaderLabels(["교과목명", "교과목코드", "성공여부", "비고란"])
+        self.report_tw.setFocusPolicy(Qt.NoFocus)
+        self.report_tw.hide()
 
 
 
