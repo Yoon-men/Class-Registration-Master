@@ -283,6 +283,7 @@ class MainUI(QMainWindow) :
         self.university_cb.addItem("KIT")
         self.university_cb.addItem("DNUE")
         self.university_cb.addItem("SKKU")
+        self.university_cb.addItem("TEST")              # Test code / please delete the contents of this line.
         self.university_cb.hide()
 
         self.accountBox_lb = QLabel(self.body_frm)
@@ -705,11 +706,14 @@ class MainUI(QMainWindow) :
         self.periodError_bt.hide()
 
         self.report_tw = QTreeWidget(self.superBody_frm)
-        self.report_tw.setGeometry(337, 180, 541, 301)
+        self.report_tw.setGeometry(320, 180, 651, 301)
         self.report_tw.setFont(QFont("나눔고딕OTF", 13, QFont.Bold))
         self.report_tw.setStyleSheet(tw_styleSheet)
-        self.report_tw.setColumnWidth(0, 230)
         self.report_tw.setHeaderLabels(["교과목명", "교과목코드", "성공여부", "비고란"])
+        self.report_tw.header().resizeSection(0, 200)
+        self.report_tw.header().resizeSection(1, 140)
+        self.report_tw.header().resizeSection(2, 80)
+        self.report_tw.header().resizeSection(3, 200)
         self.report_tw.setFocusPolicy(Qt.NoFocus)
         self.report_tw.hide()
 
