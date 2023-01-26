@@ -706,7 +706,7 @@ class MainUI(QMainWindow) :
         self.periodError_bt.hide()
 
         self.report_tw = QTreeWidget(self.superBody_frm)
-        self.report_tw.setGeometry(320, 180, 651, 301)
+        self.report_tw.setGeometry(283, 180, 651, 301)
         self.report_tw.setFont(QFont("나눔고딕OTF", 13, QFont.Bold))
         self.report_tw.setStyleSheet(tw_styleSheet)
         self.report_tw.setHeaderLabels(["교과목명", "교과목코드", "성공여부", "비고란"])
@@ -716,6 +716,17 @@ class MainUI(QMainWindow) :
         self.report_tw.header().resizeSection(3, 200)
         self.report_tw.setFocusPolicy(Qt.NoFocus)
         self.report_tw.hide()
+
+        self.report_bt = QPushButton(self.superBody_frm)
+        self.report_bt.setGeometry(849, 578, 341, 51)
+        self.report_bt.setStyleSheet("QPushButton{\n"
+                                        "image : url(:/img/report_bt_normal.png);\n"
+                                    "}\n"
+                                    "QPushButton:hover{\n"
+                                        "image : url(:/img/report_bt_hover.png);\n"
+                                    "}")
+        self.report_bt.setFocusPolicy(Qt.NoFocus)
+        self.report_bt.hide()
 
 
 
@@ -745,6 +756,8 @@ class MainUI(QMainWindow) :
         self.pageError_bt.clicked.connect(self.returnToMain_pageError)
         self.accountError_bt.clicked.connect(self.returnToMain_accountError)
         self.periodError_bt.clicked.connect(self.returnToMain_periodError)
+
+        self.report_bt.clicked.connect(self.returnToMain_report)
 
 
 
@@ -1059,6 +1072,13 @@ class MainUI(QMainWindow) :
     def returnToMain_periodError(self) : 
         self.periodError_lb.hide()
         self.periodError_bt.hide()
+        self.body_frm.show()
+
+
+
+    def returnToMain_report(self) : 
+        self.report_tw.hide()
+        self.report_bt.hide()
         self.body_frm.show()
 
 
