@@ -78,5 +78,7 @@
     <file>pageError_lb.png</file>
     <file>accountError_lb.png</file>
     <file>periodError_lb.png</file>
+    <file>report_bt_normal.png</file>
+    <file>report_bt_hover.png</file>
   </qresource>
 </RCC>
