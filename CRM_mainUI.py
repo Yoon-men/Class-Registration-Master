@@ -1077,6 +1077,7 @@ class MainUI(QMainWindow) :
 
 
     def returnToMain_report(self) : 
+        self.report_tw.clear()
         self.report_tw.hide()
         self.report_bt.hide()
         self.body_frm.show()
