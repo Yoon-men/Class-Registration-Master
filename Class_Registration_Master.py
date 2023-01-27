@@ -316,10 +316,7 @@ class BasicFn(QObject) :
 
                     mainUI.report_tw.show()
                     mainUI.report_tw.expandAll()
-                    time.sleep(10)              # Test code / please delete the contents of this line.
-                    mainUI.report_tw.hide()                 # Test code / please delete the contents of this line.
-                    mainUI.body_frm.show()              # Test code / please delete the contents of this line.
-                    # 우측 하단에 확인 버튼 추가                # Test code / please delete the contents of this line.
+                    mainUI.report_bt.show()
 
                 else : 
                     if result == "pageError" : 
