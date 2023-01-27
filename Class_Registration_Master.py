@@ -231,21 +231,11 @@ class BasicFn(QObject) :
         crt_H = time.localtime().tm_hour
         crt_M = time.localtime().tm_min
         crt_S = time.localtime().tm_sec
+        
+        total = (CR_H*3600 + CR_M*60) - (crt_H*3600 + crt_M*60 + crt_S)
+        if total < 0 : return 0
 
-        if CR_H < crt_H or (CR_H == crt_H and CR_M <= crt_M) : 
-            return 0
-
-        remaining_H = CR_H - crt_H
-        remaining_M = CR_M - crt_M - 1
-        remaining_S = 60 - crt_S
-        if crt_M >= CR_M : 
-            remaining_H -= 1
-            remaining_M += 60
-        if crt_S == 0 : 
-            remaining_M += 1
-            remaining_S = 0
-
-        return 60*60*remaining_H + 60*remaining_M + remaining_S
+        return total
 
 
 
@@ -260,14 +250,14 @@ class BasicFn(QObject) :
         else : subjectIsPrepared = True
 
         if universityIsPrepared and accountIsPrepared and timeIsPrepared and subjectIsPrepared : 
-            remaining_time = self.timeChk()
+            remainingTime = self.timeChk()
             
             global power
             power = True
-            while (remaining_time > 0) and (power) : 
-                if (remaining_time == 300) or (remaining_time == 60) : remaining_time = self.timeChk()
-                remaining_time -= 1
-                H = remaining_time//3600; M = (remaining_time-H*3600)//60; S = remaining_time-H*3600-M*60
+            while (remainingTime > 0) and (power) : 
+                if (remainingTime == 300) or (remainingTime == 60) : remainingTime = self.timeChk()
+                remainingTime -= 1
+                H, M, S = remainingTime//3600, remainingTime%3600//60, remainingTime%60
                 mainUI.time_HM_lcd.display(f"{str(H).zfill(2)}:{str(M).zfill(2)}")
                 mainUI.time_S_lcd.display(f":{str(S).zfill(2)}")
                 time.sleep(1)
