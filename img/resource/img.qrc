@@ -80,5 +80,6 @@
     <file>periodError_lb.png</file>
     <file>report_bt_normal.png</file>
     <file>report_bt_hover.png</file>
+    <file>report_lb.png</file>
   </qresource>
 </RCC>
