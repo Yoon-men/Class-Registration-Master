@@ -6,7 +6,7 @@
 
                                  * Made by Yoonmen *
 
-                              - 23.??.?? (???) ??:?? -
+                               - 23.1.28 (SAT) 22:44 -
 ======================================================================================
 '''
 
@@ -29,14 +29,14 @@ class Main(QObject) :
         global mainUI
         mainUI = MainUI()
 
-        global thread_keyFn        # For quit
+        global thread_keyFn
         thread_keyFn = QThread()
         thread_keyFn.start()
         global keyFn
         keyFn = KeyFn()
         keyFn.moveToThread(thread_keyFn)
 
-        global thread_basicFn       # For quit
+        global thread_basicFn
         thread_basicFn = QThread()
         thread_basicFn.start()
         global basicFn
@@ -275,8 +275,6 @@ class BasicFn(QObject) :
                     result = keyFn.classRegistration_DNUE(account, subjectData)
                 elif universityNum == 3 : 
                     result = keyFn.classRegistration_SKKU(account, subjectData)
-                elif universityNum == 4 :               # Test code / please delete the contents of this line.
-                    result = keyFn.classRegistration_OOO(account, subjectData)
                 
                 mainUI.registrationScreen_gif_lb.hide()
                 mainUI.registrationScreen_txt_lb.hide()
@@ -307,6 +305,7 @@ class BasicFn(QObject) :
                     mainUI.report_tw.show()
                     mainUI.report_tw.expandAll()
                     mainUI.report_bt.show()
+                    mainUI.report_lb.show()
 
                 else : 
                     if result == "pageError" : 
