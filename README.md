@@ -11,15 +11,15 @@
 <details>
   <summary>정보 (Click to view the actual program image)</summary>
   
-  ![image](https://user-images.githubusercontent.com/64591335/212485732-15a27b48-e1f9-4b6c-8782-9399f2646f86.png)
+  ![image](https://user-images.githubusercontent.com/64591335/215281062-b0ef9cdb-8c0e-4257-a0c0-ff43d1bcc43f.png)
 </details>
 
-- 원스톱 서비스 접속
+- 각종 사이트 접속
 
 <details>
   <summary>준비 (Click to view the actual program image)</summary>
   
-  ![image](https://user-images.githubusercontent.com/64591335/212486354-9bd31f75-b624-47de-96b4-e3f583afa16b.png)
+  ![image](https://user-images.githubusercontent.com/64591335/215282123-211a487c-6bd2-454e-80fe-7b6a60a2d669.png)
 </details>
 
 - 학교 설정
@@ -30,12 +30,12 @@
 <details>
   <summary>피날레 (Click to view the actual program image)</summary>
   
-  ![image](https://user-images.githubusercontent.com/64591335/212486515-c20c2184-a65d-454a-aa09-8d5184d805cd.png)
+  ![image](https://user-images.githubusercontent.com/64591335/215282310-3f5faf1e-cb3b-4b2e-b7a8-3e55825adce8.png)
 </details>
 
 - 준비 완료 여부 확인
 - 수강신청 시작
 
 # Update History
-◇ 202?.??.?? ( ??? ) ??:?? // v1.0
+◇ 2023.1.29 ( SUN ) 02:22 // v1.0
 - v1.0 개발
