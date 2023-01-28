@@ -283,7 +283,6 @@ class MainUI(QMainWindow) :
         self.university_cb.addItem("KIT")
         self.university_cb.addItem("DNUE")
         self.university_cb.addItem("SKKU")
-        self.university_cb.addItem("TEST")              # Test code / please delete the contents of this line.
         self.university_cb.hide()
 
         self.accountBox_lb = QLabel(self.body_frm)
@@ -728,6 +727,15 @@ class MainUI(QMainWindow) :
         self.report_bt.setFocusPolicy(Qt.NoFocus)
         self.report_bt.hide()
 
+        self.report_lb = QLabel(self.superBody_frm)
+        self.report_lb.setGeometry(20, 22, 328, 36)
+        self.report_lb.setStyleSheet("QLabel{\n"
+                                        "image : url(:/img/report_lb.png);\n"
+                                        "border : 0px;\n"
+                                        "background-color : transparent;\n"
+                                    "}")
+        self.report_lb.hide()
+
 
 
     def signal(self) : 
@@ -1080,6 +1088,7 @@ class MainUI(QMainWindow) :
         self.report_tw.clear()
         self.report_tw.hide()
         self.report_bt.hide()
+        self.report_lb.hide()
         self.body_frm.show()
 
 
