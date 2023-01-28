@@ -4,6 +4,8 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QR
 from PySide2.QtGui import QFont, QIntValidator, QMovie
 from PySide2.QtCore import Qt, QEvent, QByteArray
 
+import webbrowser
+
 
 global SCMode
 SCMode = "start"
@@ -127,32 +129,86 @@ class MainUI(QMainWindow) :
 
 
         # info_part
-        self.onestop_bt = QPushButton(self.body_frm)
-        self.onestop_bt.setGeometry(17, 52, 399, 34)
-        self.onestop_bt.setStyleSheet("QPushButton{\n"
-                                            "image : url(:/img/onestop_bt_normal.png);\n"
+        self.KIT_bt = QPushButton(self.body_frm)
+        self.KIT_bt.setGeometry(17, 52, 399, 34)
+        self.KIT_bt.setStyleSheet("QPushButton{\n"
+                                            "image : url(:/img/KIT_bt_normal.png);\n"
                                         "}\n"
                                         "QPushButton:hover{\n"
-                                            "image : url(:/img/onestop_bt_hover.png);\n"
+                                            "image : url(:/img/KIT_bt_hover.png);\n"
                                         "}")
-        self.onestop_bt.installEventFilter(self)
+        self.KIT_bt.installEventFilter(self)
 
-        self.onestop_img_lb = QLabel(self.body_frm)
-        self.onestop_img_lb.setGeometry(471, 91, 376, 441)
-        self.onestop_img_lb.setStyleSheet("QLabel{\n"   
-                                            "image : url(:/img/onestop_img.png);\n"
+        self.KIT_img_lb = QLabel(self.body_frm)
+        self.KIT_img_lb.setGeometry(471, 91, 376, 441)
+        self.KIT_img_lb.setStyleSheet("QLabel{\n"   
+                                            "image : url(:/img/KIT_img.png);\n"
                                             "border : 3px solid #8a2c2c;\n"
                                         "}")
-        self.onestop_img_lb.hide()
+        self.KIT_img_lb.hide()
 
-        self.onestop_txt_lb = QLabel(self.body_frm)
-        self.onestop_txt_lb.setGeometry(189, 577, 831, 31)
-        self.onestop_txt_lb.setStyleSheet("QLabel{\n"
-                                            "image : url(:/img/onestop_txt.png);\n"
+        self.KIT_txt_lb = QLabel(self.body_frm)
+        self.KIT_txt_lb.setGeometry(189, 577, 831, 31)
+        self.KIT_txt_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/KIT_txt.png);\n"
                                             "border : 0px;\n"
                                             "background-color : transparent;\n"
                                         "}")
-        self.onestop_txt_lb.hide()
+        self.KIT_txt_lb.hide()
+
+        self.DNUE_bt = QPushButton(self.body_frm)
+        self.DNUE_bt.setGeometry(17, 100, 399, 34)
+        self.DNUE_bt.setStyleSheet("QPushButton{\n"
+                                        "image : url(:/img/DNUE_bt_normal.png);\n"
+                                    "}\n"
+                                    "QPushButton:hover{\n"
+                                        "image : url(:/img/DNUE_bt_hover.png);\n"
+                                    "}")
+        self.DNUE_bt.installEventFilter(self)
+
+        self.DNUE_img_lb = QLabel(self.body_frm)
+        self.DNUE_img_lb.setGeometry(471, 125, 630, 390)
+        self.DNUE_img_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/DNUE_img.png);\n"
+                                            "border : 3px solid #8a2c2c;\n"
+                                        "}")
+        self.DNUE_img_lb.hide()
+
+        self.DNUE_txt_lb = QLabel(self.body_frm)
+        self.DNUE_txt_lb.setGeometry(189, 577, 830, 31)
+        self.DNUE_txt_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/DNUE_txt.png);\n"
+                                            "border : 0px;\n"
+                                            "background-color : transparent;\n"
+                                        "}")
+        self.DNUE_txt_lb.hide()
+
+        self.SKKU_bt = QPushButton(self.body_frm)
+        self.SKKU_bt.setGeometry(17, 148, 399, 34)
+        self.SKKU_bt.setStyleSheet("QPushButton{\n"
+                                        "image : url(:/img/SKKU_bt_normal.png);\n"
+                                    "}\n"
+                                    "QPushButton:hover{\n"
+                                        "image : url(:/img/SKKU_bt_hover.png);\n"
+                                    "}")
+        self.SKKU_bt.installEventFilter(self)
+
+        self.SKKU_img_lb = QLabel(self.body_frm)
+        self.SKKU_img_lb.setGeometry(471, 101, 600, 430)
+        self.SKKU_img_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/SKKU_img.png);\n"
+                                            "border : 3px solid #8a2c2c;\n"
+                                        "}")
+        self.SKKU_img_lb.hide()
+
+        self.SKKU_txt_lb = QLabel(self.body_frm)
+        self.SKKU_txt_lb.setGeometry(189, 577, 830, 31)
+        self.SKKU_txt_lb.setStyleSheet("QLabel{\n"
+                                            "image : url(:/img/SKKU_txt.png);\n"
+                                            "border : 0px;\n"
+                                            "background-color : transparent;\n"
+                                        "}")
+        self.SKKU_txt_lb.hide()
 
 
         # prepare_part
@@ -739,10 +795,19 @@ class MainUI(QMainWindow) :
 
 
     def signal(self) : 
+        # menu_part
         self.info_rb.clicked.connect(self.setMenu)
         self.prepare_rb.clicked.connect(self.setMenu)
         self.finale_rb.clicked.connect(self.setMenu)
 
+
+        # info_part
+        self.KIT_bt.clicked.connect(self.openKIT)
+        self.DNUE_bt.clicked.connect(self.openDNUE)
+        self.SKKU_bt.clicked.connect(self.openSKKU)
+
+
+        # prepare_part
         self.university_rb.clicked.connect(self.setMode)
         self.account_rb.clicked.connect(self.setMode)
         self.time_rb.clicked.connect(self.setMode)
@@ -755,6 +820,8 @@ class MainUI(QMainWindow) :
         self.hour_box_le.textChanged.connect(self.setTime)
         self.min_box_le.textChanged.connect(self.setTime)
 
+
+        # finale_part
         self.start_bt.clicked.connect(self.changeSCMode)
         self.cancel_bt.clicked.connect(self.changeSCMode)
 
@@ -807,11 +874,15 @@ class MainUI(QMainWindow) :
             self.finaleTime_lb.hide()
             self.finaleSubject_lb.hide()
             # info_part
-            self.onestop_bt.show()
+            self.KIT_bt.show()
+            self.DNUE_bt.show()
+            self.SKKU_bt.show()
 
         elif self.prepare_rb.isChecked() : 
             # info_part
-            self.onestop_bt.hide()
+            self.KIT_bt.hide()
+            self.DNUE_bt.hide()
+            self.SKKU_bt.hide()
             # finale_part
             self.start_bt.hide()
             self.cancel_bt.hide()
@@ -849,7 +920,9 @@ class MainUI(QMainWindow) :
 
         elif self.finale_rb.isChecked() : 
             # info_part
-            self.onestop_bt.hide()
+            self.KIT_bt.hide()
+            self.DNUE_bt.hide()
+            self.SKKU_bt.hide()
             # prepare_part
             self.university_rb.hide()
             self.account_rb.hide()
@@ -887,6 +960,17 @@ class MainUI(QMainWindow) :
             self.finaleAccount_lb.show()
             self.finaleTime_lb.show()
             self.finaleSubject_lb.show()
+
+
+
+    def openKIT(self) : 
+        webbrowser.open("https://onestop.kumoh.ac.kr")
+
+    def openDNUE(self) : 
+        webbrowser.open("https://dnue.koedu.ac.kr/coueLogin")
+
+    def openSKKU(self) : 
+        webbrowser.open("https://sugang.skku.edu")
 
 
 
@@ -1199,13 +1283,29 @@ class MainUI(QMainWindow) :
 
 
     def eventFilter(self, object, event) : 
-        if object == self.onestop_bt : 
+        if object == self.KIT_bt : 
             if event.type() == QEvent.HoverEnter : 
-                self.onestop_img_lb.show()
-                self.onestop_txt_lb.show()
+                self.KIT_img_lb.show()
+                self.KIT_txt_lb.show()
             elif event.type() == QEvent.HoverLeave : 
-                self.onestop_img_lb.hide()
-                self.onestop_txt_lb.hide()
+                self.KIT_img_lb.hide()
+                self.KIT_txt_lb.hide()
+
+        elif object == self.DNUE_bt : 
+            if event.type() == QEvent.HoverEnter : 
+                self.DNUE_img_lb.show()
+                self.DNUE_txt_lb.show()
+            elif event.type() == QEvent.HoverLeave : 
+                self.DNUE_img_lb.hide()
+                self.DNUE_txt_lb.hide()
+
+        elif object == self.SKKU_bt : 
+            if event.type() == QEvent.HoverEnter : 
+                self.SKKU_img_lb.show()
+                self.SKKU_txt_lb.show()
+            elif event.type() == QEvent.HoverLeave : 
+                self.SKKU_img_lb.hide()
+                self.SKKU_txt_lb.hide()
         
         elif object == self.finaleUniversity_lb : 
             if event.type() == QEvent.HoverEnter : 
