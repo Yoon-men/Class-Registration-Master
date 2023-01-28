@@ -6,7 +6,7 @@
 
                                  * Made by Yoonmen *
 
-                               - 23.1.28 (SAT) 22:44 -
+                               - 23.1.29 (SUN) 02:22 -
 ======================================================================================
 '''
 
@@ -15,7 +15,6 @@ from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import QThread, QObject, QEvent
 from PySide2.QtWidgets import QTreeWidgetItem
 from PySide2.QtGui import QIcon
-import webbrowser
 import time
 
 from CRM_mainUI import MainUI
@@ -63,9 +62,6 @@ class Main(QObject) :
 
     def signal(self) : 
         # << mainUI (1/1) >> --------------------
-
-        ## info_part
-        mainUI.onestop_bt.clicked.connect(BasicFn.openOnestop)
 
         ## prepare_part
         mainUI.prepare_rb.clicked.connect(self.finale_inProgress)
@@ -147,11 +143,6 @@ class Main(QObject) :
 
 
 class BasicFn(QObject) : 
-    def openOnestop(self) : 
-        webbrowser.open("https://onestop.kumoh.ac.kr/")
-
-
-
     def setSubjectBox(self) : 
         tmp = []
         for major, insurances in subjectData.items() : 
