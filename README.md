@@ -26,6 +26,8 @@
 - 계정 설정
 - 시간 설정
 - 주요과목 및 보험과목 설정
+  - Drag & Drop 방식으로 주요과목 및 보험과목을 설정할 수 있습니다.
+  - 초록색 불이 들어오면 저장 버튼을 눌러 과목 설정을 저장하세요.
 
 <details>
   <summary>피날레 (Click to view the actual program image)</summary>
