@@ -1,12 +1,9 @@
-# Class_Registration_Master
-> '수강신청 마스터'를 사용해 나머지 99%의 사람들에게 당신과의 격차를 확실히 느끼게 해주십시오.
-
 <div align="center">
 
-  ![CRM](https://user-images.githubusercontent.com/64591335/187922920-5c3bd3ae-d53b-4188-bc06-90b0a1fd7ff4.png)
-  Mockup image (made on September 1, 2022)
+  ![CRM_header](https://user-images.githubusercontent.com/64591335/215345339-59241a31-a3cf-448f-8e47-cba4880204a2.png)
 </div>
 
+> '수강신청 마스터'를 사용해 나머지 99%의 사람들에게 당신과의 격차를 확실히 느끼게 해주십시오.
 # How To Use (v1.0)
 <details>
   <summary>정보 (Click to view the actual program image)</summary>
