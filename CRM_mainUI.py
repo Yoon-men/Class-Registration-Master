@@ -1,7 +1,7 @@
 from img.img import *
 import sys
 from PySide2.QtWidgets import QApplication, QMainWindow, QFrame, QPushButton, QRadioButton, QLabel, QButtonGroup, QLineEdit, QLCDNumber, QCheckBox, QTreeWidget, QAbstractItemView, QComboBox
-from PySide2.QtGui import QFont, QIntValidator, QMovie
+from PySide2.QtGui import QFont, QIntValidator, QMovie, QIcon
 from PySide2.QtCore import Qt, QEvent, QByteArray
 
 import webbrowser
@@ -22,6 +22,7 @@ class MainUI(QMainWindow) :
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setFixedSize(1215, 662)
         self.setWindowTitle("Class_Registration_Master_v1.0")
+        self.setWindowIcon(QIcon("CRM.ico"))
 
         self.superBody_frm = QFrame(self)
         self.superBody_frm.setGeometry(0, 0, 1215, 662)
