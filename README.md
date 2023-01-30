@@ -3,6 +3,8 @@
   ![CRM_header](https://user-images.githubusercontent.com/64591335/215345339-59241a31-a3cf-448f-8e47-cba4880204a2.png)
 </div>
 
+<a href="https://github.com/Yoon-men/Class_Registration_Master/releases/tag/v1.0"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Yoon-men/Class_Registration_Master?color=e14f50&logo=github"></a>
+
 > '수강신청 마스터'를 사용해 나머지 99%의 사람들에게 당신과의 격차를 확실히 느끼게 해주십시오.
 # How To Use (v1.0)
 <details>
