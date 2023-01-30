@@ -784,7 +784,7 @@ class MainUI(QMainWindow) :
         self.report_bt.hide()
 
         self.report_lb = QLabel(self.superBody_frm)
-        self.report_lb.setGeometry(20, 22, 328, 36)
+        self.report_lb.setGeometry(19, 22, 328, 36)
         self.report_lb.setStyleSheet("QLabel{\n"
                                         "image : url(:/img/report_lb.png);\n"
                                         "border : 0px;\n"
