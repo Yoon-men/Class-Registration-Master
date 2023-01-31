@@ -11,9 +11,8 @@
 '''
 
 import sys
-from PySide2.QtWidgets import QApplication
+from PySide2.QtWidgets import QApplication, QTreeWidgetItem
 from PySide2.QtCore import QThread, QObject, QEvent
-from PySide2.QtWidgets import QTreeWidgetItem
 from PySide2.QtGui import QIcon
 import time
 
