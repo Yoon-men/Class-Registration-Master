@@ -555,7 +555,7 @@ class MainUI(QMainWindow) :
         self.subjectError_lb.hide()
 
         self.subjectError_bt = QPushButton(self.superBody_frm)
-        self.subjectError_bt.setGeometry(340, 458, 529, 53)
+        self.subjectError_bt.setGeometry(341, 455, 529, 53)
         self.subjectError_bt.setStyleSheet(error_bt_styleSheet)
         self.subjectError_bt.hide()
 
@@ -612,7 +612,7 @@ class MainUI(QMainWindow) :
         self.finale_notPrepared_lb.hide()
 
         self.finale_notPrepared_bt = QPushButton(self.superBody_frm)
-        self.finale_notPrepared_bt.setGeometry(340, 458, 529, 53)
+        self.finale_notPrepared_bt.setGeometry(341, 455, 529, 53)
         self.finale_notPrepared_bt.setStyleSheet(error_bt_styleSheet)
         self.finale_notPrepared_bt.hide()
 
@@ -673,7 +673,7 @@ class MainUI(QMainWindow) :
         self.finale_inProgress_lb.hide()
 
         self.finale_inProgress_bt = QPushButton(self.superBody_frm)
-        self.finale_inProgress_bt.setGeometry(340, 458, 529, 53)
+        self.finale_inProgress_bt.setGeometry(341, 455, 529, 53)
         self.finale_inProgress_bt.setStyleSheet(error_bt_styleSheet)
         self.finale_inProgress_bt.hide()
 
@@ -729,7 +729,7 @@ class MainUI(QMainWindow) :
         self.pageError_lb.hide()
 
         self.pageError_bt = QPushButton(self.superBody_frm)
-        self.pageError_bt.setGeometry(340, 458, 529, 53)
+        self.pageError_bt.setGeometry(341, 455, 529, 53)
         self.pageError_bt.setStyleSheet(error_bt_styleSheet)
         self.pageError_bt.hide()
 
@@ -743,7 +743,7 @@ class MainUI(QMainWindow) :
         self.accountError_lb.hide()
 
         self.accountError_bt = QPushButton(self.superBody_frm)
-        self.accountError_bt.setGeometry(340, 458, 529, 53)
+        self.accountError_bt.setGeometry(341, 455, 529, 53)
         self.accountError_bt.setStyleSheet(error_bt_styleSheet)
         self.accountError_bt.hide()
 
@@ -757,7 +757,7 @@ class MainUI(QMainWindow) :
         self.periodError_lb.hide()
 
         self.periodError_bt = QPushButton(self.superBody_frm)
-        self.periodError_bt.setGeometry(340, 458, 529, 53)
+        self.periodError_bt.setGeometry(341, 455, 529, 53)
         self.periodError_bt.setStyleSheet(error_bt_styleSheet)
         self.periodError_bt.hide()
 
